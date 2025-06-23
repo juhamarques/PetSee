@@ -169,7 +169,7 @@ h6 {
   font-family: var(--default-font);
 }
 
-.registro {
+.registro { 
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
@@ -2702,6 +2702,8 @@ section,
   width: 100%;
   height: 100%;
   border: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .contact .form-container-overlap {
@@ -2709,6 +2711,10 @@ section,
   margin-top: -150px;
   margin-bottom: 60px;
   z-index: 10;
+  background-color: #fff; 
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  padding: 40px;
 }
 
 .contact .contact-form-wrapper {

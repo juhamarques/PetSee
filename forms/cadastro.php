@@ -7,8 +7,8 @@
 </head>
 <body>
     <?php
-        $nome = $_POST["nome"];
-        echo("Bem vinda ".$nome);
+        //$nome = $_POST["nome"];
+        //echo("Bem vinda ".$nome);
     ?>
 </body>
 </html>
