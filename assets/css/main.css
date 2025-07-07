@@ -158,7 +158,9 @@ h6 {
 }
 
 .tipo-button {
-  width: 100%;
+  width: 97%;
+  margin-left: 5px;
+  margin-bottom: 5px;
   padding: 12px;
   background-color: var(--surface-color);
   border: none;
