@@ -120,12 +120,11 @@ h6 {
 .login-box {
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  width: 350px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  width: 500px;
   overflow: hidden;
-  margin-top: 100px;
   margin-top: 115px;
-  margin-left: 38%;
+  margin-left: 35%;
 }
 
 .login {
@@ -136,6 +135,21 @@ h6 {
   font-size: 20px;
   font-weight: bold;
   font-family: var(--default-font);
+}
+
+.form-colunas{
+  display: flex; 
+  justify-content: space-between;
+  gap: 20px; 
+  flex-wrap: wrap; 
+  margin-bottom: 20px;
+  margin-right: 6px;
+}
+
+.coluna-left,
+.coluna-right {
+    flex: 1; 
+    min-width: 200px; 
 }
 
 .tipo-label {
@@ -149,17 +163,18 @@ h6 {
 .tipo-input {
   width: 97%;
   padding: 10px;
-  margin-left: 5px;
-  margin-bottom: 18px;
+  margin-left: 6px;
+  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
   font-family: var(--default-font);
+  box-sizing: border-box;
 }
 
 .tipo-button {
   width: 97%;
-  margin-left: 5px;
+  margin-left: 6px;
   margin-bottom: 5px;
   padding: 12px;
   background-color: var(--surface-color);
@@ -169,6 +184,10 @@ h6 {
   font-size: 16px;
   cursor: pointer;
   font-family: var(--default-font);
+}
+
+.tipo-button:hover {
+    filter: brightness(90%); 
 }
 
 .registro { 
@@ -652,11 +671,6 @@ h6 {
 
 .footer .copyright p {
   margin-bottom: 0;
-}
-
-.footer .credits {
-  margin-top: 6px;
-  font-size: 13px;
 }
 
 /*--------------------------------------------------------------

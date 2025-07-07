@@ -7,8 +7,29 @@
 </head>
 <body>
     <?php
-        //$nome = $_POST["nome"];
-        //echo("Bem vinda ".$nome);
+        $conn = new mysqli("localhost", "root", "#0607Iron", "PetSee");
+
+        if ($conn->connect_error){
+            echo("Erro ao abrir conexão");
+        }else{
+            echo("Conexão feita com sucesso");
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $nascimento = $_POST['nascimento'];
+            $cpf = $_POST['cpf'];
+            $cep = $_POST['cep'];
+            $senha = $_POST['senha'];
+
+            $stmt = $sconn->prepare("INSERT INTO tb_usuario(cpf, nome, nascimento, CEP, email, senha) VALUES (? ? ?)");
+            $stmt->bind_param("sss", $nome, $email, $nascimento, $cpf, $cep, $senha);
+
+            if ($stmt -> execute()){
+                echo("Novo registro inserido com sucesso");
+            }else{
+                echo("Erro ao inserir registro: ").$stmt -> error;
+            }
+            $conn -> close();
+        }
     ?>
 </body>
 </html>
