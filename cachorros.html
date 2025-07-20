@@ -25,8 +25,6 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
         <p class="sitename titulo-petsee">PetSee</p>
       </a>
@@ -34,14 +32,16 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Início</a></li>
-           <li class="dropdown">Cuidados <i class="bi bi-chevron-down dropdown-indicator"></i></a> 
-            <ul> <li><a href="#" class="active">Cachorros</a></li>
-              <li><a href="gatos.html">Gatos</a></li>
-              <li><a href="passaros.html">Passáros</a></li>
-              <li><a href="coelhos.html">Coelhos</a></li>
-              <li><a href="peixes.html">Peixes</a></li>
-              <li><a href="roedores.html">Roedores</a></li>
-            </ul>
+           <li class="dropdown"><a href="#" class="active"><span>Cuidados</span></a> 
+              <ul> 
+                <li><a href="cachorros.html">Cachorros</a></li>
+                <li><a href="gatos.html">Gatos</a></li>
+                <li><a href="passaros.html">Passáros</a></li>
+                <li><a href="coelhos.html">Coelhos</a></li>
+                <li><a href="peixes.html">Peixes</a></li>
+                <li><a href="roedores.html">Roedores</a></li>
+              </ul>
+            </li>
           </li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
@@ -72,21 +72,21 @@
         <div class="row">
           <div class="col-lg-3 d-flex flex-column align-items-start">
             <button id="filter-toggle-btn" class="filter-button-small d-flex align-items-center justify-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-              <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"><path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
               </svg>Filtros</button>
 
              <div id="filter-panel" class="filter-panel-large">
               <h4>Filtrar por Categoria</h4>
               <div class="filter-options">
+                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+                <label><input type="checkbox" name="filter" value="injestao"> Injestão</label>
+                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
                 <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
                 <label><input type="checkbox" name="filter" value="vacinacao"> Vacinação</label>
-                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
                 <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
-                <label><input type="checkbox" name="filter" value="alimentacao"> Alimentação</label>
-                <label><input type="checkbox" name="filter" value="treinamento"> Treinamento</label>
-                <label><input type="checkbox" name="filter" value="saude-geral"> Saúde Geral</label>
-                <label><input type="checkbox" name="filter" value="comportamento"> Comportamento</label>
+                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
               </div>
               <button id="apply-filters-btn" class="btn btn-primary mt-3 w-100">Aplicar Filtros</button>
               <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
@@ -96,30 +96,30 @@
           <div class="col-lg-9">
             <div class="row gy-4" id="info-cards-container">
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
-                <div class="info-card">
-                  <div class="card-icon"><i class="bi bi-bath"></i></div>
-                  <h3>Higiene Diária do seu Cão</h3>
-                  <p>Aprenda a importância do banho regular, escovação e cuidados com as unhas para a saúde do seu pet.</p>
-                  <a href="#" class="read-more">Leia Mais <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="vacinacao">
-                <div class="info-card">
-                  <div class="card-icon"><i class="bi bi-shield-check"></i></div>
-                  <h3>Calendário de Vacinação Essencial</h3>
-                  <p>Guia completo das vacinas necessárias para proteger seu cão de doenças comuns e perigosas.</p>
-                  <a href="#" class="read-more">Leia Mais <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="alimentacao">
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
                 <div class="info-card">
                   <div class="card-icon"><i class="bi bi-bowl-hot"></i></div>
-                  <h3>Alimentação Saudável para Cães</h3>
-                  <p>Dicas sobre a melhor dieta, rações de qualidade e alimentos a evitar para garantir a nutrição ideal.</p>
-                  <a href="#" class="read-more">Leia Mais <i class="bi bi-arrow-right"></i></a>
+                  <h3>Ambiente Adequado</h3>
+                  <p>Para cães que vivem ao ar livre, é necessário um um local protegido contra chuva, frio e sol excessivo, além de camas confortáveis.</p>
+                  <p>Para tutores que precisam prender seu cão temporariamente, é recomendado que use um fio comprido. Não é indicado a utilização de correntes fixadas no chão, pois elas podem causar lesões.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="injestao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-shield-check"></i></div>
+                  <h3>Alimentação e Água</h3>
+                  <p>É vital oferecer uma dieta balanceada, com proteínas e fibras. Tenha conhecimento de que restos de comida não são suficientes, também evite dar ossos afiados, que podem causar problemas ao serem ingeridos.</p>
+                  <p>É indespensável disponibilizar água fresca em uma vasilha sempre limpa para seu pet, eles precisam de recursos básico tanto quanto nós seres humanos.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-bowl-hot"></i></div>
+                  <h3>Exercícios e Socialização</h3>
+                  <p>Cães não devem ficar presos permanentemente. Eles precisam de contato com outras pessoas e animais para evitar agressividade e outras ações que podem desagradar. A solução pode ser simples: caminhadas diárias e brincadeiras os manterão ativos e alegres, prevenindo latidos excessivos por tédio.</p>
+                  <p>Sempre use coleira e guia ao levá-lo à rua e recolha as fezes. Cães de médio e grande porte podem usar focinheira se necessário.</p>
                 </div>
               </div>
 
@@ -127,17 +127,61 @@
                 <div class="info-card">
                   <div class="card-icon"><i class="bi bi-capsule"></i></div>
                   <h3>Administração Segura de Medicamentos</h3>
-                  <p>Orientações sobre como dar remédios ao seu cão, dosagem correta e precauções importantes.</p>
-                  <a href="#" class="read-more">Leia Mais <i class="bi bi-arrow-right"></i></a>
+                  <p>A automedicação é uma das principais causas de intoxicação em animais domésticos. Fármacos humanos, mesmo infantis, podem ser tóxicos para cães, como o paracetamol. Mesmo que não seja legalmente exigido em todos os casos, consultar um veterinário é sempre o mais seguro e responsável ao medicar seu pet.</p>
+                  <p>Jamais administre medicação sem a indicação de um veterinário.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="treinamento">
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
                 <div class="info-card">
                   <div class="card-icon"><i class="bi bi-hand-thumbs-up"></i></div>
-                  <h3>Treinamento Básico e Comportamento</h3>
-                  <p>Técnicas de adestramento, socialização e como lidar com comportamentos indesejados do seu filhote ou cão adulto.</p>
-                  <a href="#" class="read-more">Leia Mais <i class="bi bi-arrow-right"></i></a>
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>Cães mal cuidados podem apresentar pulgas, carrapatos, piolhos, vermes ou sarna. É essencial consultar sempre um veterinário. Mantenha seu cão e o ambiente em que ele vive sempre limpos para garantir a saúde, o bem-estar e a qualidade de vida dele e de todos que convivem com ele. Além disso, um ambiente limpo evita maus odores, reduz o risco de contaminações e contribui para um convívio mais agradável dentro de casa.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="vacinacao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Prevenção Imunológica </h3>
+                  <p>Vacine seu cão contra as principais doenças caninas e contra a raiva. A vacinação protege não só seu animal, mas também reduz o risco de infecção para outros; além de prevenir surtos e epidemias, protegendo outros animais e até humanos (em casos de zoonoses); também evita gastos altos com tratamentos, já que muitas dessas doenças exigem internação e cuidados intensivos; e garante uma vida mais longa e saudável para o pet, o que é exigido por lei em alguns casos, como a vacina antirrábica.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="escovacao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Higiene dos Pelos</h3>
+                  <p>Realizar a escovação regular pode ajudar a identificar parasitas externos e mantém a pelagem limpa e desembaraçada. A escovação frequente também acostuma o cão ao manuseio.</p>
+                  <p>É essencial para a saúde e o bem-estar do seu pet. Ao escovar a pelagem, você remove os pelos mortos, evita nós, reduz a queda e previne problemas de pele, como dermatites e parasitas. Além disso, ajuda a estimular a circulação sanguínea e fortalece o vínculo entre você e seu animal.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Reprodução Biológica</h3>
+                  <p>Saiba que as cadelas podem entrar no cio a partir do 6º mês e ter várias ninhadas por ano. E as que são gestantes e lactantes precisam de alimentação reforçada. Já os filhotes mamam até a terceira semana, começando a se alimentar de ração gradualmente.</p>
+                  <p>O tutor deve proporcionar um ambiente tranquilo para as cadelas protegerem seus filhotes. Porém, se deseja evitar ninhadas indesejadas, considere a esterilização cirúrgica, um procedimento seguro realizado por veterinário.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>Graças a equipamentos e técnicas modernas, a cirurgia de castração é segura, indolor e com recuperação rápida.</p>
+                  <p>Tenha conehcimento de que cadelas não precisam ter uma ninhada antes da castração e, após o procedimento, ela não entrará mais no cio, não atrairá machos e terá o risco de tumores mamários reduzido.</p>
+                  <p>É essencial uma conversa com seu veterinário sobre o procedimento. Procure sempre se manter informado com especialistas!</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>A intoxicação pode ocorrer por ingestão, contato com a pele ou inalação. os sintomas comuns que seu pet pode ter incluem salivação excessiva, vômitos, pupilas dilatadas, dificuldade de locomoção e contrações musculares involuntárias.</p>
+                  <p>Caso ocorra, exige atenção imediata! Leve o animal imediatamente ao veterinário ou solicite atendimento domiciliar.</p>
                 </div>
               </div>
 
@@ -148,16 +192,14 @@
     </section>
   </main>
   
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <script src="assets/js/main.js"></script>
-
-  <script src="assets/js/filters.js"></script>
+  <script src="assets/js/cuidados.js"></script>
 
 </body>
 </html>

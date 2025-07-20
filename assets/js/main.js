@@ -1,12 +1,3 @@
-/**
-* Template Name: Strategy
-* Template URL: https://bootstrapmade.com/strategy-bootstrap-agency-template/
-* Updated: Jun 06 2025 with Bootstrap v5.3.6
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-
 (function() {
   "use strict";
 
@@ -51,12 +42,16 @@
 
   /**
    * Toggle mobile nav dropdowns
+   * IMPORTANTE: 'toggle-dropdown' deve estar na tag <a> do item 'Cuidados' no HTML
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function(e) {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      // 'this' aqui é o <a>. parentNode é o <li>.
+      // Adiciona/remove a classe 'active' ao <li>, o que pode ser útil para estilos de dropdown
+      this.parentNode.classList.toggle('active'); 
+      // Abre/fecha o <ul> que é o próximo irmão do <li> pai
+      this.parentNode.querySelector('ul').classList.toggle('dropdown-active'); // Corrigido para buscar o ul dentro do li
       e.stopImmediatePropagation();
     });
   });
@@ -191,24 +186,95 @@
     }
   });
 
+  function activateNavMenuLinks() {
+    const currentPagePathname = window.location.pathname; 
+    document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+
+    const cuidadosDropdownParentLink = document.querySelector('.navmenu ul li.dropdown > a');
+    
+    const cuidadosPages = [
+        '/cachorros.html',
+        '/gatos.html',
+        '/passaros.html',
+        '/coelhos.html',
+        '/peixes.html',
+        '/roedores.html',
+    ];
+
+    let isActiveCuidadosPage = false;
+    for (let i = 0; i < cuidadosPages.length; i++) {
+        if (currentPagePathname.endsWith(cuidadosPages[i])) {
+            isActiveCuidadosPage = true;
+            break;
+        }
+    }
+
+    if (cuidadosDropdownParentLink && isActiveCuidadosPage) {
+        cuidadosDropdownParentLink.classList.add('active');
+        return;
+    }
+
+    document.querySelectorAll('.navmenu a').forEach(navmenulink => {
+        if (navmenulink.closest('.dropdown') && navmenulink !== cuidadosDropdownParentLink) {
+             return;
+        }
+
+        const linkPathname = new URL(navmenulink.href).pathname;
+        let normalizedCurrentPathname = currentPagePathname;
+
+        if (normalizedCurrentPathname === '/') {
+            normalizedCurrentPathname = '/index.html';
+        }
+        if (linkPathname === '/') {
+            linkPathname = '/index.html';
+        }
+
+        if (linkPathname === normalizedCurrentPathname) {
+            navmenulink.classList.add('active');
+        }
+    });
+  }
+
+  window.addEventListener('load', activateNavMenuLinks);
+
   /**
-   * Navmenu Scrollspy
+   * Navmenu Scrollspy 
    */
   let navmenulinks = document.querySelectorAll('.navmenu a');
 
   function navmenuScrollspy() {
+    const cuidadosDropdownParentLink = document.querySelector('.navmenu ul li.dropdown > a');
+    const cuidadosIsCurrentlyActive = cuidadosDropdownParentLink && cuidadosDropdownParentLink.classList.contains('active');
+
     navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
+      if (!navmenulink.hash) {
+          return;
+      }
+
+      if (navmenulink === cuidadosDropdownParentLink && cuidadosIsCurrentlyActive) {
+          return;
+      }
+
       let section = document.querySelector(navmenulink.hash);
       if (!section) return;
-      let position = window.scrollY + 200;
+
+      let position = window.scrollY + 200; 
+
       if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+        if (!cuidadosIsCurrentlyActive) {
+            document.querySelectorAll('.navmenu a.active').forEach(link => {
+                if (link.hash) { 
+                    link.classList.remove('active');
+                }
+            });
+            navmenulink.classList.add('active');
+        }
       } else {
-        navmenulink.classList.remove('active');
+        if (navmenulink !== cuidadosDropdownParentLink && navmenulink.hash) { 
+             navmenulink.classList.remove('active');
+        }
       }
-    })
+    });
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
