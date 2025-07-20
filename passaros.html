@@ -8,14 +8,14 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Vendor CSS Files -->
+  <!-- Arquivos CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
+  <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
@@ -25,10 +25,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
-        <p class="sitename titulo-petsee">PetSee</p>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -53,7 +50,133 @@
 
         <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
     </div>
-  </header>
+  </header><br><br><br>
+
+  <main class="main">
+
+    <section id="page-hero" class="page-hero section">
+      <div class="container" style="text-align: center;">
+        <h1>Guia de Cuidados para Pássaros!</h1>
+        <p>Tudo o que você precisa saber para cuidar bem do seu melhor amigo.</p> <br>
+        <div style="text-align: center; margin-left: 200px; margin-right: 200px;">
+          <h3>Orientação para tutores de pássaros:</h3>
+          <p>Exige juízo, obtendo aves da fauna brasileira só de criadores licenciados pelo IBAMA e aves exóticas de afiliados à FOB com documentação legal. Capturar aves silvestres é crime e prejudica o meio ambiente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuidados-conteudo" class="cuidados-conteudo section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 d-flex flex-column align-items-start">
+            <button id="filter-toggle-btn" class="filter-button-small d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"><path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              </svg>Filtros</button>
+
+             <div id="filter-panel" class="filter-panel-large">
+              <h4>Filtrar por Categoria</h4>
+              <div class="filter-options">
+                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+                <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
+                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
+                <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
+                <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
+                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
+              </div>
+              <button id="apply-filters-btn" class="btn btn-primary mt-3 w-100">Aplicar Filtros</button>
+              <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="row gy-4" id="info-cards-container">
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
+                <div class="info-card">
+                  <h3>Ambiente Adequado</h3>
+                  <p>A escolha da gaiola é crucial. Opte por gaiolas voadeiras, sempre as maiores possíveis. Posicione-as longe do alcance de cães e gatos para evitar acidentes. Se a gaiola ficar em ambiente externo, grades grossas são essenciais para proteger a ave de predadores como aves de rapina. Caso tenha mais de uma ave na mesma gaiola, observe se há brigas frequentes, o que pode indicar disputa territorial entre machos.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
+                <div class="info-card">
+                  <h3>Alimentação Correta</h3>
+                  <p>A alimentação inadequada é a principal causa de problemas de saúde em aves em cativeiro. Uma dieta balanceada é fundamental para prevenir alterações respiratórias, fígado gorduroso e desnutrição óssea. Consulte sempre um médico-veterinário especializado para elaborar um plano alimentar específico para sua ave, evitando problemas e visitas emergenciais.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+                <div class="info-card">
+                  <h3>Interação e Personalidade</h3>
+                  <p>A interação com sua ave deve respeitar a personalidade específica da espécie. Por exemplo, o canário-belga é conhecido por ser dócil e afetuoso, reconhecendo a voz do dono e criando um vínculo especial. Essas aves podem ficar tristes ou estressadas se passarem longos períodos sozinhas, por isso é importante dedicar atenção e interação para garantir seu bem-estar emocional. Conhecer o comportamento da espécie ajuda a construir uma relação saudável e feliz com seu pet.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Administração Segura de Medicamentos</h3>
+                  <p>Sempre siga a orientação do veterinário, utilizando a dose correta e o método indicado, seja oral, injetável ou tópica. Evite medicar por conta própria, pois aves são sensíveis a muitos medicamentos humanos e doses erradas podem ser perigosas. Use seringas ou conta-gotas apropriados para facilitar a aplicação e minimize o manejo para reduzir o estresse da ave durante o tratamento.</p>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Sinais de Doenças</h3>
+                  <p>Alguns comportamentos que indicam problemas incluem pálpebras caídas, dificuldade para respirar (percebida pelo movimento acelerado da cauda), postura curvada ao empoleirar-se, passar muito tempo "encorujada" no chão da gaiola, espirros frequentes e fezes mais líquidas do que o normal. Ao notar qualquer desses sintomas, procure um veterinário especializado para avaliação e tratamento.</p>
+                  <p>Busque sempre informações sobre aves de estimação em fontes especializadas e confiáveis. O manejo adequado e as visitas regulares a médicos-veterinários especializados são cruciais para prevenir doenças e garantir uma vida saudável ao seu pet.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
+                <div class="info-card">
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>Mantenha a gaiola sempre limpa, trocando regularmente o substrato e removendo restos de comida e fezes. Ofereça banhos frequentes, seja com borrifador ou banho em recipiente raso, pois isso ajuda a manter as penas limpas e a prevenir problemas de pele. Evite o acúmulo de poeira e cuide da ventilação do ambiente para reduzir o risco de doenças respiratórias. A higiene adequada também contribui para um ambiente confortável e feliz para sua ave.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Vacinação</h3>
+                  <p>A vacinação em pássaros é uma medida importante para prevenir doenças comuns e graves, especialmente em aves de criação ou em ambientes com muitos animais. Nem todas as espécies precisam de vacinas, por isso é fundamental consultar um veterinário especializado em aves para avaliar a necessidade e indicar o tipo correto de imunização. Manter o calendário vacinal atualizado ajuda a proteger a ave contra infecções e a garantir sua saúde a longo prazo.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Reprodução Biológica</h3>
+                  <p>Envolve o acasalamento, a postura dos ovos e o cuidado com os filhotes. Após o acasalamento, a fêmea põe ovos que são incubados por ambos os pais ou somente pela mãe, dependendo da espécie. O período de incubação varia, mas geralmente dura entre duas a três semanas. Durante esse tempo, os pais mantêm os ovos aquecidos e protegidos. Após a eclosão, os filhotes dependem dos cuidados dos adultos para alimentação e proteção até adquirirem autonomia.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>Conhecida como gonadectomia, consiste na remoção das gônadas — testículos nos machos ou ovários nas fêmeas. Esse procedimento é realizado por veterinários especializados e ajuda a controlar a reprodução, além de reduzir comportamentos agressivos ou excessivamente territoriais. Embora seja menos comum do que em mamíferos, a gonadectomia pode ser recomendada em casos específicos para melhorar a qualidade de vida da ave. Como qualquer cirurgia, requer cuidados pré e pós-operatórios para garantir a recuperação segura do animal.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
+                <div class="info-card">
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>Pode ocorrer pela ingestão, inalação ou contato com substâncias tóxicas presentes em alimentos, plantas, produtos de limpeza, fumaça de cigarro, entre outros. Essas aves são muito sensíveis e mesmo pequenas quantidades podem causar sintomas graves, como vômitos, dificuldade respiratória, letargia e convulsões. Ao perceber sinais de intoxicação, é fundamental levar o pássaro imediatamente a um veterinário especializado para avaliação e tratamento rápido, garantindo maiores chances de recuperação.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/cuidados.js"></script>
 
 </body>
 </html>

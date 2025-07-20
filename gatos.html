@@ -8,14 +8,14 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Vendor CSS Files -->
+  <!-- Arquivos CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
+  <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
@@ -25,11 +25,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
-        <p class="sitename titulo-petsee">PetSee</p>
-      </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
@@ -53,7 +49,153 @@
 
         <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
     </div>
-  </header>
+  </header><br><br><br>
+
+  <main class="main">
+
+    <section id="page-hero" class="page-hero section">
+      <div class="container" style="text-align: center;">
+        <h1>Guia de Cuidados para Gatos!</h1>
+        <p>Tudo o que você precisa saber para cuidar bem do seu melhor amigo.</p><br>
+        <div style="text-align: center; margin-left: 200px; margin-right: 200px;">
+          <h3>Orientação para tutores de gatos:</h3>
+          <p>Apesar da crescente popularidade, muitos gatos sofrem abandono devido à falta de conhecimento sobre suas necessidades. Gatos são dependentes e podem viver mais de 15 anos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuidados-conteudo" class="cuidados-conteudo section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 d-flex flex-column align-items-start">
+            <button id="filter-toggle-btn" class="filter-button-small d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"><path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              </svg>Filtros</button>
+
+             <div id="filter-panel" class="filter-panel-large">
+              <h4>Filtrar por Categoria</h4>
+              <div class="filter-options">
+                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+                <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
+                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
+                <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
+                <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
+                <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
+                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
+              </div>
+              <button id="apply-filters-btn" class="btn btn-primary mt-3 w-100">Aplicar Filtros</button>
+              <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="row gy-4" id="info-cards-container">
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
+                <div class="info-card">
+                  <h3>Ambiente Adequado</h3>
+                  <p>É ideal que você, quanto tutor, tenha condições de proporcionar um abrigo seguro, sendo um local confortável para descanso de seu pet.</p>
+                  <p>Também é muitíssimo importante possibilitar um enriquecimento ambiental, que pode ser através do fornecimento de prateleiras, caixas e arranhaduras em seu local de residência. Esses instrumentos servem de entreterimento para seu gato, além de evitar o estresse, estimulando comportamentos naturais.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-shield-check"></i></div>
+                  <h3>Alimentação e Água</h3>
+                  <p>É vital oferecer uma dieta balanceada com alimentos específicos para gatos, ricos em proteína e gordura. A frequência depende da idade do pet: adultos comem duas vezes ao dia; já os filhotes, idosos e gestantes alimentam-se com pequenas porções várias vezes. É recomendado evitar alimentos humanos, ofereça apenas produtos felinos.</p>
+                  <p>É indespensável disponibilizar água fresca em uma vasilha sempre limpa para seu pet, eles precisam de recursos básico tanto quanto nós seres humanos.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-bowl-hot"></i></div>
+                  <h3>Companhia Humana</h3>
+                  <p>Embora sejam conhecidos por sua independência, os gatos valorizam a companhia humana. Mesmo não precisando de passeios, eles gostam de estar por perto, observar o ambiente ao lado dos tutores e receber carinho. A presença e a atenção do dono fazem parte do bem-estar do gato.</p>
+                  <p>Eles desenvolvem fortes laços com seus tutores e sentem falta da presença deles. Podem demonstrar afeto de maneiras sutis, como seguir a pessoa pela casa, se deitar por perto ou miar para chamar atenção. A interação diária é essencial para o equilíbrio emocional do gato.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Administração Segura de Medicamentos</h3>
+                  <p>A saúde dos gatos exige cuidados específicos, incluindo atenção a parasitas como pulgas, vermes e carrapatos, especialmente em animais que têm acesso à rua.</p> 
+                  <p>Nunca medique seu gato por conta própria — muitos remédios humanos, como o paracetamol, são altamente tóxicos para eles.</p> 
+                  <p>Sempre consulte um veterinário, que indicará o tratamento correto e seguro. Manter o ambiente limpo e oferecer afeto também contribuem para o bem-estar do animal.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>A organização das caixas de areia é fundamental para o bem-estar dos felinos. O ideal é ter uma caixa por gato, mais uma extra, sempre distribuídas em locais diferentes da casa. Agrupar todas em um único ponto pode gerar disputas e desconforto. Quando há mais de um gato, urinar ou defecar fora da caixa pode ser um sinal de estresse, disputa territorial ou conflito entre eles. Oferecer bandejas sanitárias em locais tranquilos, acessíveis e separados ajuda a evitar esses problemas e garante mais harmonia entre os animais.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Vacinação</h3>
+                  <p>A vacinação é uma parte fundamental dos cuidados, sendo necessária desde os primeiros meses de vida. Ela protege contra doenças sérias e contagiosas, como rinotraqueíte, calicivirose, panleucopenia e a raiva — esta última, inclusive, com risco de transmissão para humanos. Gatos que vivem em ambientes internos também devem ser vacinados, já que vírus podem ser trazidos de fora por roupas, sapatos ou outros animais. Manter o calendário vacinal atualizado, com orientação do veterinário, é essencial para garantir uma vida longa, saudável e segura ao seu gato.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="escovacao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Higiene dos Pelos</h3>
+                  <p>A escovação regular é essencial para a saúde e o conforto dos gatos, especialmente os com pelos bem longos. Ela ajuda a remover pelos mortos, evita a formação de nós e permite que você identifique antecipadamente a presença de pulgas, carrapatos ou outros problemas de pele. Além dos benefícios físicos, esse momento fortalece o vínculo entre tutor e gato, tornando-se também uma forma de carinho e cuidado diário.</p> 
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Reprodução Biológica</h3>
+                  <p>As gatas podem entrar no cio ainda jovens e ter várias ninhadas ao longo do ano, o que pode levar a uma superpopulação felina e abandono. Por isso, a castração é fundamental: além de evitar crias indesejadas, contribui para a saúde do animal, prevenindo doenças e comportamentos relacionados ao cio. É um ato de responsabilidade e cuidado com o bem-estar dos gatos e da comunidade.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>É um procedimento seguro e com recuperação rápida, recomendado a partir dos dois meses de idade. Além de evitar ninhadas indesejadas, traz diversos benefícios: reduz comportamentos como o cio, brigas e marcação de território, e ainda contribui para a saúde, diminuindo o risco de tumores e infecções uterinas. Em gatos de rua, um pequeno corte na ponta da orelha é usado para identificar que já foram castrados.</p>
+                  <p>É essencial uma conversa com seu veterinário sobre o procedimento. Procure sempre se manter informado com especialistas!</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
+                <div class="info-card">
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>Pode ocorrer pela ingestão, contato com a pele ou inalação de substâncias tóxicas, já que eles são muito sensíveis a muitos produtos. Os sintomas mais comuns incluem salivação excessiva, vômitos, pupilas dilatadas e dificuldade para se movimentar.</p>
+                  <p>Caso ocorra, exige atenção imediata! Leve o animal imediatamente ao veterinário ou solicite atendimento domiciliar.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/cuidados.js"></script>
+
+</body>
+</html>
 
 </body>
 </html>

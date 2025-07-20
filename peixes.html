@@ -8,14 +8,14 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Vendor CSS Files -->
+  <!-- Arquivos CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
+  <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
@@ -25,10 +25,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
-        <p class="sitename titulo-petsee">PetSee</p>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -53,7 +50,141 @@
 
         <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
     </div>
-  </header>
+  </header><br><br><br>
+
+  <main class="main">
+
+    <section id="page-hero" class="page-hero section">
+      <div class="container" style="text-align: center;">
+        <h1>Guia de Cuidados para Peixes!</h1>
+        <p>Tudo o que você precisa saber para cuidar bem do seu melhor amigo.</p> <br>
+        <div style="text-align: center; margin-left: 200px; margin-right: 200px;">
+          <h3>Orientação para tutores de peixes:</h3>
+          <p>Requer responsabilidade, antes de escolher a espécie, é importante entender suas necessidades. Se deseja ter um peixe, considere a adoção, há muitos animais à espera de um lar. Planeje-se e jamais abandone seu animal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuidados-conteudo" class="cuidados-conteudo section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 d-flex flex-column align-items-start">
+            <button id="filter-toggle-btn" class="filter-button-small d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"><path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              </svg>Filtros</button>
+
+             <div id="filter-panel" class="filter-panel-large">
+              <h4>Filtrar por Categoria</h4>
+              <div class="filter-options">
+                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+                <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
+                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
+                <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
+                <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
+                <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
+                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
+              </div>
+              <button id="apply-filters-btn" class="btn btn-primary mt-3 w-100">Aplicar Filtros</button>
+              <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="row gy-4" id="info-cards-container">
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
+                <div class="info-card">
+                  <h3>Ambiente Adequado</h3>
+                  <p>Deve garantir água limpa, temperatura estável e parâmetros ideais de pH e oxigenação, conforme a espécie. O aquário precisa ter tamanho suficiente para o número de peixes, com espaço para nadar e esconderijos que reduzam o estresse. Filtros e sistemas de circulação ajudam a manter a qualidade da água, enquanto a iluminação deve ser adequada para o ciclo natural dos peixes. A limpeza regular e a troca parcial da água são essenciais para um ambiente saudável e equilibrado.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
+                <div class="info-card">
+                  <h3>Alimentação</h3>
+                  <p>Deve-se considerar o tipo e a quantidade de ração específica para cada espécie. É importante oferecer uma porção suficiente para ser consumida rapidamente, evitando o excesso que pode sujar a água e liberar toxinas prejudiciais. Para ajustar a quantidade ideal, observe os peixes durante três minutos após a alimentação: se comerem tudo, ofereça um pouco mais; se não, a porção está adequada.</p> 
+                  <p>Esse cuidado deve ser diário, levando em conta o número de peixes e o crescimento do cardume. Além da ração, peixes jovens, em reprodução ou com saúde debilitada podem precisar de suplementos vitamínicos e tratamentos especiais. Nesses casos, a orientação de um veterinário especializado é fundamental, pois peixes também podem ser afetados por parasitas, bactérias e fungos.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+                <div class="info-card">
+                  <h3>Exercícios e Socialização</h3>
+                  <p>Peixes precisam de um ambiente enriquecido para se exercitarem e socializarem, o que contribui para sua saúde física e mental. Um aquário espaçoso, com plantas, esconderijos e obstáculos, estimula o movimento natural e reduz o estresse. </p>
+                  <p>Além disso, escolher espécies compatíveis favorece a convivência harmoniosa, evitando brigas e agressões. A interação com o ambiente e entre os peixes promove comportamentos naturais, melhora o bem-estar e aumenta a longevidade dos animais.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Administração Segura de Medicamentos</h3>
+                  <p>É fundamental usar os medicamentos corretos, nas doses indicadas, para evitar intoxicações e efeitos adversos. Muitas vezes, os remédios são aplicados diretamente na água do aquário, exigindo cuidado para não alterar os parâmetros ambientais que podem prejudicar os peixes. Em outros casos, a medicação pode ser oferecida junto à ração. Evite medicar por conta própria e sempre monitore a resposta dos peixes durante o tratamento para garantir a eficácia e segurança.</p>
+                  <p>Jamais administre medicação sem a indicação de um veterinário especiaizado.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Sinais de Doença</h3>
+                  <p>Para ser um bom tutor, é essencial reconhecer quando um peixe está doente. Os sinais mais comuns incluem perda de apetite, inatividade, respiração acelerada, inchaço, desbotamento das cores, feridas no corpo, presença de muco excessivo, desgaste nas barbatanas e aparecimento de vermes. Observar esses sintomas rapidamente permite buscar ajuda veterinária adequada e garantir o tratamento correto para o bem-estar do peixe.</p>
+                  <p>Ao notar sinais de doença, procure um veterinário para diagnóstico e tratamento. É importante isolar o peixe doente em recipiente separado para evitar contaminação dos demais e facilitar o cuidado até a recuperação completa.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
+                <div class="info-card">
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>A saúde dos peixes depende da manutenção adequada do aquário, que deve ser planejado conforme a espécie, quantidade de peixes e tamanho. Equipamentos como termostato, filtro, iluminação, plantas e cascalho ajudam a manter a qualidade da água, essencial para o equilíbrio do ecossistema. A limpeza deve ser feita com trocas parciais de 20% a 30% da água, preservando bactérias benéficas. A água nova precisa descansar por 48 horas ou ser tratada para eliminar cloro e outras substâncias antes de ser adicionada, e o fundo deve ser limpo com sifão para manter o ambiente saudável.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Vacinação</h3>
+                  <p>A vacinação em peixes é uma prática importante principalmente em criações comerciais para prevenir doenças infecciosas que podem causar grandes perdas. Ela ajuda a fortalecer o sistema imunológico dos peixes contra bactérias e vírus específicos. A aplicação geralmente é feita por meio de injeções ou imersão em soluções vacinais, dependendo da espécie e do tipo de vacina. Embora não seja comum em peixes de aquário doméstico, a vacinação é essencial em ambientes produtivos para garantir a saúde do cardume e a sustentabilidade da criação.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Reprodução Biológica</h3>
+                  <p>Varia conforme a espécie, mas geralmente envolve a desova, quando a fêmea libera os ovos e o macho os fertiliza externamente na água. Algumas espécies cuidam dos ovos e filhotes, protegendo-os até que se tornem independentes, enquanto outras não oferecem cuidados parentais.</p> 
+                  <p>A reprodução pode ser influenciada por fatores como temperatura, iluminação e qualidade da água. Entender esses aspectos é importante para quem cria peixes, garantindo condições ideais para a procriação saudável.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>A castração cirúrgica em peixes, embora rara, é possível e geralmente realizada em situações específicas, como pesquisas ou controle reprodutivo na aquacultura. O procedimento envolve a remoção das gônadas (testículos ou ovários) ou a interrupção da função reprodutiva por métodos como injeções que bloqueiam a produção de gametas. Essa prática ajuda a controlar a reprodução e melhorar a gestão dos cardumes.</p>
+                  <p>É essencial uma conversa com seu veterinário especializado sobre o procedimento. Procure sempre se manter informado com especialistas!</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
+                <div class="info-card">
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>Pode ocorrer por contato, ingestão ou inalação de substâncias tóxicas presentes na água, como produtos químicos, medicamentos em excesso, metais pesados ou resíduos orgânicos. Esses agentes causam sintomas como respiração acelerada, nadadeiras fechadas, letargia, perda de apetite e mudanças na coloração. Para evitar intoxicações, é fundamental manter a qualidade da água, controlar a alimentação e usar medicamentos apenas sob orientação veterinária.</p>
+                  <p>Caso ocorra, exige atenção imediata! Leve o animal imediatamente ao veterinário especializado ou solicite atendimento domiciliar.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/cuidados.js"></script>
 
 </body>
 </html>

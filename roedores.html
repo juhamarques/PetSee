@@ -8,14 +8,14 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Vendor CSS Files -->
+  <!-- Arquivos CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
+  <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
@@ -25,10 +25,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
-        <p class="sitename titulo-petsee">PetSee</p>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -53,7 +50,139 @@
 
         <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
     </div>
-  </header>
+  </header><br><br><br>
+
+  <main class="main">
+
+    <section id="page-hero" class="page-hero section">
+      <div class="container" style="text-align: center;">
+        <h1>Guia de Cuidados para Roedores!</h1>
+        <p>Tudo o que você precisa saber para cuidar bem do seu melhor amigo.</p> <br>
+        <div style="text-align: center; margin-left: 200px; margin-right: 200px;">
+          <h3>Orientação para tutores de roedores:</h3>
+          <p>Se você deseja ter um roedor, considere a adoção, pois há muitos animais à espera de um lar. Planeje-se e jamais abandone seu animal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuidados-conteudo" class="cuidados-conteudo section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 d-flex flex-column align-items-start">
+            <button id="filter-toggle-btn" class="filter-button-small d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"><path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              </svg>Filtros</button>
+
+             <div id="filter-panel" class="filter-panel-large">
+              <h4>Filtrar por Categoria</h4>
+              <div class="filter-options">
+                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+                <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
+                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
+                <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
+                <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
+                <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
+                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
+              </div>
+              <button id="apply-filters-btn" class="btn btn-primary mt-3 w-100">Aplicar Filtros</button>
+              <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="row gy-4" id="info-cards-container">
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
+                <div class="info-card">
+                  <h3>Ambiente Adequado</h3>
+                  <p>Um ambiente adequado para roedores deve ser espaçoso, seguro e estimulante, permitindo que eles explorem, corram e escavem. A gaiola precisa ter ventilação adequada, piso confortável e materiais para roer, essenciais para o desgaste dos dentes. Também é importante incluir esconderijos, brinquedos e áreas para descanso, além de manter o espaço limpo e protegido de temperaturas extremas para garantir o bem-estar do animal.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
+                <div class="info-card">
+                  <h3>Alimentação e Água</h3>
+                  <p>A alimentação dos roedores deve ser balanceada, com ração específica de qualidade, complementada por frutas, verduras e alimentos frescos adequados à espécie.</p>
+                  <p>O acesso à água limpa e fresca deve ser constante, preferencialmente por meio de bebedouros que evitem contaminação. Manter uma dieta equilibrada e hidratação adequada é fundamental para a saúde e o bem-estar dos roedores.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+                <div class="info-card">
+                  <h3>Exercícios e Socialização</h3>
+                  <p>Roedoeres precisam de espaço para correr, escalar e explorar, além de brinquedos que estimulem suas habilidades naturais.</p>
+                  <p>Muitos roedores são animais sociais e se beneficiam da companhia de outros da mesma espécie, desde que a convivência seja harmoniosa. A interação regular com o tutor também fortalece o vínculo e ajuda a prevenir o tédio e o estresse.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Administração Segura de Medicamentos</h3>
+                  <p>A administração segura de medicamentos em roedores deve ser sempre feita com orientação veterinária, pois eles são sensíveis a muitos fármacos e doses incorretas podem ser perigosas. Utilize a dose e via de aplicação indicadas pelo profissional, seja oral, injetável ou tópica. Evite medicar por conta própria e use ferramentas adequadas, como seringas ou conta-gotas, para garantir a precisão e reduzir o estresse do animal durante o tratamento.</p>
+                  <p>Jamais administre medicação sem a indicação de um veterinário especializado.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
+                <div class="info-card">
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>São fundamentais para prevenir doenças e garantir o conforto do animal. A gaiola deve ser limpa regularmente, removendo fezes, restos de comida e trocando a cama para evitar odores e acúmulo de bactérias. É importante também limpar comedouros e bebedouros diariamente. Embora roedores sejam naturalmente limpos e se cuidem, o ambiente deve ser mantido seco e ventilado para evitar problemas de pele e respiratórios.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+                <div class="info-card">
+                  <h3>Vacinação</h3>
+                  <p>A vacinação de roedores não é comum na maioria das espécies domésticas, pois muitas doenças podem ser prevenidas com bons cuidados ambientais e alimentação adequada. Contudo, em algumas situações específicas ou em roedores de laboratório, a vacinação pode ser recomendada para proteger contra doenças específicas. Sempre consulte um veterinário especializado para avaliar a necessidade e a possibilidade de vacinação do seu roedor.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="escovacao">
+                <div class="info-card">
+                  <h3>Higiene dos Pelos</h3>
+                  <p>A escovação regular dos roedores, especialmente das espécies de pelo longo, ajuda a remover pelos soltos, evitar nós e manter a pelagem limpa e saudável. Esse cuidado também contribui para a higiene geral do animal e pode prevenir problemas de pele. Além disso, o momento da escovação fortalece o vínculo entre o tutor e o roedor, tornando-se uma prática importante para o bem-estar do pet.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Reprodução Biológica</h3>
+                  <p>A reprodução biológica dos roedores é rápida e eficiente, com ciclos reprodutivos curtos e múltiplas ninhadas ao ano. As fêmeas podem entrar no cio pouco tempo após o nascimento e gestar entre 20 a 30 dias, dependendo da espécie. Cada ninhada pode ter vários filhotes, que nascem cegos e sem pelos, necessitando de cuidados intensivos da mãe. Devido à alta fertilidade, o controle reprodutivo é importante para evitar superpopulação e garantir o bem-estar dos animais.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+                <div class="info-card">
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>É um procedimento seguro que ajuda a controlar a reprodução e melhorar o comportamento dos animais. Nos machos, remove-se os testículos, enquanto nas fêmeas são retirados os ovários, e às vezes o útero. A castração pode reduzir agressividade, marcação territorial e o risco de certas doenças, como tumores.</p>
+                  <p>É essencial uma conversa com um veterinário especializado sobre o procedimento. Procure sempre se manter informado com especialistas!</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
+                <div class="info-card">
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>Pode ocorrer pela ingestão de alimentos inadequados, plantas tóxicas, produtos de limpeza ou medicamentos impróprios. Eles são muito sensíveis a diversas substâncias, e até pequenas quantidades podem causar sintomas como vômitos, diarreia, fraqueza, convulsões e perda de apetite. Para prevenir, mantenha produtos tóxicos fora do alcance e ofereça uma alimentação segura e balanceada.</p>
+                  <p>Caso ocorra, exige atenção imediata! Leve o animal imediatamente ao veterinário ou solicite atendimento domiciliar.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/cuidados.js"></script>
 
 </body>
 </html>

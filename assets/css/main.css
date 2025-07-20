@@ -28,7 +28,8 @@
 /* Imagem da Logo */
 .imagem-logo {
   line-height: 1;
-  max-height: 36px;
+  width: 65px;
+  max-height: 40px;
   margin-right: 8px;
   border-radius: 8px;
 }
@@ -44,16 +45,6 @@
 @font-face {
   font-family: 'Biggest-cat-ever';
   src: url(../fonts/biggest_cat_ever/Biggest\ Cat\ Ever.ttf) format(truetype);
-}
-
-.titulo-petsee {
-  font-family: 'Realburn', sans-serif;
-  color: #e0e9f2;
-  font-size: 20px;
-  margin: 0;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
 }
 
 .light-background {
@@ -1060,12 +1051,6 @@ Cadastro
 .info-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-}
-
-.info-card .card-icon {
-  font-size: 2.5rem;
-  color: #007bff; 
-  margin-bottom: 15px;
 }
 
 .info-card h3 {
