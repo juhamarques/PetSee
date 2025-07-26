@@ -2,7 +2,7 @@
   "use strict";
 
   /**
-   * Apply .scrolled class to the body as the page is scrolled down
+   * Aplicação da classe .scrolled ao corpo conforme a página rola para baixo
    */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
@@ -15,7 +15,7 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
-   * Mobile nav toggle
+   * Nav
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
@@ -29,7 +29,7 @@
   }
 
   /**
-   * Hide mobile nav on same-page/hash links
+   * Ocultar navegação em links de mesma página/hash
    */
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
@@ -41,17 +41,13 @@
   });
 
   /**
-   * Toggle mobile nav dropdowns
-   * IMPORTANTE: 'toggle-dropdown' deve estar na tag <a> do item 'Cuidados' no HTML
+   * Alternar menus suspensos de navegação
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function(e) {
       e.preventDefault();
-      // 'this' aqui é o <a>. parentNode é o <li>.
-      // Adiciona/remove a classe 'active' ao <li>, o que pode ser útil para estilos de dropdown
       this.parentNode.classList.toggle('active'); 
-      // Abre/fecha o <ul> que é o próximo irmão do <li> pai
-      this.parentNode.querySelector('ul').classList.toggle('dropdown-active'); // Corrigido para buscar o ul dentro do li
+      this.parentNode.querySelector('ul').classList.toggle('dropdown-active'); 
       e.stopImmediatePropagation();
     });
   });
@@ -67,7 +63,7 @@
   }
 
   /**
-   * Scroll top button
+   * Botão de rolar para cima
    */
   let scrollTop = document.querySelector('.scroll-top');
 
@@ -88,46 +84,14 @@
   document.addEventListener('scroll', toggleScrollTop);
 
   /**
-   * Animation on scroll function and init
-   */
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-  }
-  window.addEventListener('load', aosInit);
-
-  /**
-   * Init swiper sliders
-   */
-  function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
-    });
-  }
-
-  window.addEventListener("load", initSwiper);
-
-  /**
-   * Initiate glightbox
+   * Iniciar glightbox
    */
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
   /**
-   * Init isotope layout and filters
+   * Layout e filtros de inicialização
    */
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
@@ -151,16 +115,13 @@
         initIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
       }, false);
     });
 
   });
 
   /**
-   * Frequently Asked Questions Toggle
+   * Alternar perguntas frequentes
    */
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
     faqItem.addEventListener('click', () => {
@@ -169,7 +130,7 @@
   });
 
   /**
-   * Correct scrolling position upon page load for URLs containing hash links.
+   * Posição correta de rolagem no carregamento da página para URLs contendo links hash
    */
   window.addEventListener('load', function(e) {
     if (window.location.hash) {
