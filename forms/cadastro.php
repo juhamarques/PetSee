@@ -7,24 +7,25 @@
 </head>
 <body>
     <?php
-        $conn = new mysqli("localhost", "root", "", "PetSee");
+        $conn = new mysqli("localhost", "root", "1234", "PetSee");
 
         if ($conn->connect_error){
             echo("Erro ao abrir conexão");
         }else{
             echo("Conexão feita com sucesso");
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $nascimento = $_POST['nascimento'];
             $cpf = $_POST['cpf'];
+            $nome = $_POST['nome'];
+            $nascimento = $_POST['nascimento'];
             $cep = $_POST['cep'];
+            $email = $_POST['email'];
             $senha = $_POST['senha'];
 
-            $stmt = $sconn->prepare("INSERT INTO tb_usuario(cpf, nome, nascimento, CEP, email, senha) VALUES (? ? ?)");
-            $stmt->bind_param("sss", $nome, $email, $nascimento, $cpf, $cep, $senha);
+            $stmt = $conn->prepare("INSERT INTO Usuario(cpf, nome, nascimento, CEP, email, senha) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $cpf, $nome, $nascimento, $cep, $email, $senha);
 
             if ($stmt -> execute()){
-                echo("Novo registro inserido com sucesso");
+                $conn -> close();
+                header('Location: ../index.html');
             }else{
                 echo("Erro ao inserir registro: ").$stmt -> error;
             }
