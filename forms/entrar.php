@@ -8,7 +8,7 @@
 <body>
     <?php
         $sql = "select * from Usuario where nome = ? AND email = ? AND senha = ?";
-        $conn = new mysqli("localhost", "root", "1234", "PetSee");
+        $conn = new mysqli("localhost", "root", "", "PetSee");
 
         if ($conn->connect_error){
             echo("Erro ao abrir conexão");
@@ -31,11 +31,10 @@
         }
         $conn->close();
         if($achouUsuario==false){
-            header('Location:index.html');
+            header('Location:../index.html');
         }else{
             header('Location:dashboard.php?nome='.$nome);
         }
-
     ?>
 </body>
 </html>

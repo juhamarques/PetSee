@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-        $conn = new mysqli("localhost", "root", "1234", "PetSee");
+        $conn = new mysqli("localhost", "root", "", "PetSee");
 
         if ($conn->connect_error){
             echo("Erro ao abrir conexão");
