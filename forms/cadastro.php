@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php
+        //session_start();
         $conn = new mysqli("localhost", "root", "", "PetSee");
 
         if ($conn->connect_error){
@@ -26,6 +27,7 @@
             if ($stmt -> execute()){
                 $conn -> close();
                 header('Location: ../index.html');
+                //exit();
             }else{
                 echo("Erro ao inserir registro: ").$stmt -> error;
             }

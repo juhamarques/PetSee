@@ -113,7 +113,7 @@
             <div class="contact-form-wrapper">
               <h2 class="text-center mb-4">Entre em Contato</h2><br>
 
-              <form action="forms/contact.php" method="post" class="php-email-form">
+              <form action="../PetSee/forms/contato.php" method="post" class="php-email-form">
                 <div class="row g-3">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -150,7 +150,15 @@
                   <div class="col-12">
                     <div class="loading">Carregando</div>
                     <div class="error-message"></div>
-                    <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
+                    
+                    <div class="sent-message">
+                        <div class="message-content-wrapper">
+                            <div class="icon-container">
+                                <img src="assets/img/contato/gatinho.png" alt="Gatinho do sucesso" style="width: 50px; height: 50px; margin-right: 15px; vertical-align: middle;">
+                            </div>
+                            <span class="message-text">Seu e-mail foi enviado com sucesso!</span>
+                        </div>
+                    </div>
                   </div>
 
                   <div class="col-12 text-center">
@@ -226,5 +234,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="assets/vendor/php-email-from/validate.js"></script>
+  <script src="assets/js/main.js"></script> 
 </body>
 </html>
