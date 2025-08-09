@@ -7,7 +7,7 @@ require '../assets/vendor/php-email-from/PHPMailer/src/Exception.php';
 require '../assets/vendor/php-email-from/PHPMailer/src/PHPMailer.php';
 require '../assets/vendor/php-email-from/PHPMailer/src/SMTP.php';
 
-$receiving_email_address = 'j.abreu@aluno.ifsp.edu.br'; 
+$receiving_email_address = 'j.abreu@aluno.ifsp.edu.br';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars(trim($_POST['name'] ?? ''));
@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'julia14.amarques@gmail.com'; 
-        $mail->Password   = 'lzkf ovot rsvu ekqp';   
+        $mail->Username   = 'julia14.amarques@gmail.com';
+        $mail->Password   = 'lzkf ovot rsvu ekqp';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
         $mail->CharSet    = 'UTF-8';
@@ -49,12 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $body .= "<p><strong>Mensagem:</strong><br>" . nl2br($message) . "</p>";
         $mail->Body    = $body;
         $mail->AltBody = "Nova Mensagem de Contato:\nNome: " . $name . "\nEmail: " . $email . "\nAssunto: " . $subject . "\nMensagem:\n" . $message; 
-        
+
         $mail->send();
         echo ("OK");
 
     } catch (Exception $e) {
-        echo "Erro ao enviar a mensagem. Detalhes: {$mail->ErrorInfo}";
+        echo ("Erro ao enviar a mensagem. Detalhes: {$mail->ErrorInfo}");
     }
     exit;
 

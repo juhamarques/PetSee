@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-</head>
-<body>
-    <?php
-        //session_start();
-        $conn = new mysqli("localhost", "root", "", "PetSee");
-
-        if ($conn->connect_error){
-            echo("Erro ao abrir conexão");
-        }else{
-            echo("Conexão feita com sucesso");
-            $cpf = $_POST['cpf'];
-            $nome = $_POST['nome'];
-            $nascimento = $_POST['nascimento'];
-            $cep = $_POST['cep'];
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-
-            $stmt = $conn->prepare("INSERT INTO Usuario(cpf, nome, nascimento, CEP, email, senha) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $cpf, $nome, $nascimento, $cep, $email, $senha);
-
-            if ($stmt -> execute()){
-                $conn -> close();
-                header('Location: ../index.html');
-                //exit();
-            }else{
-                echo("Erro ao inserir registro: ").$stmt -> error;
-            }
-            $conn -> close();
-        }
-    ?>
-</body>
-</html>
+<?php
+    include_once ("usuarioBanco.php");
+    $cpf = $_POST['cpf'];
+    $nome = $_POST['nome'];
+    $nascimento = $_POST['nascimento'];
+    $cep = $_POST['cep'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    if(cadastro($cpf, $nome, $nascimento, $cep, $email, $senha)){
+        header('Location: ../index.html');
+    }else{
+        echo("Erro ao inserir registro");
+    }  
+?>
