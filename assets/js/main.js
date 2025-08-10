@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    window.addEventListener('load', toggleScrollTop);
-    document.addEventListener('scroll', toggleScrollTop);
-
     if (scrollTop) {
+      window.addEventListener('load', toggleScrollTop);
+      document.addEventListener('scroll', toggleScrollTop);
+
       scrollTop.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({
@@ -91,12 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    /**
-     * Iniciar glightbox
-     */
-    const glightbox = GLightbox({
-      selector: '.glightbox'
-    });
+      /**
+     * Iniciar glightbox
+     */
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox'
+      });
+    }
 
     /**
      * Layout e filtros de inicialização
