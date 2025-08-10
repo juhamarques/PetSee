@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars(trim($_POST['message'] ?? ''));
 
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo "Por favor, preencha todos os campos obrigatórios.";
+        header('Location:../erro.html');
         exit;
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Endereço de e-mail inválido.";
+        header('Location:../erro.html');
         exit;
     }
 
@@ -28,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail = new PHPMailer(true);
 
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'julia14.amarques@gmail.com';
-        $mail->Password   = 'lzkf ovot rsvu ekqp';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'julia14.amarques@gmail.com';
+        $mail->Password = 'lzkf ovot rsvu ekqp';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
-        $mail->CharSet    = 'UTF-8';
+        $mail->Port = 465;
+        $mail->CharSet = 'UTF-8';
         $mail->setLanguage('pt_br');
 
         $mail->setFrom($email, $name);
@@ -54,12 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo ("OK");
 
     } catch (Exception $e) {
-        echo ("Erro ao enviar a mensagem. Detalhes: {$mail->ErrorInfo}");
+        header('Location:../erro.html');
     }
     exit;
 
 } else {
-    echo "Método de requisição inválido.";
+    header('Location:../erro.html');
     exit;
 }
 ?>

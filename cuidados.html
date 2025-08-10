@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>PetSee - cuidados animais</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
 
-    <!-- Arquivos CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>PetSee - cuidados animais</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
-    <!-- Arquivo CSS -->
-    <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Arquivos Vendor CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Arquivo CSS -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
 </head>
-<body>
-    <header id="header" class="header d-flex align-items-center fixed-top">
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -24,7 +28,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Início</a></li>
-          <li><a href="cuidados.html">Cuidados</a></li>
+          <li><a href="#" class="active">Cuidados</a></li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
@@ -32,27 +36,59 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-        <a id="login-button" class="btn-entrar" href="#" target="_self">Entrar</a>
+        <a id="login-button" class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
     </div>
   </header>
 
-    <div class="login-box">
-        <h2 class="login">Login</h2>
-        <form action="forms/entrar.php" method="POST">
-            <label for="email" class="tipo-label">Email: </label>
-            <input type="email" id="email" name="email" class="tipo-input" required><br>
-
-            <label for="senha" class="tipo-label">Senha:</label>
-            <input type="password" id="senha" name="senha" class="tipo-input" required><br>
-
-            <button type="submit" class="tipo-button">Entrar</button>
-        </form>
-        <div class="registro">
-            Não tem cadastro? <a href="cadastro.html" target="_self">Inscreva-se!</a>
+  <main style="margin-top: 90px;">
+    <section class="cuidados-layout">
+        <div class="cuidados-cabecalho-container">
+            <h1 class="cuidados-title">CUIDADOS GERAIS QUE TODO TUTOR DEVE SABER ANTES DE ADOTAR</h1> 
+            <div class="cuidados-botoes-container">
+                    <a class="cuidados-botao" href="cachorros.html">Cachorros</a>
+                    <a class="cuidados-botao" href="gatos.html">Gatos</a>
+                    <a class="cuidados-botao" href="passaros.html">Pássaros</a>
+                    <a class="cuidados-botao" href="peixes.html">Peixes</a>
+                    <a class="cuidados-botao" href="roedores.html">Roedores</a>
+            </div>
         </div>
-    </div> <br><br>
 
-    <footer id="footer" class="footer">
+        <hr class="cuidados-linha-horizontal">
+<a href="api/logout.php" class="btn-sair">Sair</a>
+        <div class="cuidados-conteudo-grid">
+            <div class="cuidados-texto">
+                <p>Texto da primeira coluna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
+                elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue
+                semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                <p>Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor.
+                Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
+                convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus
+                risus, iaculis vel, suscipit quis, iaculis sed, massa.</p>
+            </div>
+
+            <div class="cuidados-texto">
+                <p>Texto da segunda coluna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
+                elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue
+                semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                <p> Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor.
+                Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
+                convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus
+                risus, iaculis vel, suscipit quis, iaculis sed, massa.</p>
+            </div>
+            
+            <div class="cuidados-imagens">
+                <img src="assets/img/cuidados/cuidado2.jpg">
+                <img src="assets/img/cuidados/cuidado1.jpeg">
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
     <div class="team section light-background">
       <div class="container footer-top">
         <div class="row gy-4">
@@ -117,9 +153,15 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
+  <!-- Arquivos Vendor JS -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
   <!-- Arquivo Main JS -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/auth.js"></script>
-  
+
 </body>
 </html>

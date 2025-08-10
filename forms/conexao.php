@@ -1,6 +1,6 @@
 <?php
     function abrirConexao(){
-        return new mysqli("localhost","root","1234","PetSee");
+        return new mysqli("localhost","root","","PetSee");
     }
     function fecharConexao($conn){
          $conn -> close();

@@ -22,18 +22,10 @@
         <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
       </a>
 
-      <nav id="navmenu" class="navmenu">
+       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Início</a></li>
-           <li class="dropdown"><a>Cuidados</a> 
-              <ul> 
-                <li><a href="cachorros.html">Cachorros</a></li>
-                <li><a href="gatos.html">Gatos</a></li>
-                <li><a href="passaros.html">Passáros</a></li>
-                <li><a href="peixes.html">Peixes</a></li>
-                <li><a href="roedores.html">Roedores</a></li>
-              </ul>
-            </li>
+          <li><a href="cuidados.html">Cuidados</a></li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="#" class="active">Contato</a></li>
@@ -41,7 +33,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-        <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a>
+        <a id="login-button" class="btn-entrar" href="entrar.html" target="_self">Entrar</a>
     </div>
   </header><br>
 
@@ -125,7 +117,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="input-with-icon">
-                        <input type="email" class="form-control" name="email" placeholder="Endereço de Email" required="">
+                        <input type="email" class="form-control" name="email" placeholder="Seu Endereço Email" required="">
                       </div>
                     </div>
                   </div>
@@ -233,7 +225,15 @@
     </div>
   </footer>
 
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Arquivos Vendor JS -->
   <script src="assets/vendor/php-email-from/validate.js"></script>
-  <script src="assets/js/main.js"></script> 
+
+   <!-- Arquivo Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  
 </body>
 </html>

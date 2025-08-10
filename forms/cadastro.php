@@ -9,6 +9,6 @@
     if(cadastro($cpf, $nome, $nascimento, $cep, $email, $senha)){
         header('Location: ../index.html');
     }else{
-        echo("Erro ao inserir registro");
+        header('Location:../erro.html');
     }  
 ?>

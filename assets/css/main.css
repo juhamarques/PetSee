@@ -551,8 +551,293 @@ Cadastro
   font-family: var(--default-font);
 }
 
+/*Cadastro Pessoal e Comercial
+------------------------------*/
+.tipo-cadastro-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-family: var(--default-font);
+  font-size: 16px;
+  color: var(--surface-color);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  appearance: none;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--surface-color);
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"]:checked {
+  background-color: var(--surface-color);
+  border: 2px solid var(--surface-color);
+}
+
+.radio-label input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
 /*--------------------------------------------------------------
-# Cuidados
+Botão de perfil
+--------------------------------------------------------------*/
+.account-icon {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+/*--------------------------------------------------------------
+Perfil
+--------------------------------------------------------------*/
+.perfil-container {
+    width: 600px;
+    margin: 100px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    text-align: center;
+}
+
+.perfil-header {
+    margin-bottom: 30px;
+}
+
+.perfil-avatar {
+    position: relative;
+    display: inline-block;
+}
+
+.perfil-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-editar-perfil {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.perfil-nome {
+    margin-top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.perfil-dados-container {
+    text-align: left;
+}
+
+.perfil-campo {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.perfil-campo:last-child {
+    border-bottom: none;
+}
+
+.perfil-campo label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.perfil-campo p {
+    margin: 0;
+    color: #777;
+}
+
+/*--------------------------------------------------------------
+Cuidados gerais
+--------------------------------------------------------------*/
+.cuidados-layout {
+  flex-grow: 1; 
+  padding: 20px 40px;
+  box-sizing: border-box;
+  margin-left: 100px;
+  margin-right: 140px;
+}
+
+.cuidados-cabecalho-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.cuidados-titulo {
+  font-size: 2em;
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+.cuidados-botoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+  position: relative;
+  padding-left: 30px;
+  gap: 10px;
+  align-content: flex-start;
+}
+
+.cuidados-botoes-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  border: 0;
+  height: 130px;
+  background-color: #555;
+}
+
+.cuidados-botao {
+  width: 100px;
+  padding: 10px 0px;
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.cuidados-botoes-container a:nth-child(5) {
+  margin-left: 55px;
+}
+
+.cuidados-botao:hover,
+.cuidados-botao:focus:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.cuidados-botao:hover {
+  background-color: var(--secondary-color);
+}
+
+.cuidados-linha-horizontal {
+  border: 0;
+  height: 1px;
+  background-color: #000;
+  margin: 20px 0;
+}
+
+.cuidados-conteudo-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr;
+  gap: 30px;
+}
+
+.cuidados-texto {
+  font-family: var(--default-font);
+  line-height: 1.6;
+  color: var(--default-color);
+  text-align: justify;
+}
+
+.cuidados-imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cuidados-imagens img {
+  width: 100%;
+  height: 500px;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 992px) {
+  .cuidados-layout {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+  }
+  .cuidados-cabecalho-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .cuidados-conteudo-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cuidados-botoes-container {
+    flex-wrap: wrap;
+    padding-left: 0;
+  }
+  .cuidados-botoes-container::before {
+    display: none;
+  }
+}
+
+/*--------------------------------------------------------------
+# Cuidados Específicos
 --------------------------------------------------------------*/
 
 /* Filtro -------------------*/
@@ -689,22 +974,28 @@ Cadastro
 /*--------------------------------------------------------------
 # Empresa
 --------------------------------------------------------------*/
+.page-container {
+  display: flex;
+}
+
 .barra-lateral {
-  width: 240px;
-  height: 100vh;
+  width: 250px;
   position: sticky; 
   top: 0; 
-  left: 0;
-  overflow-y: auto;
-  flex-shrink: 0; 
-  margin-left: 140px;
+  left: 140px;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+
+.barra-lateral::-webkit-scrollbar {
+  display: none;
 }
 
 .content-area {
   flex-grow: 1; 
   padding: 20px 40px;
   box-sizing: border-box;
-  margin-left: 52px; 
+  margin-left: 140px; 
   margin-right: 140px;
 }
 
@@ -823,10 +1114,17 @@ Cadastro
   font-weight: 700;
 }
 
+/* Barra lateral de info
+------------------------------------------------*/
+.imgCuidado {
+  width: 220px;
+  height: 142px;
+  border-radius: 10%;
+}
 
-/*--------------------------------------------------------------
-# Team Section
---------------------------------------------------------------*/
+
+/* Time
+------------------------------------------------*/
 .team .team-member {
   position: relative;
   background-color: var(--surface-color);

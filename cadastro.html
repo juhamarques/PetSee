@@ -24,15 +24,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Início</a></li>
-           <li class="dropdown"><a>Cuidados</a>
-              <ul>
-                <li><a href="cachorros.html">Cachorros</a></li>
-                <li><a href="gatos.html">Gatos</a></li>
-                <li><a href="passaros.html">Passáros</a></li>
-                <li><a href="peixes.html">Peixes</a></li>
-                <li><a href="roedores.html">Roedores</a></li>
-              </ul>
-            </li>
+          <li><a href="cuidados.html">Cuidados</a></li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
@@ -40,15 +32,25 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-        <a class="btn-entrar" href="entrar.html" target="_self">Entrar</a>
+        <a id="login-button" class="btn-entrar" href="entrar.html" target="_self">Entrar</a>
     </div>
   </header>
 
     <div class="login-box">
-        <h2 class="login">Cadastro</h2>
+      <h2 class="login">Cadastro</h2>
         <form action="forms/cadastro.php" method="POST">
-          <div class="form-colunas">
-            <div class="coluna-left">
+          <div class="tipo-cadastro-container">
+            <label class="radio-label">
+                <input type="radio" name="tipo_cadastro" value="pessoal" checked> Pessoal
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="tipo_cadastro" value="comercial"> Comercial
+            </label>
+          </div>
+
+          <div id="cadastro-pessoal">
+            <div class="form-colunas">
+              <div class="coluna-left">
                 <label for="nome" class="tipo-label">Nome: </label>
                 <input type="text" id="nome" name="nome" class="tipo-input" required><br>
 
@@ -69,6 +71,30 @@
                 <label for="senha" class="tipo-label">Senha:</label>
                 <input type="password" id="senha" name="senha" class="tipo-input" required>
               </div>
+            </div>
+          </div>
+
+          <div id="cadastro-comercial" style="display: none;">
+            <div class="form-colunas">
+              <div class="coluna-left">
+                <label for="nome_empresa" class="tipo-label">Nome da Empresa: </label>
+                <input type="text" id="nome_empresa" name="nome_empresa" class="tipo-input"><br>
+
+                <label for="email_comercial" class="tipo-label">Email Comercial: </label>
+                <input type="email" id="email_comercial" name="email_comercial" class="tipo-input"><br>
+
+                <label for="cnpj" class="tipo-label">CNPJ: </label>
+                <input type="text" id="cnpj" name="cnpj" class="tipo-input"><br>
+              </div>
+              
+              <div class="coluna-right">
+                <label for="cep_comercial" class="tipo-label">CEP: </label>
+                <input type="text" id="cep_comercial" name="cep_comercial" class="tipo-input"><br>
+
+                <label for="senha_comercial" class="tipo-label">Senha:</label>
+                <input type="password" id="senha_comercial" name="senha_comercial" class="tipo-input">
+              </div>
+            </div>
           </div>
           
           <button type="submit" class="tipo-button">Cadastrar</button>
@@ -136,5 +162,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Arquivo Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/cadastro.js"></script>
+  
 </body>
 </html>
