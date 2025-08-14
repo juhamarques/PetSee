@@ -45,6 +45,7 @@
 
     .error-card {
         display: flex;
+        position: relative;
         flex-direction: column;
         align-items: center;
         gap: 20px;
@@ -97,6 +98,29 @@
         transform: rotate(45deg); 
         transform-origin: 50% 0;
     }
+
+    .btn-voltar {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        background: var(--accent-color);
+        color: var(--contrast-color);
+        border: none;
+        border-radius: 25px;
+        padding: 9px 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        cursor: pointer;
+    }
+
+    .btn-voltar:hover {
+        background: var(--accent-color);
+    }
+
+    .btn-voltar:hover,
+    .btn-voltar:hover:focus {
+        color: var(--contrast-color);
+        background: color-mix(in srgb, var(--accent-color), transparent 15%);
+    }
 </style>
 
 <body>
@@ -105,6 +129,11 @@
             <img src="assets/img/tela de erro/gato triste.png" alt="Gatinho triste de desenho">
             <div class="speech-bubble">Ops... Algo deu errado!</div>
         </div>
+        <a href="javascript:history.back()" class="btn-voltar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+            </svg>
+        </a>
     </div>
 
   <!-- Preloader -->

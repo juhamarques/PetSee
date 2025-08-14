@@ -323,38 +323,26 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Pré-carregador
+# tela de Carregamento
 --------------------------------------------------------------*/
 #preloader {
   position: fixed;
   inset: 0;
-  z-index: 999999;
-  overflow: hidden;
-  background: var(--background-color);
-  transition: all 0.6s ease-out;
+  width: 100vw;
+  height: 100vh;
+  background: #dae7e2;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1.5s linear infinite;
+@keyframes balancar {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-20px);}
 }
-
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+#preloader .error-content img {
+  animation: balancar 1s infinite;
 }
 
 /*--------------------------------------------------------------
