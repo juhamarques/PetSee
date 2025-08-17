@@ -5,10 +5,10 @@
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $userId = login($email, $senha);
+    $idUsuario = login($email, $senha);
     
-    if ($userId != false){
-        $_SESSION['userId'] = $userId;
+    if ($idUsuario != false){
+        $_SESSION['idUsuario'] = $idUsuario;
         header('Location:../index.html');
         exit();
     } else {

@@ -2,7 +2,7 @@
     include_once ("conexao.php");
 
     function login($email, $senha){
-        $sql = "select IdUsuario from Usuario where email = ? AND senha = ?"; 
+        $sql = "select idUsuario from Usuario where email = ? AND senha = ?"; 
         $conn = abrirConexao();
 
         if ($conn -> connect_error){
@@ -15,22 +15,22 @@
             $result = $stmt -> get_result();
             
             if ($row = $result -> fetch_assoc()) {
-                $userId = $row['IdUsuario'];
+                $idUsuario = $row['idUsuario'];
             }else{
-                $userId = false;
+                $idUsuario = false;
             }
             fecharConexao($conn);
-            return $userId;
+            return $idUsuario;
         }
     }
     
-    function cadastroPessoal($cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_usuario){
+    function cadastroPessoal($cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_usuario, $idImagem = 1){
          $conn = abrirConexao();
          if ($conn->connect_error){
             return false;
          }else{
-            $stmt = $conn->prepare("INSERT INTO Usuario(cpf, nome, nascimento, CEP, email, senha, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt -> bind_param("sssssss", $cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_usuario);
+            $stmt = $conn->prepare("INSERT INTO Usuario(idImagem, cpf, nome, nascimento, CEP, email, senha, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt -> bind_param("isssssss", $idImagem, $cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_usuario);
 
             if ($stmt -> execute()){
                 fecharConexao($conn);
@@ -42,19 +42,38 @@
          }
     }
 
-    function cadastroComercial($nome_empresa, $email_empresa, $cnpj, $telefone, $endereco_cep, $senha, $tipo_usuario){
+    function cadastroEndereco($idBairro, $logradouro, $nome, $numero, $cep) {
+        $conn = abrirConexao();
+        if ($conn->connect_error) {
+            return false;
+        } else {
+            $stmt = $conn->prepare("INSERT INTO Endereco(idBairro, logradouro, nome, numero, CEP) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("issis", $idBairro, $logradouro, $nome, $numero, $cep);
+            if ($stmt->execute()) {
+                $idEndereco = $conn->insert_id;
+                fecharConexao($conn);
+                return $idEndereco;
+            } else {
+                fecharConexao($conn);
+                return false;
+            }
+        }
+    }
+
+    function cadastroComercial($nome_empresa, $email_empresa, $cnpj, $telefone, $idEndereco, $senha, $idImagem = 1){
         $conn = abrirConexao();
         if ($conn -> connect_error) {
             return false;
         } else {
-            $stmt_usuario = $conn-> prepare("INSERT INTO Usuario(email, senha, tipo) VALUES (?, ?, ?)");
-            $stmt_usuario -> bind_param("sss", $email_empresa, $senha, $tipo_usuario);
+            $tipo_usuario = 'comercial';
+            $stmt_usuario = $conn-> prepare("INSERT INTO Usuario(idImagem, email, senha, tipo, cpf, nome, nascimento, CEP) VALUES (?, ?, ?, ?, '', '', '2000-01-01', '')");
+            $stmt_usuario -> bind_param("isss", $idImagem, $email_empresa, $senha, $tipo_usuario);
             $stmt_usuario -> execute();
             $idUsuario = $conn -> insert_id;
             
             if ($idUsuario) {
-                $stmt_comercial = $conn -> prepare("INSERT INTO Comercial(idUsuario, nome_empresa, email_empresa, cnpj, telefone, endereco_cep, senha, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt_comercial -> bind_param("isssssss", $idUsuario, $nome_empresa, $email_empresa, $cnpj, $telefone, $endereco_cep, $senha, $tipo_usuario);
+                $stmt_comercial = $conn -> prepare("INSERT INTO Comercial(idUsuario, idEndereco, cnpj, nome, categoria, email, senha, telefone) VALUES (?, ?, ?, ?, '', ?, ?, ?)");
+                $stmt_comercial -> bind_param("iisssss", $idUsuario, $idEndereco, $cnpj, $nome_empresa, $email_empresa, $senha, $telefone);
 
                 if ($stmt_comercial -> execute()) {
                     fecharConexao($conn);

@@ -10,7 +10,7 @@
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        if (cadastroPessoal($cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_cadastro)) {
+        if (cadastroPessoal($cpf, $nome, $nascimento, $cep, $email, $senha, $tipo_cadastro, 1)) {
             header('Location: ../entrar.html');
         } else {
             header('Location: ../erro.html');
@@ -20,11 +20,21 @@
         $email_comercial= $_POST['email_comercial'];
         $tel = $_POST['tel'];
         $cnpj = $_POST['cnpj'];
-        $cep_comercial = $_POST['cep_comercial'];
         $senha = $_POST['senha_comercial'];
+        $cep_comercial = $_POST['cep_comercial'];
+        $logradouro = $_POST['logradouro'];
+        $nome_rua = $_POST['nome_rua'];
+        $numero = $_POST['numero'];
+        $idBairro = $_POST['idBairro'];
 
-        if (cadastroComercial($nome_empresa, $email_comercial, $tel, $cnpj, $cep_comercial, $senha, $tipo_cadastro)) {
-            header('Location: ../entrar.html');
+        $idEndereco = cadastroEndereco($idBairro, $logradouro, $nome_rua, $numero, $cep_comercial);
+
+        if ($idEndereco){
+            if (cadastroComercial($nome_empresa, $email_comercial, $cnpj, $tel, $idEndereco, $senha, 1)) {
+                header('Location: ../entrar.html');
+            } else {
+                header('Location: ../erro.html');
+            }
         } else {
             header('Location: ../erro.html');
         }

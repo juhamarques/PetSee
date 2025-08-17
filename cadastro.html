@@ -18,7 +18,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
+        <img src="assets/img/logo petsee/logo petsee.png" loading="lazy" alt="Logo PetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -78,24 +78,53 @@
             <div class="form-colunas">
               <div class="coluna-left">
                 <label for="nome_empresa" class="tipo-label">Nome da Empresa: </label>
-                <input type="text" id="nome_empresa" name="nome_empresa" class="tipo-input"><br>
+                <input type="text" id="nome_empresa" name="nome_empresa" class="tipo-input" required><br>
 
                 <label for="email_comercial" class="tipo-label">Email Comercial: </label>
-                <input type="email" id="email_comercial" name="email_comercial" class="tipo-input"><br>
+                <input type="email" id="email_comercial" name="email_comercial" class="tipo-input" required><br>
 
-                <label for="cnpj" class="tipo-label">Telefone: </label>
-                <input type="number" id="tel" name="tel" class="tipo-input"><br>
+                <label for="tel" class="tipo-label">Telefone: </label>
+                <input type="number" id="tel" name="tel" class="tipo-input" required><br>
+
+                <label for="cnpj" class="tipo-label">CNPJ: </label>
+                <input type="text" id="cnpj" name="cnpj" class="tipo-input" required><br>
+
+                <label for="senha_comercial" class="tipo-label">Senha:</label>
+                <input type="password" id="senha_comercial" name="senha_comercial" class="tipo-input" required>
               </div>
 
               <div class="coluna-right">
-                <label for="cnpj" class="tipo-label">CNPJ: </label>
-                <input type="text" id="cnpj" name="cnpj" class="tipo-input"><br>
-
                 <label for="cep_comercial" class="tipo-label">CEP: </label>
-                <input type="text" id="cep_comercial" name="cep_comercial" class="tipo-input"><br>
+                <input type="text" id="cep_comercial" name="cep_comercial" class="tipo-input" required><br>
 
-                <label for="senha_comercial" class="tipo-label">Senha:</label>
-                <input type="password" id="senha_comercial" name="senha_comercial" class="tipo-input">
+                <label for="logradouro" class="tipo-label">Logradouro: </label>
+                <input type="text" id="logradouro" name="logradouro" class="tipo-input" required><br>
+
+                <label for="nome_rua" class="tipo-label">Nome da rua: </label>
+                <input type="text" id="nome_rua" name="nome_rua" class="tipo-input" required><br>
+
+                <label for="numero" class="tipo-label">Número: </label>
+                <input type="text" id="numero" name="numero" class="tipo-input" required><br>
+
+                <label for="idBairro" class="tipo-label">Bairro: </label>
+                <select id="idBairro" name="idBairro" class="tipo-input" required>
+                <option value="">Selecione</option>
+                <option value="1">Jardim Helena</option>
+                <option value="2">Jardim Lapena</option>
+                <option value="3">Parque Sônia</option>
+                <option value="4">São Miguel Paulista</option>
+                <option value="5">Vila Americana</option>
+                <option value="6">Vila Doutor Eiras</option>
+                <option value="7">Vila Giordano</option>
+                <option value="8">Vila Jacuí</option>
+                <option value="9"> Vila Nova Itaquera de Baixo</option>
+                <option value="10">Vila Pedroso</option>
+                <option value="11">Vila Rosária</option>
+                <option value="12">Vila São Silvestre</option>
+                <option value="13">Vila Siqueira</option>
+                <option value="14">Vila Sinhá</option>
+                <option value="15">Vila Vessoni</option>
+                </select>
               </div>
             </div>
           </div>
@@ -168,9 +197,9 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <div class="error-card">
-      <div class="error-content">
-        <img src="assets/img/tela de caregamento/cachorro carg.png" alt="Cachorro carregando">
+    <div class="carg-card">
+      <div class="carg-content">
+        <img src="assets/img/tela de caregamento/dog_load.png" loading="lazy">
         <div class="speech-bubble">Eita! Espere um momento.</div>
       </div>
     </div>

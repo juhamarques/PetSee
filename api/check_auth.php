@@ -3,7 +3,7 @@ session_start();
 
 header('Content-Type: application/json');
 
-if (isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
+if (isset($_SESSION['idUsuario']) && !empty($_SESSION['idUsuario'])) {
     $response = ['isLoggedIn' => true];
 } else {
     $response = ['isLoggedIn' => false];

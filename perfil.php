@@ -14,43 +14,56 @@
 
   <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
-
 </head>
+
 <?php
   error_reporting(E_ALL & ~E_NOTICE);
   session_start();
 
-  if (!isset($_SESSION['userId'])) {
+  if (!isset($_SESSION['idUsuario'])) {
     header("Location: entrar.html");
     exit();
   }
+  $idUsuario = $_SESSION['idUsuario'];
 
   include_once ("forms/conexao.php");
   $conn = abrirConexao();
 
-  $idUsuario = $_SESSION['userId'];
-  $sqlUsuario = "SELECT * FROM Usuario WHERE idUsuario = ?";
-  $stmtUsuario = $conn->prepare($sqlUsuario);
-  $stmtUsuario -> bind_param("i", $idUsuario);
-  $stmtUsuario -> execute();
-  $resultUsuario = $stmtUsuario -> get_result();
-  $usuario = $resultUsuario -> fetch_assoc();
+  $sql = "
+    SELECT
+      u.idUsuario,
+      u.idImagem,
+      i.caminho AS avatar,
+      u.cpf,
+      u.nome AS nome,
+      u.nascimento,
+      u.CEP AS CEP,
+      COALESCE(c.email, u.email) AS email,
+      u.tipo,
+      c.idComercial,
+      c.cnpj,
+      c.nome AS nome_empresa,
+      c.telefone,
+      e.CEP AS endereco_cep,
+      e.logradouro AS endereco_logradouro,
+      e.nome AS endereco_rua,
+      e.numero AS endereco_numero,
+      b.nome AS endereco_bairro
+    FROM Usuario u
+    LEFT JOIN Imagens i ON i.idImagem = u.idImagem
+    LEFT JOIN Comercial c ON c.idUsuario = u.idUsuario
+    LEFT JOIN Endereco e ON e.idEndereco = c.idEndereco
+    LEFT JOIN Bairro b ON b.idBairro = e.idBairro
+    WHERE u.idUsuario = ?
+  ";
 
-  $dadosCompletos = $usuario;
-
-  if (isset($usuario['tipo']) && $usuario['tipo'] == 'comercial') {
-    $sqlComercial = "SELECT * FROM Comercial WHERE idUsuario = ?";
-    $stmtComercial = $conn->prepare($sqlComercial);
-    $stmtComercial -> bind_param("i", $idUsuario);
-    $stmtComercial -> execute();
-    $resultComercial = $stmtComercial -> get_result();
-    $dadosComercial = $resultComercial -> fetch_assoc();
-    $dadosCompletos = array_merge($usuario, $dadosComercial);
-  }
-
+  $stmt = $conn -> prepare($sql);
+  $stmt -> bind_param("i", $idUsuario);
+  $stmt -> execute();
+  $dadosCompletos = $stmt -> get_result() -> fetch_assoc() ?: [];
+  $stmt -> close();
   fecharConexao($conn);
 
-  $html_dados = ""; 
   if (isset($dadosCompletos['tipo']) && ($dadosCompletos['tipo'] == 'pessoal' || $dadosCompletos['tipo'] == '0')) {
     $html_dados = "
       <div class='perfil-campo-tipo'>
@@ -70,7 +83,7 @@
       </div>
       <div class='perfil-campo'>
         <label>CEP:</label>
-        <p>{$dadosCompletos['CEP']}</p>
+        <p>" . (isset($dadosCompletos['CEP']) ? $dadosCompletos['CEP'] : '') . "</p>
       </div>
       <div class='perfil-botoes'>
         <a href='api/logout.php' class='btn-sair'>Sair</a>
@@ -83,11 +96,11 @@
       </div>
       <div class='perfil-campo'>
         <label>Email Comercial:</label>
-        <p>{$dadosCompletos['email_empresa']}</p>
+        <p>" . (isset($dadosCompletos['email']) ? $dadosCompletos['email'] : '') . "</p>
       </div>
       <div class='perfil-campo'>
         <label>Telefone:</label>
-        <p>{$dadosCompletos['telefone']}</p>
+        <p>" . (isset($dadosCompletos['telefone']) ? $dadosCompletos['telefone'] : '') . "</p>
       </div>
       <div class='perfil-campo'>
         <label>CNPJ:</label>
@@ -95,7 +108,23 @@
       </div>
       <div class='perfil-campo'>
         <label>CEP:</label>
-        <p>{$dadosCompletos['endereco_cep']}</p>
+        <p>" . (isset($dadosCompletos['endereco_cep']) ? $dadosCompletos['endereco_cep'] : '') . "</p>
+      </div>
+      <div class='perfil-campo'>
+        <label>Bairro:</label>
+        <p>" . (isset($dadosCompletos['endereco_bairro']) ? $dadosCompletos['endereco_bairro'] : '') . "</p>
+      </div>
+      <div class='perfil-campo'>
+        <label>Logradouro:</label>
+        <p>" . (isset($dadosCompletos['endereco_logradouro']) ? $dadosCompletos['endereco_logradouro'] : '') . "</p>
+      </div>
+      <div class='perfil-campo'>
+        <label>Rua:</label>
+        <p>" . (isset($dadosCompletos['endereco_rua']) ? $dadosCompletos['endereco_rua'] : '') . "</p>
+      </div>
+      <div class='perfil-campo'>
+        <label>Número:</label>
+        <p>" . (isset($dadosCompletos['endereco_numero']) ? $dadosCompletos['endereco_numero'] : '') . "</p>
       </div>
       <div class='perfil-botoes'>
         <a href='api/logout.php' class='btn-sair'>Sair da Conta</a>
@@ -118,7 +147,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo petsee/logo petsee.png" alt="Logo PetSee" class="imagem-logo">
+        <img src="assets/img/logo petsee/logo petsee.png" loading="lazy" alt="Logo PetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -142,12 +171,22 @@
 
           <div class="perfil-avatar">
             <?php
-              $caminho_foto = 'assets/img/perfil/perfil vazio.jpg';
-              if (!empty($usuario['foto_perfil'])) {
-                $caminho_foto = 'assets/img/perfil/avatars/' . $usuario['foto_perfil'];
+              $caminhoImagem= 'assets/img/perfil/perfil_padrao.jpg';
+              if (!empty($dadosCompletos['idImagem'])) {
+                include_once ("forms/conexao.php");
+                $conn = abrirConexao();
+                $stmtImg = $conn -> prepare("SELECT caminho FROM Imagens WHERE idImagem = ?");
+                $stmtImg -> bind_param("i", $dadosCompletos['idImagem']);
+                $stmtImg -> execute();
+                $stmtImg -> bind_result($caminhoBanco);
+                if ($stmtImg -> fetch() && !empty($caminhoBanco)) {
+                  $caminhoImagem = $caminhoBanco;
+                }
+                $stmtImg -> close();
+                fecharConexao($conn);
               }
             ?>
-            <img src="<?php echo $caminho_foto; ?>" alt="Avatar do Usuário" id="user-avatar">
+            <img src="<?php echo $caminhoImagem ?>" loading="lazy" id="user-avatar">
             
             <form id="avatar-form" action="api/upload_avatar.php" method="POST" enctype="multipart/form-data">
               <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display: none;">
@@ -170,7 +209,6 @@
             }
           ?>
           <h2 class="perfil-nome" id="user-nome"><?php echo htmlspecialchars($nome_a_exibir); ?></h2>
-          <a href="#" class="btn-editar-perfil">Editar Perfil</a>
         </div>
 
         <div id="perfil-dados" class="perfil-dados-container">
@@ -179,7 +217,7 @@
     </div>
   </main>
 
-  ,<script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const avatarInput = document.getElementById('avatar-input');
       const editAvatarBtn = document.getElementById('edit-avatar-btn');
@@ -199,7 +237,14 @@
   </script>
   
   <!-- Preloader -->
-  <div id="preloader"></div>
+  <div id="preloader">
+    <div class="carg-card">
+      <div class="carg-content">
+        <img src="assets/img/tela de caregamento/dog_load.png" loading="lazy">
+        <div class="speech-bubble">Eita! Espere um momento.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- Arquivos Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
