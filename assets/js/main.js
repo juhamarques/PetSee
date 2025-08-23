@@ -57,17 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Preloader
      */
-    const preloader = document.querySelector('#preloader');
-    if (preloader) {
-      window.addEventListener('load', () => {
-        preloader.remove();
-      });
-    }
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
 
-    window.addEventListener('load', function() {
-      var preloader = document.getElementById('preloader');
       if (preloader) {
-        preloader.style.display = 'none';
+        // Aplica fade-out suave
+        preloader.style.transition = 'opacity 0.5s ease';
+        preloader.style.opacity = '0';
+
+        // Aguarda a transição e remove do DOM
+        setTimeout(() => {
+          preloader.remove();
+        }, 500);
       }
     });
 

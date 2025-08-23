@@ -11,7 +11,7 @@ $conn = abrirConexao();
 $idUsuario = $_SESSION['idUsuario'];
 
 if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $file_type = $_FILES['avatar']['type'];
 
      if (in_array($file_type, $allowed_types)) {

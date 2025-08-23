@@ -39,8 +39,162 @@
     </div>
   </header>
 
-  <main class="main">
-    
+  <main class="main" style="margin-top: 60px;">
+  <div class="container py-5">
+    <div class="row">
+
+      <aside class="col-lg-3 mb-4">
+        <div class="filter-card p-4">
+          <h4 class="mb-4">Filtro</h4>
+
+          <form id="filter-form">
+            <!-- Nome do Animal -->
+            <div class="filter-group mb-4">
+              <label for="filter-name" class="form-label">Nome do Animal</label>
+              <input
+                type="text"
+                id="filter-name"
+                class="form-control"
+                placeholder="Ex: Iron">
+            </div>
+
+            <!-- Tipo de Animal -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Tipo de Animal</p>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="type" value="" checked>
+                  <span>Todos</span>
+                </label>
+                <label>
+                  <input type="radio" name="type" value="cachorro">
+                  <span>Cachorro</span>
+                </label>
+                <label>
+                  <input type="radio" name="type" value="gato">
+                  <span>Gato</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Sexo -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Sexo</p>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="sex" value="" checked>
+                  <span>Todos</span>
+                </label>
+                <label>
+                  <input type="radio" name="sex" value="macho">
+                  <span>Macho</span>
+                </label>
+                <label>
+                  <input type="radio" name="sex" value="femea">
+                  <span>Fêmea</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Status -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Status</p>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="status" value="" checked>
+                  <span>Todos</span>
+                </label>
+                <label>
+                  <input type="radio" name="status" value="desaparecido">
+                  <span>Desaparecido</span>
+                </label>
+                <label>
+                  <input type="radio" name="status" value="encontrado">
+                  <span>Encontrado</span>
+                </label>
+                <label>
+                  <input type="radio" name="status" value="adocao">
+                  <span>Para Adoção</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Distância -->
+            <div class="filter-group mb-4">
+              <label for="filter-distance" class="form-label">Distância (<span id="distance-value">5</span> km)</label>
+              <input
+                type="range"
+                id="filter-distance"
+                class="form-range"
+                min="1"
+                max="20"
+                value="5">
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Filtrar</button>
+          </form>
+        </div>
+      </aside>
+
+      <section class="col-lg-9">
+        <div class="hero-container text-center mb-5">
+          <h1>Cuide de quem você ama</h1>
+          <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
+        </div>
+
+        <!-- Grid de Anúncios -->
+        <div class="row g-4">
+
+          <div class="col-md-6">
+            <div class="ad-card d-flex">
+              <div class="ad-image">
+                <img src="assets/img/anuncio do animal/exemploCard.jpg" alt="Nome do Pet">
+              </div>
+              <div class="ad-info">
+                <h5 class="ad-name">Iron</h5>
+                <p class="ad-species">Cachorro • Macho</p>
+                <p class="ad-breed"><strong>Raça:</strong> Shih Tzu</p>
+                <p class="ad-porte"><strong>Porte:</strong> Pequeno</p>
+                <span class="ad-status status-lost">Perdido</span>
+                <p class="ad-details">Reportado há 2 dias • 3 km de distância</p>
+                <p class="ad-description">
+                  Iron é um golden retriever amigável que desapareceu no bairro Central...
+                </p>
+                <div class="ad-actions">
+                  <button class="btn btn-primary btn-sm">Ver Detalhes</button>
+                  <button class="btn btn-outline-success btn-sm">Compartilhar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="ad-card d-flex">
+              <div class="ad-image">
+                <img src="assets/img/anuncio do animal/exemploCard2.jpg" alt="Nome do Pet">
+              </div>
+              <div class="ad-info">
+                <h5 class="ad-name">Jake</h5>
+                <p class="ad-species">Gato • Macho</p>
+                <p class="ad-breed"><strong>Raça:</strong> Persa</p>
+                <p class="ad-porte"><strong>Porte:</strong> Médio</p>
+                <span class="ad-status status-adoção">Para adoção</span>
+                <p class="ad-details">Reportado há 10 dias • 15 km de distância</p>
+                <p class="ad-description">
+                  Jake é um gato persa carinhoso que está procurando um novo lar...
+                </p>
+                <div class="ad-actions">
+                  <button class="btn btn-primary btn-sm">Ver Detalhes</button>
+                  <button class="btn btn-outline-success btn-sm">Compartilhar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
   </main>
 
   <footer id="footer" class="footer">
@@ -124,6 +278,7 @@
   <!-- Arquivo Main JS -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script src="assets/js/index.js"></script>
 
 </body>
 </html>

@@ -822,7 +822,361 @@ Perfil
 }
 
 /*--------------------------------------------------------------
-Cuidados gerais
+# Index
+--------------------------------------------------------------*/
+.filter-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.filter-card h4 {
+  color: #2a7a4c;
+  font-weight: 600;
+}
+
+.filter-label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #2a7a4c;
+}
+
+.radio-group input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #2a7a4c;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2a7a4c;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.form-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2a7a4c;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    #2a7a4c 0%,
+    #2a7a4c calc((var(--value) - 1) / 19 * 100%),
+    #ddd calc((var(--value) - 1) / 19 * 100%),
+    #ddd 100%
+  );
+}
+
+.filter-card label,
+.filter-card .form-label,
+.filter-card .filter-label,
+.filter-card input,
+.filter-card .form-range,
+.filter-card .radio-group span {
+  color: #676666 !important;
+}
+
+/*
+Slogan e botão
+--------------------------------------------------------------*/
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.hero-container h1 {
+  color: #2a7a4c;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-container .btn-success {
+  background-color: #2a7a4c;
+  border-color: #2a7a4c;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.hero-container .btn-success:hover {
+  background-color: #25693e;
+  transform: translateY(-2px);
+}
+
+/*
+Cards
+--------------------------------------------------------------*/
+.ad-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  transition: transform 0.2s;
+}
+
+.ad-image {
+  flex: 0 0 150px;
+  overflow: hidden;
+}
+
+.ad-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ad-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ad-name {
+  font-size: 1.25rem;
+  color: #2a7a4c;
+  margin-bottom: 4px;
+}
+
+.ad-species {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.ad-breed {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.ad-porte {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.ad-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.status-lost {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-found {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-adoção {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.ad-details {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.ad-description {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: auto;
+}
+
+.ad-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ad-actions .btn {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.ad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+/*--------------------------------------------------------------
+# Anúncio
+--------------------------------------------------------------*/
+
+
+.anuncio-modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.anuncio-modal {
+  overflow-y: auto;
+  padding: 20px;
+  background: #ffffff;
+  width: 90%;
+  max-width: 960px;
+  height: 80vh;
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -ms-overflow-style: none !important;  /* IE e Edge */
+  scrollbar-width: none !important;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.anuncio-modal,
+.anuncio-modal * {
+  box-sizing: border-box;
+}
+
+.anuncio-modal .row {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pet-form {
+  display: none;
+}
+
+.pet-form.active {
+  display: block;
+}
+
+.form-container::-webkit-scrollbar {
+  width: 6px;
+}
+.form-container::-webkit-scrollbar-thumb {
+  background: rgba(42,122,76,0.5);
+  border-radius: 3px;
+}
+
+.anuncio-modal,
+.anuncio-modal *,
+.anuncio-modal input,
+.anuncio-modal select,
+.anuncio-modal textarea,
+.anuncio-modal label,
+.anuncio-modal .form-label,
+.anuncio-modal .modal-close,
+.anuncio-modal .type-btn {
+  color: #676666 !important;
+}
+
+.anuncio-modal ::placeholder {
+  color: #999999 !important;
+  opacity: 1;
+}
+
+.anuncio-modal .type-btn.active {
+  color: #ffffff;
+}
+
+.anuncio-modal .btn-success {
+  color: #ffffff !important;
+  margin-bottom: 20px;
+}
+
+.anuncio-modal::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none;
+}
+
+.anuncio-modal .col-md-5.d-md-flex img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-130%);
+  margin-left: -60px;
+}
+
+/*--------------------------------------------------------------
+# Cuidados gerais
 --------------------------------------------------------------*/
 .cuidados-layout {
   flex-grow: 1; 
@@ -1093,23 +1447,6 @@ Cuidados gerais
 /*--------------------------------------------------------------
 # Empresa
 --------------------------------------------------------------*/
-.page-container {
-  display: flex;
-}
-
-.barra-lateral {
-  width: 250px;
-  position: sticky; 
-  top: 0; 
-  left: 140px;
-  flex-shrink: 0;
-  scrollbar-width: none;
-}
-
-.barra-lateral::-webkit-scrollbar {
-  display: none;
-}
-
 .content-area {
   flex-grow: 1; 
   padding: 20px 40px;
@@ -1122,6 +1459,7 @@ Cuidados gerais
   width: 100%;
   height: auto;
   max-height: 430px; 
+  margin-top: 100px;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
