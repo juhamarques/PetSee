@@ -202,10 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
           let normalizedCurrentPathname = currentPagePathname;
 
           if (normalizedCurrentPathname === '/') {
-              normalizedCurrentPathname = '/index.html';
+              normalizedCurrentPathname = '/index.php';
           }
           if (linkPathname === '/') {
-              linkPathname = '/index.html';
+              linkPathname = '/index.php';
           }
 
           if (linkPathname === normalizedCurrentPathname) {

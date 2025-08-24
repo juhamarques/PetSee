@@ -20,8 +20,8 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo petsee/logo petsee.png" loading="lazy" alt="Logo PetSee" class="imagem-logo">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -40,161 +40,150 @@
   </header>
 
   <main class="main" style="margin-top: 60px;">
-  <div class="container py-5">
-    <div class="row">
+    <div class="container py-5">
+      <div class="row">
 
-      <aside class="col-lg-3 mb-4">
-        <div class="filter-card p-4">
-          <h4 class="mb-4">Filtro</h4>
+        <aside class="col-lg-3 mb-4">
+          <div class="filter-card p-4">
+            <h4 class="mb-4">Filtro</h4>
 
-          <form id="filter-form">
-            <!-- Nome do Animal -->
-            <div class="filter-group mb-4">
-              <label for="filter-name" class="form-label">Nome do Animal</label>
-              <input
-                type="text"
-                id="filter-name"
-                class="form-control"
-                placeholder="Ex: Iron">
-            </div>
-
-            <!-- Tipo de Animal -->
-            <div class="filter-group mb-4">
-              <p class="filter-label">Tipo de Animal</p>
-              <div class="radio-group">
-                <label>
-                  <input type="radio" name="type" value="" checked>
-                  <span>Todos</span>
-                </label>
-                <label>
-                  <input type="radio" name="type" value="cachorro">
-                  <span>Cachorro</span>
-                </label>
-                <label>
-                  <input type="radio" name="type" value="gato">
-                  <span>Gato</span>
-                </label>
+            <form id="filter-form">
+              <!-- Nome do Animal -->
+              <div class="filter-group mb-4">
+                <label for="filter-name" class="form-label">Nome do Animal</label>
+                <input
+                  type="text"
+                  id="filter-name"
+                  class="form-control"
+                  placeholder="Ex: Iron">
               </div>
-            </div>
 
-            <!-- Sexo -->
-            <div class="filter-group mb-4">
-              <p class="filter-label">Sexo</p>
-              <div class="radio-group">
-                <label>
-                  <input type="radio" name="sex" value="" checked>
-                  <span>Todos</span>
-                </label>
-                <label>
-                  <input type="radio" name="sex" value="macho">
-                  <span>Macho</span>
-                </label>
-                <label>
-                  <input type="radio" name="sex" value="femea">
-                  <span>Fêmea</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Status -->
-            <div class="filter-group mb-4">
-              <p class="filter-label">Status</p>
-              <div class="radio-group">
-                <label>
-                  <input type="radio" name="status" value="" checked>
-                  <span>Todos</span>
-                </label>
-                <label>
-                  <input type="radio" name="status" value="desaparecido">
-                  <span>Desaparecido</span>
-                </label>
-                <label>
-                  <input type="radio" name="status" value="encontrado">
-                  <span>Encontrado</span>
-                </label>
-                <label>
-                  <input type="radio" name="status" value="adocao">
-                  <span>Para Adoção</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Distância -->
-            <div class="filter-group mb-4">
-              <label for="filter-distance" class="form-label">Distância (<span id="distance-value">5</span> km)</label>
-              <input
-                type="range"
-                id="filter-distance"
-                class="form-range"
-                min="1"
-                max="20"
-                value="5">
-            </div>
-
-            <button type="submit" class="btn btn-success w-100">Filtrar</button>
-          </form>
-        </div>
-      </aside>
-
-      <section class="col-lg-9">
-        <div class="hero-container text-center mb-5">
-          <h1>Cuide de quem você ama</h1>
-          <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
-        </div>
-
-        <!-- Grid de Anúncios -->
-        <div class="row g-4">
-
-          <div class="col-md-6">
-            <div class="ad-card d-flex">
-              <div class="ad-image">
-                <img src="assets/img/anuncio do animal/exemploCard.jpg" alt="Nome do Pet">
-              </div>
-              <div class="ad-info">
-                <h5 class="ad-name">Iron</h5>
-                <p class="ad-species">Cachorro • Macho</p>
-                <p class="ad-breed"><strong>Raça:</strong> Shih Tzu</p>
-                <p class="ad-porte"><strong>Porte:</strong> Pequeno</p>
-                <span class="ad-status status-lost">Perdido</span>
-                <p class="ad-details">Reportado há 2 dias • 3 km de distância</p>
-                <p class="ad-description">
-                  Iron é um golden retriever amigável que desapareceu no bairro Central...
-                </p>
-                <div class="ad-actions">
-                  <button class="btn btn-primary btn-sm">Ver Detalhes</button>
-                  <button class="btn btn-outline-success btn-sm">Compartilhar</button>
+              <!-- Tipo de Animal -->
+              <div class="filter-group mb-4">
+                <p class="filter-label">Tipo de Animal</p>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="type" value="" checked>
+                    <span>Todos</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="type" value="cachorro">
+                    <span>Cachorro</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="type" value="gato">
+                    <span>Gato</span>
+                  </label>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="ad-card d-flex">
-              <div class="ad-image">
-                <img src="assets/img/anuncio do animal/exemploCard2.jpg" alt="Nome do Pet">
-              </div>
-              <div class="ad-info">
-                <h5 class="ad-name">Jake</h5>
-                <p class="ad-species">Gato • Macho</p>
-                <p class="ad-breed"><strong>Raça:</strong> Persa</p>
-                <p class="ad-porte"><strong>Porte:</strong> Médio</p>
-                <span class="ad-status status-adoção">Para adoção</span>
-                <p class="ad-details">Reportado há 10 dias • 15 km de distância</p>
-                <p class="ad-description">
-                  Jake é um gato persa carinhoso que está procurando um novo lar...
-                </p>
-                <div class="ad-actions">
-                  <button class="btn btn-primary btn-sm">Ver Detalhes</button>
-                  <button class="btn btn-outline-success btn-sm">Compartilhar</button>
+              <!-- Sexo -->
+              <div class="filter-group mb-4">
+                <p class="filter-label">Sexo</p>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="sex" value="" checked>
+                    <span>Todos</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sex" value="macho">
+                    <span>Macho</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sex" value="femea">
+                    <span>Fêmea</span>
+                  </label>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
+              <!-- Status -->
+              <div class="filter-group mb-4">
+                <p class="filter-label">Status</p>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="status" value="" checked>
+                    <span>Todos</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="status" value="desaparecido">
+                    <span>Desaparecido</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="status" value="encontrado">
+                    <span>Encontrado</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="status" value="adocao">
+                    <span>Para Adoção</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Distância -->
+              <div class="filter-group mb-4">
+                <label for="filter-distance" class="form-label">Distância (<span id="distance-value">5</span> km)</label>
+                <input
+                  type="range"
+                  id="filter-distance"
+                  class="form-range"
+                  min="1"
+                  max="20"
+                  value="5">
+              </div>
+
+              <button type="submit" class="btn btn-success w-100">Filtrar</button>
+            </form>
+          </div>
+        </aside>
+
+        <section class="col-lg-9">
+          <div class="hero-container text-center mb-5">
+            <h1>Cuide de quem você ama</h1>
+            <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
+          </div>
+
+          <div class="row g-4">
+            <?php
+              include_once("forms/conexao.php");
+              $conn = abrirConexao();
+
+              $result = $conn -> query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao, L.endereco_texto
+              FROM Anuncio A
+              JOIN Animal AN ON A.idAnimal = AN.idAnimal
+              JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
+              JOIN Imagens IM ON ASP.idImagem = IM.idImagem
+              JOIN Localidade L ON A.idLocal = L.idLocal
+              ORDER BY A.dataAnuncio DESC");
+
+              while ($row = $result->fetch_assoc()) {
+                $statusClass = match($row['situacao']) {
+                  'perdido'    => 'status-lost',
+                  'encontrado' => 'status-found',
+                  'adocao', 'adoção'    => 'status-adoção',
+                  default      => 'status-unknown'
+                };
+
+                echo '<div class="col-md-6">';
+                echo '<div class="ad-card d-flex">';
+                echo '<div class="ad-image"><img src="' . $row['caminho'] . '" alt="' . htmlspecialchars($row['nome']) . '"></div>';
+                echo '<div class="ad-info">';
+                echo '<h5 class="ad-name">' . htmlspecialchars($row['nome']) . '</h5>';
+                echo '<p class="ad-species">' . $row['especie'] . ' • ' . $row['sexo'] . '</p>';
+                echo '<p class="ad-breed"><strong>Raça:</strong> ' . $row['raca'] . '</p>';
+                echo '<p class="ad-porte"><strong>Porte:</strong> ' . $row['porte'] . '</p>';
+                echo '<span class="ad-status ' . $statusClass . '">' . ucfirst($row['situacao']) . '</span>';
+                echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
+                echo '<p class="ad-description">Local: ' . $row['endereco_texto'] . '</p>';
+                echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
+                echo '<div class="ad-actions"><button class="btn btn-primary btn-sm">Ver Detalhes</button></div>';
+                echo '</div></div></div>';
+              }
+              fecharConexao($conn);
+            ?>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
   </main>
 
   <footer id="footer" class="footer">
@@ -202,7 +191,7 @@
       <div class="container footer-top">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-about">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="index.php" class="logo d-flex align-items-center">
               <span class="sitename">PetSee</span>
             </a>
             <p>Plataforma que auxilia tutores a encontrarem seus pets desaparecidos. Também conta com uma aba de dados sobre cuidados animais, e divulga campanhas de vacinação, adoção e castração gratuita ou de baixo custo. Além disso, fornece a localização e informações de hospitais veterinários públicos e ONGs</p>
@@ -263,7 +252,7 @@
   <div id="preloader">
     <div class="carg-card">
       <div class="carg-content">
-        <img src="assets/img/tela de caregamento/dog_load.png" loading="lazy">
+        <img src="assets/img/telaCarregamento/dog_load.png" loading="lazy">
         <div class="speech-bubble">Eita! Espere um momento.</div>
       </div>
     </div>

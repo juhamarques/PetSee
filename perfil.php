@@ -146,13 +146,13 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo petsee/logo petsee.png" loading="lazy" alt="Logo PetSee" class="imagem-logo">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Início</a></li>
+          <li><a href="index.php">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
@@ -240,7 +240,7 @@
   <div id="preloader">
     <div class="carg-card">
       <div class="carg-content">
-        <img src="assets/img/tela de caregamento/dog_load.png" loading="lazy">
+        <img src="assets/img/telaCarregamento/dog_load.png" loading="lazy">
         <div class="speech-bubble">Eita! Espere um momento.</div>
       </div>
     </div>

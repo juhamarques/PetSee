@@ -20,13 +20,13 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo petsee/logo petsee.png" loading="lazy" alt="Logo PetSee" class="imagem-logo">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Início</a></li>
+          <li><a href="index.php">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
           <li><a href="serviços.html">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
@@ -42,17 +42,13 @@
   <main style="margin-top: 110px;">
     <div class="anuncio-modal-overlay">
       <div class="anuncio-modal">
-        <!-- Botão de fechar -->
-        <button class="modal-close" onclick="location.href='index.html'">×</button>
+        <button class="modal-close" onclick="location.href='index.php'">×</button>
         <div class="row g-0 h-100">
-          <!-- Coluna da imagem -->
           <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center">
-            <img src="assets/img/anuncio do animal/cadastroAnimal.png" class="img-fluid">
+            <img src="assets/img/anuncioAnimal/cadastroAnimal.png" class="img-fluid">
           </div>
-          <!-- Coluna do formulário -->
           <div class="col-md-7">
             <div class="form-container">
-              <!-- Seleção de tipo -->
               <div class="tipo-cadastro-container">
                 <label class="radio-label">
                     <input type="radio" name="status" value="perdido" checked>Perdido
@@ -65,9 +61,8 @@
                 </label>
             </div>
 
-              <!-- Formulários específicos -->
               <!-- Perdido -->
-              <form id="form-perdido" class="pet-form active" action="salvar_anuncio.php" method="POST" enctype="multipart/form-data">
+              <form id="form-perdido" class="pet-form active" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="perdido">
                 <div class="mb-3">
                   <label>Nome</label>
@@ -105,7 +100,7 @@
                 </div>
                 <div class="mb-3">
                   <label>Local de Desaparecimento</label>
-                  <input id="local" name="local" type="text" class="form-control" required>
+                  <input id="local" name="local" type="text" class="form-control" placeholder="Ex: Av. Paulista, 1000 - Bela Vista, São Paulo, SP" required>
                 </div>
                 <div class="mb-3">
                   <label>Data de Desaparecimento</label>
@@ -127,7 +122,7 @@
               </form>
 
               <!-- Encontrado -->
-              <form id="form-encontrado" class="pet-form" action="salvar_anuncio.php" method="POST" enctype="multipart/form-data">
+              <form id="form-encontrado" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="encontrado">
                 <div class="mb-3">
                   <label>Nome</label>
@@ -165,7 +160,7 @@
                 </div>
                 <div class="mb-3">
                   <label>Local de Encontro</label>
-                  <input id="local_enc" name="local_enc" type="text" class="form-control" required>
+                  <input id="local_enc" name="local_enc" type="text" class="form-control" placeholder="Ex: Av. Paulista, 1000 - Bela Vista, São Paulo, SP" required>
                 </div>
                 <div class="mb-3">
                   <label>Data de Encontro</label>
@@ -187,7 +182,7 @@
               </form>
 
               <!-- Adoção -->
-              <form id="form-adocao" class="pet-form" action="salvar_anuncio.php" method="POST" enctype="multipart/form-data">
+              <form id="form-adocao" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="adocao">
                 <div class="mb-3">
                   <label>Nome (opcional)</label>
@@ -248,7 +243,7 @@
   <div id="preloader">
     <div class="carg-card">
       <div class="carg-content">
-        <img src="assets/img/tela de caregamento/dog_load.png" loading="lazy">
+        <img src="assets/img/telaCarregamento/dog_load.png" loading="lazy">
         <div class="speech-bubble">Eita! Espere um momento.</div>
       </div>
     </div>

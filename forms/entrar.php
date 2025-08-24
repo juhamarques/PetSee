@@ -9,7 +9,7 @@
     
     if ($idUsuario != false){
         $_SESSION['idUsuario'] = $idUsuario;
-        header('Location:../index.html');
+        header('Location:../index.php');
         exit();
     } else {
         header('Location:../erro.html');
