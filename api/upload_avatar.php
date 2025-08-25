@@ -26,13 +26,13 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
 
         $caminho = $upload_dir . $novo_nome;
         if (move_uploaded_file($_FILES['avatar']['tmp_name'], $caminho)) {
-            $stmt = $conn->prepare("INSERT INTO Imagens (caminho) VALUES (?)");
-            $stmt->bind_param("s", $relative_path);
-            if ($stmt->execute()) {
-                $novoIdImagem = $conn->insert_id;
-                $stmt = $conn->prepare("UPDATE Usuario SET idImagem = ? WHERE idUsuario = ?");
-                $stmt->bind_param("ii", $novoIdImagem, $idUsuario);
-                $stmt->execute();
+            $stmt = $conn -> prepare("INSERT INTO Imagens (caminho) VALUES (?)");
+            $stmt -> bind_param("s", $relative_path);
+            if ($stmt -> execute()) {
+                $novoIdImagem = $conn -> insert_id;
+                $stmt = $conn -> prepare("UPDATE Usuario SET idImagem = ? WHERE idUsuario = ?");
+                $stmt -> bind_param("ii", $novoIdImagem, $idUsuario);
+                $stmt -> execute();
             } else {
                 header("Location: ../erro.html");
                 exit();

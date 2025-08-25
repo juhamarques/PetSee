@@ -152,7 +152,7 @@
               JOIN Animal AN ON A.idAnimal = AN.idAnimal
               JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
               JOIN Imagens IM ON ASP.idImagem = IM.idImagem
-              JOIN Localidade L ON A.idLocal = L.idLocal
+              LEFT JOIN Localidade L ON A.idLocal = L.idLocal
               ORDER BY A.dataAnuncio DESC");
 
               while ($row = $result->fetch_assoc()) {
@@ -171,9 +171,17 @@
                 echo '<p class="ad-species">' . $row['especie'] . ' • ' . $row['sexo'] . '</p>';
                 echo '<p class="ad-breed"><strong>Raça:</strong> ' . $row['raca'] . '</p>';
                 echo '<p class="ad-porte"><strong>Porte:</strong> ' . $row['porte'] . '</p>';
-                echo '<span class="ad-status ' . $statusClass . '">' . ucfirst($row['situacao']) . '</span>';
+                $labelSituacao = match($row['situacao']) {
+                  'perdido'    => 'Perdido',
+                  'encontrado' => 'Encontrado',
+                  'adocao'     => 'Adoção',
+                  default      => ucfirst($row['situacao'])
+                };
+                echo '<span class="ad-status ' . $statusClass . '">' . $labelSituacao . '</span>';
                 echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
-                echo '<p class="ad-description">Local: ' . $row['endereco_texto'] . '</p>';
+                if (!empty($row['endereco_texto'])) {
+                  echo '<p class="ad-description">Local: ' . $row['endereco_texto'] . '</p>';
+                }
                 echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
                 echo '<div class="ad-actions"><button class="btn btn-primary btn-sm">Ver Detalhes</button></div>';
                 echo '</div></div></div>';

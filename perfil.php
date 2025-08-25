@@ -128,7 +128,22 @@
       </div>
       <div class='perfil-botoes'>
         <a href='api/logout.php' class='btn-sair'>Sair da Conta</a>
-        <a href='cadastrar_empresa.php' class='btn-cadastrar-empresa'>Cadastrar Empresa</a>
+        <button id=\"abrirModalEmpresa\" class=\"btn-cadastrar-empresa\">Cadastrar Empresa</button>
+        <div id=\"modalEmpresa\" class=\"modal-empresa\">
+          <div class=\"modal-conteudo\">
+            <span class=\"fechar-modal\" id=\"fecharModalEmpresa\">&times;</span>
+            <h3 class=\"titulo\">Cadastrar nova empresa</h3> 
+            <p class=\"texto\">Para cadastrar sua empresa no nosso site, preencha corretamente as lacunas. Lembre-se, suas informações aparecerão na aba de Serviços!</p>
+            <form id=\"formCadastrarEmpresa\">
+              <input type=\"text\" name=\"nome\" placeholder=\"Nome da empresa\" required>
+              <input type=\"text\" name=\"categoria\" placeholder=\"Categoria\" required>
+              <input type=\"text\" name=\"telefone\" placeholder=\"Telefone\" required>
+              <input type=\"text\" name=\"endereco\" placeholder=\"Endereço completo\" required>
+              <textarea name=\"descricao\" placeholder=\"Descrição da empresa\" rows=\"4\" required></textarea>
+              <button type=\"submit\" class=\"btn-cadastrar-empresa\">Salvar</button>
+            </form>
+          </div>
+        </div>
       </div>
     ";
   } else {
@@ -142,7 +157,6 @@
 ?>
 
 <body class="index-page">
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
@@ -233,6 +247,45 @@
               avatarForm.submit();
           }
       });
+    });
+
+    const abrirModal = document.getElementById('abrirModalEmpresa');
+    const fecharModal = document.getElementById('fecharModalEmpresa');
+    const modal = document.getElementById('modalEmpresa');
+
+    abrirModal.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
+
+    fecharModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    document.getElementById('formCadastrarEmpresa').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const empresa = {
+        nome: formData.get('nome'),
+        categoria: formData.get('categoria'),
+        telefone: formData.get('telefone'),
+        endereco: formData.get('endereco'),
+        descricao: formData.get('descricao')
+      };
+
+      const empresas = JSON.parse(localStorage.getItem('empresas')) || [];
+      empresas.push(empresa);
+      localStorage.setItem('empresas', JSON.stringify(empresas));
+
+      alert("Empresa cadastrada com sucesso! Ela aparecerá na aba Serviços.");
+      modal.style.display = 'none';
+      this.reset();
     });
   </script>
   

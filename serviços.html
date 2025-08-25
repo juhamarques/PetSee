@@ -35,7 +35,80 @@
 
         <a id="login-button" class="btn-entrar" href="cadastro.html" target="_self">Entrar</a>
     </div>
-  </header>
+  </header> <br><br><br>
+
+  <div class="container mt-5">
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Buscar por categoria ou nome...">
+    <div class="row" id="cardsContainer"></div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const empresasManuais = [
+            {
+              nome: "Petz",
+              categoria: "Petshop",
+              telefone: "(11) 4004-8387",
+              endereco: "Av. Paulista, 1000 - São Paulo, SP",
+              descricao: "Rede de pet shops com serviços de banho, tosa e veterinária."
+            },
+            {
+              nome: "Hospital Albert Einstein",
+              categoria: "Hospital",
+              telefone: "(11) 2151-1233",
+              endereco: "Av. Albert Einstein, 627 - Morumbi, SP",
+              descricao: "Referência em medicina de alta complexidade e humanização."
+            },
+            {
+              nome: "ONG Amigos do Bem",
+              categoria: "ONG",
+              telefone: "(11) 3010-1000",
+              endereco: "R. Dr. Fernandes Coelho, 85 - Pinheiros, SP",
+              descricao: "Organização que atua no combate à pobreza no sertão nordestino."
+            }
+          ];
+
+          if (!localStorage.getItem('empresas')) {
+            localStorage.setItem('empresas', JSON.stringify(empresasManuais));
+          }
+
+          const empresas = JSON.parse(localStorage.getItem('empresas')) || [];
+
+          const container = document.getElementById('cardsContainer');
+          const searchInput = document.getElementById('searchInput');
+
+          function renderizarCards(filtro = '') {
+            container.innerHTML = '';
+            const empresasFiltradas = empresas.filter(emp =>
+              emp.nome.toLowerCase().includes(filtro.toLowerCase()) ||
+              emp.descricao.toLowerCase().includes(filtro.toLowerCase()) ||
+              emp.categoria.toLowerCase().includes(filtro.toLowerCase())
+            );
+
+            empresasFiltradas.forEach(emp => {
+              const card = document.createElement('div');
+              card.className = 'col-md-6 mb-4';
+              card.innerHTML = `
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">${emp.nome}</h5>
+                    <p class="card-text">${emp.descricao}</p>
+                    <p><strong>Categoria:</strong> ${emp.categoria}</p>
+                    <p><strong>Telefone:</strong> ${emp.telefone}</p>
+                    <p><strong>Endereço:</strong> ${emp.endereco}</p>
+                  </div>
+                </div>
+              `;
+              container.appendChild(card);
+            });
+          }
+
+          renderizarCards();
+
+          searchInput.addEventListener('input', function () {
+            renderizarCards(this.value);
+          });
+        });
+      </script>
 
   <footer id="footer" class="footer">
     <div class="team section light-background">

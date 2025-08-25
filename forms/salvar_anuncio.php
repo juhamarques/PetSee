@@ -15,7 +15,6 @@
             'format' => 'json',
             'limit' => 1
         ]);
-
         $opts = [
             "http" => [
                 "header" => "User-Agent: PetSee"
@@ -28,12 +27,10 @@
         if (!empty($data[0])) {
             return [(float)$data[0]['lat'], (float)$data[0]['lon']];
         }
-
         return [null, null];
     }
 
     $tipo     = $_POST['tipo'];
-    $telefone = $_POST['telefone'];
 
     $sufixoMap = [
         'perdido'    => '',
@@ -42,6 +39,7 @@
     ];
     $suf = $sufixoMap[$tipo] ?? '';
 
+    $telefone  = $_POST['telefone' . $suf] ?? '';
     $nomeField = 'nome' . $suf;
     $nomePet   = trim($_POST[$nomeField] ?? '') ?: 'Sem nome';
     $especie   = $_POST['especie' . $suf];
@@ -52,15 +50,39 @@
     $endereco  = trim($_POST['local' . $suf] ?? '');
     $dataEvt   = $_POST['data' . $suf] ?? date('Y-m-d');
 
-    if ($endereco === '') {
-        die('Endereço não fornecido.' . $conn->error);
+    // Geolocalização e Localidade (somente se não for adoção)
+    if ($tipo !== 'adocao') {
+        if ($endereco === '') {
+            die('Endereço não fornecido.' . $conn->error);
+        }
+
+        list($lat, $lng) = geocode($endereco);
+        error_log('[GEOCODE] Endereço: ' . $endereco);
+
+        if ($lat === null || $lng === null) {
+            error_log('[GEOCODE] Falha ao obter coords para: ' . $endereco);
+            echo "<script>
+                alert('Endereço inválido ou incompleto. Tente novamente com mais detalhes.');
+                window.history.back();
+            </script>";
+            exit;
+        }
+
+        $stmt = $conn->prepare("INSERT INTO Localidade (latitude, longitude, endereco_texto) VALUES (?,?,?)");
+        $stmt->bind_param("dds", $lat, $lng, $endereco);
+        $stmt->execute();
+        $idLocal = $conn->insert_id;
+        $stmt->close();
+    } else {
+        $idLocal = null;
     }
 
+    // Upload da imagem
     if (!isset($_FILES['foto' . $suf]) || $_FILES['foto' . $suf]['error'] !== UPLOAD_ERR_OK) {
         die('Erro no upload da foto.' . $conn->error);
     }
 
-    $uploadDir = __DIR__ . '/assets/img/anuncioAnimal/';
+    $uploadDir = dirname(__DIR__) . '/assets/img/anuncioAnimal/';
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
@@ -94,49 +116,32 @@
         die('Erro: dimensões inválidas da imagem (' . $width . '×' . $height . ')');
     }
 
+    // Inserções no banco
     $caminhoRelativo = 'assets/img/anuncioAnimal/' . $imgNome;
-    $stmt = $conn -> prepare("INSERT INTO Imagens (caminho) VALUES (?)");
-    $stmt -> bind_param("s", $caminhoRelativo);
-    $stmt -> execute();
-    $idImagem = $conn -> insert_id;
-    $stmt -> close();
+    $stmt = $conn->prepare("INSERT INTO Imagens (caminho) VALUES (?)");
+    $stmt->bind_param("s", $caminhoRelativo);
+    $stmt->execute();
+    $idImagem = $conn->insert_id;
+    $stmt->close();
 
     $stmt = $conn->prepare("INSERT INTO Aspectos (idImagem, especie, sexo, raca, porte, observacao) VALUES (?,?,?,?,?,?)");
-    $stmt -> bind_param("isssss", $idImagem, $especie, $sexo, $raca, $porte, $obs);
-    $stmt -> execute();
-    $idAspectos = $conn -> insert_id;
-    $stmt -> close();
+    $stmt->bind_param("isssss", $idImagem, $especie, $sexo, $raca, $porte, $obs);
+    $stmt->execute();
+    $idAspectos = $conn->insert_id;
+    $stmt->close();
 
     $stmt = $conn->prepare("INSERT INTO Animal (idUsuario, idAspectos, nome) VALUES (?,?,?)");
-    $stmt -> bind_param("iis", $uid, $idAspectos, $nomePet);
-    $stmt -> execute();
-    $idAnimal = $conn -> insert_id;
-    $stmt -> close();
-
-    list($lat, $lng) = geocode($endereco);
-    error_log('[GEOCODE] Endereço: ' . $endereco);
-
-    if ($lat === null || $lng === null) {
-        error_log('[GEOCODE] Falha ao obter coords para: ' . $endereco);
-        echo "<script>
-            alert('Endereço inválido ou incompleto. Tente novamente com mais detalhes.');
-            window.history.back();
-        </script>";
-        exit;
-    }
-
-    $stmt = $conn->prepare("INSERT INTO Localidade (latitude, longitude, endereco_texto) VALUES (?,?,?)");
-    $stmt -> bind_param("dds", $lat, $lng, $endereco);
-    $stmt -> execute();
-    $idLocal = $conn -> insert_id;
-    $stmt -> close();
+    $stmt->bind_param("iis", $uid, $idAspectos, $nomePet);
+    $stmt->execute();
+    $idAnimal = $conn->insert_id;
+    $stmt->close();
 
     $stmt = $conn->prepare("INSERT INTO Anuncio (idUsuario, idAnimal, idAspectos, idLocal, dataAnuncio, situacao, telefone) VALUES (?,?,?,?,?,?,?)");
-    $stmt -> bind_param("iiiisss", $uid, $idAnimal, $idAspectos, $idLocal, $dataEvt, $tipo, $telefone);
-    $stmt -> execute();
-    $stmt -> close();
+    $stmt->bind_param("iiiisss", $uid, $idAnimal, $idAspectos, $idLocal, $dataEvt, $tipo, $telefone);
+    $stmt->execute();
+    $stmt->close();
 
     fecharConexao($conn);
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 ?>

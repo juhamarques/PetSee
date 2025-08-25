@@ -821,6 +821,12 @@ Perfil
   background-color: #e58d00;
 }
 
+.btn-cadastrar-empresa {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
 /*--------------------------------------------------------------
 # Index
 --------------------------------------------------------------*/
@@ -1073,8 +1079,6 @@ Cards
 /*--------------------------------------------------------------
 # Anúncio
 --------------------------------------------------------------*/
-
-
 .anuncio-modal-overlay {
   display: flex;
   align-items: center;
@@ -1442,6 +1446,83 @@ Cards
   .filter-button-small {
     width: 100%;
   }
+}
+
+/*--------------------------------------------------------------
+# Serviços
+--------------------------------------------------------------*/
+.card {
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.card-text {
+  color: #555;
+}
+
+input#searchInput {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Modal
+--------------------------------------------------------------*/
+.titulo {
+  text-align: center;
+  color: var(--surface-color);
+}
+
+.texto {
+  color: var(--nav-dropdown-background-color);
+  text-align: center;
+}
+
+.modal-empresa {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-conteudo {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal-conteudo input,
+.modal-conteudo textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.fechar-modal {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 /*--------------------------------------------------------------
