@@ -50,7 +50,7 @@
             <form id="filter-form">
               <!-- Nome do Animal -->
               <div class="filter-group mb-4">
-                <label for="filter-name" class="form-label">Nome do Animal</label>
+                <label for="filter-name" class="filter-label">Nome do Animal</label>
                 <input
                   type="text"
                   id="filter-name"
@@ -73,6 +73,14 @@
                   <label>
                     <input type="radio" name="type" value="gato">
                     <span>Gato</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="type" value="gato">
+                    <span>Pássaro</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="type" value="gato">
+                    <span>Roedor</span>
                   </label>
                 </div>
               </div>
@@ -121,7 +129,7 @@
 
               <!-- Distância -->
               <div class="filter-group mb-4">
-                <label for="filter-distance" class="form-label">Distância (<span id="distance-value">5</span> km)</label>
+                <label for="filter-distance" class="filter-label">Distância (<span id="distance-value">5</span> km)</label>
                 <input
                   type="range"
                   id="filter-distance"

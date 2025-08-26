@@ -1,18 +1,11 @@
 /* Fonts */
 @font-face {
-  font-family: 'Realburn';
-  src: url('../fonts/realbun/Realbun.otf') format('opentype'),
-       url('../fonts/realbun/Realbun.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Biggest-cat-ever';
-  src: url(../fonts/biggest_cat_ever/Biggest\ Cat\ Ever.ttf) format(truetype);
+  font-family: 'Vanilla Caramel';
+  src: url(../fonts/vanilla_caramel/Vanilla\ Caramel.otf) format(truetype);
 }
 
 :root {
-  --default-font: "Biggest-cat-ever",  sans-serif;
-  --heading-font: "Realburn",  sans-serif;
+  --heading-font: "Vanilla Caramel",  sans-serif;
 }
 
 /* Cores Globais*/
@@ -35,9 +28,8 @@
 
 /* Imagem da Logo */
 .imagem-logo {
-  line-height: 1;
   width: 65px;
-  max-height: 40px;
+  height: 40px;
   margin-right: 8px;
   border-radius: 8px;
 }
@@ -59,7 +51,7 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 a {
@@ -115,7 +107,7 @@ h6 {
 .header .btn-entrar:focus {
   color: var(--contrast-color);
   background: var(--accent-color);
-  font-size: 14px;
+  font-size: 18px;
   padding: 8px 20px;
   margin: 0 0 0 30px;
   border-radius: 50px;
@@ -160,7 +152,7 @@ h6 {
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-size: 14px;
+  font-size: 18px;
   padding-bottom: 50px;
   position: relative;
 }
@@ -177,14 +169,14 @@ h6 {
 
 .footer .footer-about .logo span {
   color: var(--heading-color);
-  font-size: 30px;
+  font-size: 38px;
   font-weight: 700;
   letter-spacing: 1px;
   font-family: var(--heading-font);
 }
 
 .footer .footer-about p {
-  font-size: 14px;
+  font-size: 18px;
   font-family: var(--heading-font);
 }
 
@@ -196,7 +188,7 @@ h6 {
   height: 40px;
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 16px;
+  font-size: 18px;
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   margin-right: 10px;
   transition: 0.3s;
@@ -208,7 +200,7 @@ h6 {
 }
 
 .footer h4 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   position: relative;
   padding-bottom: 12px;
@@ -226,7 +218,7 @@ h6 {
 
 .footer .footer-links ul i {
   padding-right: 2px;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 0;
 }
 
@@ -292,7 +284,7 @@ section,
 }
 
 .section-title h2 {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   padding: 0;
   line-height: 1px;
@@ -420,8 +412,8 @@ section,
   .navmenu a:focus {
     color: var(--nav-color);
     padding: 18px 15px;
-    font-size: 16px;
-    font-family: var(--default-font);
+    font-size: 24px;
+    font-family: var(--heading-font);
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -447,62 +439,6 @@ section,
   .navmenu .active:focus {
     color: var(--nav-hover-color);
   }
-
-  .navmenu .dropdown ul {
-    margin: 0;
-    padding: 10px 0;
-    background: var(--nav-dropdown-background-color);
-    display: block;
-    position: absolute;
-    visibility: hidden;
-    left: 14px;
-    top: 130%;
-    opacity: 0;
-    transition: 0.3s;
-    border-radius: 4px;
-    z-index: 99;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .navmenu .dropdown ul li {
-    min-width: 200px;
-  }
-
-  .navmenu .dropdown ul a {
-    padding: 10px 20px;
-    font-size: 15px;
-    text-transform: none;
-    color: var(--nav-dropdown-color);
-  }
-
-  .navmenu .dropdown ul a i {
-    font-size: 12px;
-  }
-
-  .navmenu .dropdown ul a:hover,
-  .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover>a {
-    color: var(--nav-hover-color);
-  }
-
-  .navmenu .dropdown:hover>ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
-
-  .navmenu .dropdown .dropdown ul {
-    top: 0;
-    left: -90%;
-    visibility: hidden;
-  }
-
-  .navmenu .dropdown .dropdown:hover>ul {
-    opacity: 1;
-    top: 0;
-    left: -100%;
-    visibility: visible;
-  }
 }
 
 /* ---------------------------- 
@@ -523,9 +459,9 @@ Cadastro
   color: white;
   text-align: center;
   padding: 15px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 .form-colunas{
@@ -539,16 +475,16 @@ Cadastro
 
 .coluna-left,
 .coluna-right {
-    flex: 1; 
-    min-width: 200px; 
+  flex: 1; 
+  min-width: 200px; 
 }
 
 .tipo-label {
-  font-size: 14px;
+  font-size: 20px;
   color: #333;
   display: block;
   padding: 10px;
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 .tipo-input {
@@ -558,8 +494,8 @@ Cadastro
   margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 14px;
-  font-family: var(--default-font);
+  font-size: 20px;
+  font-family: var(--heading-font);
   box-sizing: border-box;
 }
 
@@ -572,9 +508,9 @@ Cadastro
   border: none;
   border-radius: 15px;
   color: white;
-  font-size: 16px;
+  font-size: 25px;
   cursor: pointer;
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 .tipo-button:hover {
@@ -584,9 +520,9 @@ Cadastro
 .registro { 
   text-align: center;
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 20px;
   color: var(--surface-color);
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 /*Cadastro Pessoal e Comercial
@@ -597,8 +533,8 @@ Cadastro
   gap: 30px;
   margin-bottom: 20px;
   margin-top: 10px;
-  font-family: var(--default-font);
-  font-size: 16px;
+  font-family: var(--heading-font);
+  font-size: 22px;
   color: var(--surface-color);
 }
 
@@ -729,7 +665,7 @@ Perfil
 
 .perfil-nome {
   margin-top: 5px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: #333;
 }
@@ -745,9 +681,9 @@ Perfil
   border-radius: 5px; 
   background-color: var(--accent-color);
   color: #ffffff;
-  font-weight: bold;
   text-transform: capitalize;
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .perfil-campo-tipo p {
@@ -757,6 +693,7 @@ Perfil
 .perfil-campo {
   border-bottom: 1px solid #eee;
   padding: 15px 0;
+  font-size: 20px;
 }
 
 .perfil-campo:last-child {
@@ -768,6 +705,7 @@ Perfil
   color: #555;
   display: block;
   margin-bottom: 5px;
+  font-size: 22px;
 }
 
 .perfil-campo p {
@@ -788,6 +726,7 @@ Perfil
   text-align: center;
   min-width: 120px;
   max-width: 180px;
+  font-size: 20px;
 }
 
 .btn-sair:hover {
@@ -815,6 +754,7 @@ Perfil
   text-align: center;
   min-width: 120px;
   max-width: 200px;
+  font-size: 20px;
 }
 
 .btn-cadastrar-empresa:hover {
@@ -839,18 +779,21 @@ Perfil
 .filter-card h4 {
   color: #2a7a4c;
   font-weight: 600;
+  font-size: 30px;
 }
 
 .filter-label {
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: #555;
+  font-size: 22px;
 }
 
 .radio-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  font-size: 18px;
 }
 
 .radio-group label {
@@ -951,7 +894,7 @@ Slogan e botão
 
 .hero-container h1 {
   color: #2a7a4c;
-  font-size: 2.25rem;
+  font-size: 45px;
   font-weight: 700;
   margin: 0;
 }
@@ -960,7 +903,7 @@ Slogan e botão
   background-color: #2a7a4c;
   border-color: #2a7a4c;
   padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
+  font-size: 23px;
   border-radius: 6px;
   transition: background-color 0.2s, transform 0.2s;
 }
@@ -1004,24 +947,28 @@ Cards
   font-size: 1.25rem;
   color: #2a7a4c;
   margin-bottom: 4px;
+  font-size: 30px;
 }
 
 .ad-species {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 8px;
+  font-size: 20px;
 }
 
 .ad-breed {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 8px;
+  font-size: 18px;
 }
 
 .ad-porte {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 8px;
+  font-size: 18px;
 }
 
 .ad-status {
@@ -1031,6 +978,7 @@ Cards
   font-size: 0.75rem;
   font-weight: 600;
   margin-bottom: 8px;
+  font-size: 18px;
 }
 
 .status-lost {
@@ -1052,12 +1000,14 @@ Cards
   font-size: 0.8rem;
   color: #777;
   margin-bottom: 12px;
+  font-size: 16px;
 }
 
 .ad-description {
   font-size: 0.9rem;
   color: #333;
   margin-bottom: auto;
+  font-size: 18px;
 }
 
 .ad-actions {
@@ -1067,7 +1017,7 @@ Cards
 }
 
 .ad-actions .btn {
-  font-size: 0.8rem;
+  font-size: 17px;
   padding: 6px 12px;
 }
 
@@ -1105,17 +1055,18 @@ Cards
 
 .modal-close {
   position: absolute;
-  top: 8px;
+  top: 5px;
   right: 8px;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 35px;
   cursor: pointer;
 }
 
 .anuncio-modal,
 .anuncio-modal * {
   box-sizing: border-box;
+  font-size: 18px; 
 }
 
 .anuncio-modal .row {
@@ -1126,6 +1077,7 @@ Cards
 
 .pet-form {
   display: none;
+  font-size: 20px;
 }
 
 .pet-form.active {
@@ -1155,6 +1107,7 @@ Cards
 .anuncio-modal ::placeholder {
   color: #999999 !important;
   opacity: 1;
+  font-size: 18px;
 }
 
 .anuncio-modal .type-btn.active {
@@ -1164,6 +1117,7 @@ Cards
 .anuncio-modal .btn-success {
   color: #ffffff !important;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .anuncio-modal::-webkit-scrollbar {
@@ -1199,7 +1153,7 @@ Cards
 }
 
 .cuidados-titulo {
-  font-size: 2em;
+  font-size: 50px;
   color: var(--heading-color);
   font-weight: 700;
 }
@@ -1234,7 +1188,7 @@ Cards
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease;
@@ -1268,10 +1222,11 @@ Cards
 }
 
 .cuidados-texto {
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
   line-height: 1.6;
   color: var(--default-color);
   text-align: justify;
+  font-size: 21px;
 }
 
 .cuidados-imagens {
@@ -1317,13 +1272,21 @@ Cards
 # Cuidados Específicos
 --------------------------------------------------------------*/
 /* Filtro -------------------*/
+.titulo-cuidados {
+  font-size: 45px;
+}
+
+.titulo-cuidados-menor {
+  font-size: 35px;
+}
+
 .filter-button-small {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 1px solid var(--accent-color);
   border-radius: 8px;
   padding: 8px 15px;
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1359,14 +1322,14 @@ Cards
   margin-top: 0;
   margin-bottom: 15px;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .filter-options label {
   display: block; 
   margin-bottom: 8px;
-  font-size: 0.95rem;
+  font-size: 18px;
   color: #555;
   cursor: pointer;
 }
@@ -1374,6 +1337,7 @@ Cards
 .filter-options input[type="checkbox"] {
   margin-right: 8px;
   accent-color: #007bff;
+  font-size: 18px;
 }
 
 /* Card de Info 
@@ -1396,14 +1360,14 @@ Cards
 }
 
 .info-card h3 {
-  font-size: 1.3rem;
+  font-size: 25px;
   color: #333;
   margin-bottom: 10px;
   font-weight: 700;
 }
 
 .info-card p {
-  font-size: 0.95rem;
+  font-size: 20px;
   color: #666;
   line-height: 1.6;
 }
@@ -1464,16 +1428,18 @@ Cards
 .card-title {
   font-weight: 600;
   color: #343a40;
+  font-size: 22px;
 }
 
 .card-text {
   color: #555;
+  font-size: 20px;
 }
 
 input#searchInput {
   border-radius: 8px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* Modal
@@ -1481,11 +1447,13 @@ input#searchInput {
 .titulo {
   text-align: center;
   color: var(--surface-color);
+  font-size: 32px;
 }
 
 .texto {
   color: var(--nav-dropdown-background-color);
   text-align: center;
+  font-size: 20px;
 }
 
 .modal-empresa {
@@ -1508,6 +1476,7 @@ input#searchInput {
   width: 90%;
   max-width: 500px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  font-size: 20px;
 }
 
 .modal-conteudo input,
@@ -1551,6 +1520,7 @@ input#searchInput {
   justify-content: space-around;
   gap: 25px; 
   flex-wrap: wrap; 
+  font-size: 20px;
 }
 
 .mvv-card {
@@ -2100,7 +2070,7 @@ input#searchInput {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   font-size: 13px;
   line-height: 1.5;
-  font-family: var(--default-font);
+  font-family: var(--heading-font);
 }
 
 .contact .contact-info-box .info-content p:last-child {
