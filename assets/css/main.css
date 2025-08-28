@@ -290,7 +290,6 @@ section,
   line-height: 1px;
   margin: 0;
   letter-spacing: 1.5px;
-  text-transform: uppercase;
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   position: relative;
 }
@@ -310,7 +309,6 @@ section,
   margin: 0;
   font-size: 28px;
   font-weight: 700;
-  text-transform: uppercase;
   font-family: var(--heading-font);
 }
 
@@ -364,7 +362,7 @@ section,
   height: 100px;
   padding: 35px 25px;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 30px;
   font-weight: 700;
   color: var(--heading-color);
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
@@ -777,7 +775,7 @@ Perfil
 }
 
 .filter-card h4 {
-  color: #2a7a4c;
+  color: var(--surface-color);
   font-weight: 600;
   font-size: 30px;
 }
@@ -815,7 +813,7 @@ Perfil
 }
 
 .radio-group input[type="radio"]:checked {
-  border-color: #2a7a4c;
+  border-color: var(--surface-color);
 }
 
 .radio-group input[type="radio"]:checked::before {
@@ -823,7 +821,7 @@ Perfil
   position: absolute;
   width: 0.5rem;
   height: 0.5rem;
-  background-color: #2a7a4c;
+  background-color: var(--surface-color);
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -846,7 +844,7 @@ Perfil
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #2a7a4c;
+  background: var(--surface-color);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
@@ -855,7 +853,7 @@ Perfil
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #2a7a4c;
+  background: var(--surface-color);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
@@ -865,9 +863,9 @@ Perfil
   border-radius: 5px;
   background: linear-gradient(
     to right,
-    #2a7a4c 0%,
-    #2a7a4c calc((var(--value) - 1) / 19 * 100%),
-    #ddd calc((var(--value) - 1) / 19 * 100%),
+    var(--surface-color) 0%,
+    var(--surface-color) calc((var(--value) - 1) / 49 * 100%),
+    #ddd calc((var(--value) - 1) / 49 * 100%),
     #ddd 100%
   );
 }
@@ -893,15 +891,15 @@ Slogan e botão
 }
 
 .hero-container h1 {
-  color: #2a7a4c;
+  color: var(--surface-color);
   font-size: 45px;
   font-weight: 700;
   margin: 0;
 }
 
 .hero-container .btn-success {
-  background-color: #2a7a4c;
-  border-color: #2a7a4c;
+  background-color: var(--surface-color);
+  border-color: var(--surface-color);
   padding: 0.75rem 1.5rem;
   font-size: 23px;
   border-radius: 6px;
@@ -909,7 +907,7 @@ Slogan e botão
 }
 
 .hero-container .btn-success:hover {
-  background-color: #25693e;
+  background-color: var(--surface-color);
   transform: translateY(-2px);
 }
 
@@ -945,7 +943,7 @@ Cards
 
 .ad-name {
   font-size: 1.25rem;
-  color: #2a7a4c;
+  color: var(--surface-color);
   margin-bottom: 4px;
   font-size: 30px;
 }
@@ -1014,11 +1012,40 @@ Cards
   display: flex;
   gap: 8px;
   margin-top: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.ad-actions .btn {
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-sm {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.ad-actions a.btn {
   font-size: 17px;
   padding: 6px 12px;
+  display: inline-block;
+  max-width: fit-content;
 }
 
 .ad-card:hover {
@@ -1088,7 +1115,7 @@ Cards
   width: 6px;
 }
 .form-container::-webkit-scrollbar-thumb {
-  background: rgba(42,122,76,0.5);
+  background: var(--surface-color);
   border-radius: 3px;
 }
 
@@ -1131,6 +1158,144 @@ Cards
   top: 50%;
   transform: translateY(-130%);
   margin-left: -60px;
+}
+
+/*--------------------------------------------------------------
+# Detalhes do Anúncio
+--------------------------------------------------------------*/
+main.anuncio-detalhado {
+  position: relative;
+  max-width: 900px;
+  margin: 120px auto 60px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+}
+
+main.anuncio-detalhado p {
+  color: var(--heading-color);
+}
+
+main h1 {
+  font-size: 32px;
+  color: var(--surface-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+main img {
+  display: block;
+  margin: 0 auto 30px;
+  border-radius: 12px;
+  max-height: 400px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+main p {
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+main p strong {
+  color: var(--surface-color)
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid #aaa8a8;
+}
+
+section.comentarios {
+  margin-top: 20px;
+  background-color: #ffffff;
+}
+
+section.comentarios h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--surface-color)
+}
+
+.comentario {
+  background-color: #f1efef;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.comentario p {
+  margin: 5px 0;
+}
+
+.comentario small {
+  color: #777;
+  font-size: 14px;
+}
+
+.form-comentario {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-comentario input[type="text"],
+.form-comentario textarea {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  resize: vertical;
+}
+
+.form-comentario textarea {
+  min-height: 120px;
+}
+
+.form-comentario button {
+  background-color: var(--surface-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-comentario button:hover {
+  background-color: #256a42;
+}
+
+.btn-fechar {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  color: #676666 !important;
+}
+
+@media (max-width: 768px) {
+  main.anuncio-detalhado {
+    padding: 25px;
+    margin-top: 100px;
+  }
+
+  main h1 {
+    font-size: 26px;
+  }
+
+  section.comentarios h2 {
+    font-size: 22px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1604,6 +1769,7 @@ input#searchInput {
   align-items: center;
   text-align: center;
   width: 110px; 
+  font-size: 22px;
 }
 
 .product-item img {
@@ -1665,14 +1831,14 @@ input#searchInput {
 }
 
 .team .team-member .member-info h4 {
-  font-size: 1rem;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: 4px;
   color: var(--heading-color);
 }
 
 .team .team-member .member-info span {
-  font-size: 0.8rem;
+  font-size: 16px;
   font-weight: 400;
   color: color-mix(in srgb, var(--heading-color), transparent 30%);
   display: block;
@@ -1680,7 +1846,7 @@ input#searchInput {
 }
 
 .team .team-member .member-info p {
-  font-size: 0.8rem;
+  font-size: 16px;
   margin-bottom: 20px;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
@@ -2060,16 +2226,16 @@ input#searchInput {
 }
 
 .contact .contact-info-box .info-content h4 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 599;
   margin-bottom: 10px;
 }
 
 .contact .contact-info-box .info-content p {
   margin-bottom: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 500;
   font-family: var(--heading-font);
 }
 
@@ -2112,7 +2278,7 @@ input#searchInput {
 }
 
 .contact .contact-form-wrapper h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 30px;
   top: 10px;
@@ -2163,7 +2329,7 @@ input#searchInput {
   height: 3.5rem;
   color: var(--default-color);
   background-color: var(--surface-color);
-  font-size: 18px;
+  font-size: 20px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
@@ -2187,7 +2353,7 @@ input#searchInput {
   border: none;
   color: var(--contrast-color);
   padding: 12px 30px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
   border-radius: 8px;

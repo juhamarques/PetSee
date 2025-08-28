@@ -135,7 +135,7 @@
                   id="filter-distance"
                   class="form-range"
                   min="1"
-                  max="20"
+                  max="50"
                   value="5">
               </div>
 
@@ -191,7 +191,9 @@
                   echo '<p class="ad-description">Local: ' . $row['endereco_texto'] . '</p>';
                 }
                 echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
-                echo '<div class="ad-actions"><button class="btn btn-primary btn-sm">Ver Detalhes</button></div>';
+                echo '<div class="ad-actions">
+                  <a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="btn btn-primary btn-sm">Ver Detalhes</a>
+                </div>';
                 echo '</div></div></div>';
               }
               fecharConexao($conn);
