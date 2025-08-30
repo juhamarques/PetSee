@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -39,123 +42,86 @@
     </div>
   </header>
 
-  <main class="main" style="margin-top: 60px;">
-    <div class="container py-5">
-      <div class="row">
+<main class="main" style="margin-top: 60px;">
+  <div class="container py-5">
+    <div class="row">
 
-        <aside class="col-lg-3 mb-4">
-          <div class="filter-card p-4">
-            <h4 class="mb-4">Filtro</h4>
+      <!-- Filtro -->
+      <aside class="col-lg-3 mb-4">
+        <div class="filter-card p-4">
+          <h4 class="mb-4">Filtro</h4>
 
-            <form id="filter-form">
-              <!-- Nome do Animal -->
-              <div class="filter-group mb-4">
-                <label for="filter-name" class="filter-label">Nome do Animal</label>
-                <input
-                  type="text"
-                  id="filter-name"
-                  class="form-control"
-                  placeholder="Ex: Iron">
+          <form id="filter-form">
+            <!-- Nome -->
+            <div class="filter-group mb-4">
+              <label for="filter-name" class="filter-label">Nome do Animal</label>
+              <input type="text" id="filter-name" class="form-control" placeholder="Nome do pet">
+            </div>
+
+            <!-- Tipo -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Tipo de Animal</p>
+              <div class="radio-group">
+                <label><input type="radio" name="type" value="" checked><span>Todos</span></label>
+                <label><input type="radio" name="type" value="cachorro"><span>Cachorro</span></label>
+                <label><input type="radio" name="type" value="gato"><span>Gato</span></label>
+                <label><input type="radio" name="type" value="passaro"><span>Pássaro</span></label>
+                <label><input type="radio" name="type" value="roedor"><span>Roedor</span></label>
               </div>
+            </div>
 
-              <!-- Tipo de Animal -->
-              <div class="filter-group mb-4">
-                <p class="filter-label">Tipo de Animal</p>
-                <div class="radio-group">
-                  <label>
-                    <input type="radio" name="type" value="" checked>
-                    <span>Todos</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="type" value="cachorro">
-                    <span>Cachorro</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="type" value="gato">
-                    <span>Gato</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="type" value="gato">
-                    <span>Pássaro</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="type" value="gato">
-                    <span>Roedor</span>
-                  </label>
-                </div>
+            <!-- Sexo -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Sexo</p>
+              <div class="radio-group">
+                <label><input type="radio" name="sex" value="" checked><span>Todos</span></label>
+                <label><input type="radio" name="sex" value="macho"><span>Macho</span></label>
+                <label><input type="radio" name="sex" value="femea"><span>Fêmea</span></label>
               </div>
+            </div>
 
-              <!-- Sexo -->
-              <div class="filter-group mb-4">
-                <p class="filter-label">Sexo</p>
-                <div class="radio-group">
-                  <label>
-                    <input type="radio" name="sex" value="" checked>
-                    <span>Todos</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="sex" value="macho">
-                    <span>Macho</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="sex" value="femea">
-                    <span>Fêmea</span>
-                  </label>
-                </div>
+            <!-- Status -->
+            <div class="filter-group mb-4">
+              <p class="filter-label">Status</p>
+              <div class="radio-group">
+                <label><input type="radio" name="status" value="" checked><span>Todos</span></label>
+                <label><input type="radio" name="status" value="perdido"><span>Perdido</span></label>
+                <label><input type="radio" name="status" value="encontrado"><span>Encontrado</span></label>
+                <label><input type="radio" name="status" value="adocao"><span>Para Adoção</span></label>
               </div>
+            </div>
 
-              <!-- Status -->
-              <div class="filter-group mb-4">
-                <p class="filter-label">Status</p>
-                <div class="radio-group">
-                  <label>
-                    <input type="radio" name="status" value="" checked>
-                    <span>Todos</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="status" value="desaparecido">
-                    <span>Desaparecido</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="status" value="encontrado">
-                    <span>Encontrado</span>
-                  </label>
-                  <label>
-                    <input type="radio" name="status" value="adocao">
-                    <span>Para Adoção</span>
-                  </label>
-                </div>
-              </div>
+            <!-- Distância -->
+            <div class="filter-group mb-4">
+              <label for="filter-distance" class="filter-label">Distância (<span id="distance-value">5</span> km)</label>
+              <input type="range" id="filter-distance" class="form-range" min="1" max="50" value="5">
+            </div>
 
-              <!-- Distância -->
-              <div class="filter-group mb-4">
-                <label for="filter-distance" class="filter-label">Distância (<span id="distance-value">5</span> km)</label>
-                <input
-                  type="range"
-                  id="filter-distance"
-                  class="form-range"
-                  min="1"
-                  max="50"
-                  value="5">
-              </div>
+            <button type="submit" class="btn btn-success w-100">Filtrar</button>
+          </form>
+        </div>
+      </aside>
 
-              <button type="submit" class="btn btn-success w-100">Filtrar</button>
-            </form>
-          </div>
-        </aside>
+      <!-- Anúncios -->
+      <section class="col-lg-9">
+        <div class="hero-container text-center mb-5">
+          <h1>Cuide de quem você ama!</h1>
+          <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
+        </div>
 
-        <section class="col-lg-9">
-          <div class="hero-container text-center mb-5">
-            <h1>Cuide de quem você ama</h1>
-            <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
-          </div>
+        <div class="row g-4">
+          <?php
+            include_once("forms/conexao.php");
+            $conn = abrirConexao();
+            $userLat = $_SESSION['lat'] ?? null;
+            $userLon = $_SESSION['lon'] ?? null;
 
-          <div class="row g-4">
-            <?php
-              include_once("forms/conexao.php");
-              $conn = abrirConexao();
+            echo '<script>
+              window.USER_LAT = ' . (is_numeric($userLat) ? json_encode((float)$userLat) : 'null') . ';
+              window.USER_LON = ' . (is_numeric($userLon) ? json_encode((float)$userLon) : 'null') . ';
+            </script>';
 
-              $result = $conn -> query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao, L.endereco_texto
+            $result = $conn->query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao, L.endereco_texto, L.latitude, L.longitude
               FROM Anuncio A
               JOIN Animal AN ON A.idAnimal = AN.idAnimal
               JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
@@ -163,46 +129,121 @@
               LEFT JOIN Localidade L ON A.idLocal = L.idLocal
               ORDER BY A.dataAnuncio DESC");
 
-              while ($row = $result->fetch_assoc()) {
-                $statusClass = match($row['situacao']) {
-                  'perdido'    => 'status-lost',
-                  'encontrado' => 'status-found',
-                  'adocao', 'adoção'    => 'status-adoção',
-                  default      => 'status-unknown'
-                };
+            function normalizarSituacao(?string $s): string {
+              $s = (string)$s;
 
-                echo '<div class="col-md-6">';
-                echo '<div class="ad-card d-flex">';
-                echo '<div class="ad-image"><img src="' . $row['caminho'] . '" alt="' . htmlspecialchars($row['nome']) . '"></div>';
-                echo '<div class="ad-info">';
-                echo '<h5 class="ad-name">' . htmlspecialchars($row['nome']) . '</h5>';
-                echo '<p class="ad-species">' . $row['especie'] . ' • ' . $row['sexo'] . '</p>';
-                echo '<p class="ad-breed"><strong>Raça:</strong> ' . $row['raca'] . '</p>';
-                echo '<p class="ad-porte"><strong>Porte:</strong> ' . $row['porte'] . '</p>';
-                $labelSituacao = match($row['situacao']) {
-                  'perdido'    => 'Perdido',
-                  'encontrado' => 'Encontrado',
-                  'adocao'     => 'Adoção',
-                  default      => ucfirst($row['situacao'])
-                };
-                echo '<span class="ad-status ' . $statusClass . '">' . $labelSituacao . '</span>';
-                echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
-                if (!empty($row['endereco_texto'])) {
-                  echo '<p class="ad-description">Local: ' . $row['endereco_texto'] . '</p>';
-                }
-                echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
-                echo '<div class="ad-actions">
-                  <a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="btn btn-primary btn-sm">Ver Detalhes</a>
-                </div>';
-                echo '</div></div></div>';
+              // Remove caracteres de controle/zero-width e normaliza espaços
+              $s = preg_replace('/\p{C}+/u', '', $s);     
+              $s = preg_replace('/\s+/u', ' ', $s);
+              $s = trim($s);
+
+              // Lowercase multibyte
+              if (function_exists('mb_strtolower')) {
+                $s = mb_strtolower($s, 'UTF-8');
+              } else {
+                $s = strtolower($s);
               }
-              fecharConexao($conn);
-            ?>
-          </div>
-        </section>
-      </div>
+
+              // Remove acentos
+              if (function_exists('transliterator_transliterate')) {
+                $s = transliterator_transliterate('NFD; [:Nonspacing Mark:] Remove; NFC', $s);
+              } else {
+                $map = ['á'=>'a','à'=>'a','â'=>'a','ã'=>'a','ä'=>'a',
+                        'é'=>'e','ê'=>'e','è'=>'e','ë'=>'e',
+                        'í'=>'i','ì'=>'i','ï'=>'i',
+                        'ó'=>'o','ô'=>'o','õ'=>'o','ò'=>'o','ö'=>'o',
+                        'ú'=>'u','ù'=>'u','ü'=>'u',
+                        'ç'=>'c'];
+                $s = strtr($s, $map);
+              }
+
+              // Remove pontuação/símbolos
+              $s = preg_replace('/[^\p{L}\p{N}\s]/u', '', $s);
+              return trim($s);
+            }
+
+            while ($row = $result->fetch_assoc()) {
+              $situacaoRaw  = (string)($row['situacao'] ?? '');
+              $situacaoNorm  = normalizarSituacao($situacaoRaw);
+
+              // Mapeamento tolerante
+              if ($situacaoNorm === '') {
+                $map = 'unknown';
+              } elseif (str_contains($situacaoNorm, 'perd')) {
+                $map = 'perdido';
+              } elseif (str_contains($situacaoNorm, 'encontr')) {
+                $map = 'encontrado';
+              } elseif (str_contains($situacaoNorm, 'adoc')) {
+                $map = 'adocao';
+              } else {
+                $map = 'unknown';
+              }
+
+              $statusClass = match ($map) {
+                'perdido'    => 'status-lost',
+                'encontrado' => 'status-found',
+                'adocao'     => 'status-adocao',
+                default      => 'status-unknown'
+              };
+
+              $labelSituacao = match ($map) {
+                'perdido'    => 'Perdido',
+                'encontrado' => 'Encontrado',
+                'adocao'     => 'Adoção',
+                default      => ($situacaoRaw !== '' ? ucfirst($situacaoRaw) : 'Indefinido')
+              };
+
+              $latAttr = ($row['latitude'] !== null && $row['latitude'] !== '') 
+                ? ' data-lat="' . htmlspecialchars($row['latitude'], ENT_QUOTES, 'UTF-8') . '"' 
+                : '';
+              $lonAttr = ($row['longitude'] !== null && $row['longitude'] !== '') 
+                ? ' data-lon="' . htmlspecialchars($row['longitude'], ENT_QUOTES, 'UTF-8') . '"' 
+                : '';
+
+              echo '<div class="col-md-6" data-ad-container>';
+              echo '<div class="ad-card d-flex"' . $latAttr . $lonAttr . '>';
+              echo '<div class="ad-image"><img src="' . htmlspecialchars($row['caminho']) . '" alt="' . htmlspecialchars($row['nome']) . '"></div>';
+              echo '<div class="ad-info">';
+              echo '<h5 class="ad-name">' . htmlspecialchars($row['nome']) . '</h5>';
+              echo '<p class="ad-species">' . htmlspecialchars($row['especie']) . ' • ' . htmlspecialchars($row['sexo']) . '</p>';
+              echo '<p class="ad-breed"><strong>Raça:</strong> ' . htmlspecialchars($row['raca']) . '</p>';
+              echo '<p class="ad-porte"><strong>Porte:</strong> ' . htmlspecialchars($row['porte']) . '</p>';
+              echo '<span class="ad-status ' . $statusClass . '">' .
+              htmlspecialchars($labelSituacao, ENT_QUOTES, 'UTF-8') .
+              '</span>';
+              echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
+
+              if (!empty($row['endereco_texto'])) {
+                echo '<p class="ad-description">Local: ' . htmlspecialchars($row['endereco_texto']) . '</p>';
+              }
+
+              if (is_numeric($userLat) && is_numeric($userLon) && is_numeric($row['latitude']) && is_numeric($row['longitude'])) {
+                $lat1 = deg2rad($userLat);
+                $lon1 = deg2rad($userLon);
+                $lat2 = deg2rad($row['latitude']);
+                $lon2 = deg2rad($row['longitude']);
+                $dlat = $lat2 - $lat1;
+                $dlon = $lon2 - $lon1;
+                $a = sin($dlat/2)**2 + cos($lat1) * cos($lat2) * sin($dlon/2)**2;
+                $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+                $distancia = 6371 * $c;
+                echo '<p class="ad-distance">📍 ' . round($distancia, 1) . ' km de você</p>';
+              }
+
+              echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
+              echo '<div class="ad-actions">
+                <a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="btn btn-primary btn-sm">Ver Detalhes</a>
+              </div>';
+              echo '</div></div></div>';
+            }
+
+            fecharConexao($conn);
+          ?>
+        </div>
+      </section>
     </div>
-  </main>
+  </div>
+</main>
 
   <footer id="footer" class="footer">
     <div class="team section light-background">
@@ -265,6 +306,11 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    window.USER_LAT = <?php echo is_numeric($userLat) ? json_encode((float)$userLat) : 'null'; ?>;
+    window.USER_LON = <?php echo is_numeric($userLon) ? json_encode((float)$userLon) : 'null'; ?>;
+  </script>
 
   <!-- Preloader -->
   <div id="preloader">

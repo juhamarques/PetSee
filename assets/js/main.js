@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     "use strict";
 
-    /**
-     * Aplicação da classe .scrolled ao corpo conforme a página rola para baixo
+    /*
+     # Aplicação da classe .scrolled ao corpo conforme a página rola para baixo
      */
     function toggleScrolled() {
       const selectBody = document.querySelector('body');
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('scroll', toggleScrolled);
     window.addEventListener('load', toggleScrolled);
 
-    /**
-     * Nav
+    /*
+     # Nav
      */
     const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
     }
 
-    /**
-     * Ocultar navegação em links de mesma página/hash
+    /*
+     # Ocultar navegação em links de mesma página/hash
      */
     document.querySelectorAll('#navmenu a').forEach(navmenu => {
       navmenu.addEventListener('click', () => {
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    /**
-     * Alternar menus suspensos de navegação
+    /*
+     # Alternar menus suspensos de navegação
      */
     document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
       navmenu.addEventListener('click', function(e) {
@@ -54,26 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    /**
-     * Preloader
+    /*
+     # Preloader
      */
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
 
       if (preloader) {
-        // Aplica fade-out suave
         preloader.style.transition = 'opacity 0.5s ease';
         preloader.style.opacity = '0';
 
-        // Aguarda a transição e remove do DOM
         setTimeout(() => {
           preloader.remove();
         }, 500);
       }
     });
 
-    /**
-     * Botão de rolar para cima
+    /*
+     # Botão de rolar para cima
      */
     const scrollTop = document.querySelector('.scroll-top');
     const toggleScrollTop = () => {
@@ -99,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-      /**
-     * Iniciar glightbox
+    /*
+     # Iniciar glightbox
      */
     if (typeof GLightbox !== 'undefined') {
       GLightbox({
@@ -108,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    /**
-     * Layout e filtros de inicialização
+    /*
+     # Layout e filtros de inicialização
      */
     document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
       let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
@@ -138,8 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    /**
-     * Alternar perguntas frequentes
+    /*
+     # Alternar perguntas frequentes
      */
     document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
       faqItem.addEventListener('click', () => {
@@ -147,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    /**
-     * Posição correta de rolagem no carregamento da página para URLs contendo links hash
+    /*
+     # Posição correta de rolagem no carregamento da página para URLs contendo links hash
      */
     window.addEventListener('load', function(e) {
       if (window.location.hash) {
@@ -216,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('load', activateNavMenuLinks);
 
-    /**
-     * Navmenu Scrollspy 
+    /*
+     # Navmenu Scrollspy 
      */
     let navmenulinks = document.querySelectorAll('.navmenu a');
 

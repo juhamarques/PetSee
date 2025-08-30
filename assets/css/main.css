@@ -989,9 +989,14 @@ Cards
   color: #155724;
 }
 
-.status-adoção {
+.status-adocao {
   background-color: #d1ecf1;
   color: #0c5460;
+}
+
+.status-unknown {
+  background-color: #6c757d;
+  color: #fff;
 }
 
 .ad-details {

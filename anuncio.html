@@ -51,13 +51,13 @@
             <div class="form-container">
               <div class="tipo-cadastro-container">
                 <label class="radio-label">
-                    <input type="radio" name="status" value="perdido" checked>Perdido
+                    <input type="radio" id="tipo-perdido" name="status" value="perdido" checked>Perdido
                 </label>
                 <label class="radio-label">
-                    <input type="radio" name="status" value="encontrado">Encontrado
+                    <input type="radio" id="tipo-encontrado" name="status" value="encontrado">Encontrado
                 </label>
                 <label class="radio-label">
-                    <input type="radio" name="status" value="adocao">Para adoção
+                    <input type="radio" id="tipo-adocao" name="status" value="adocao">Para adoção
                 </label>
             </div>
 
@@ -74,9 +74,8 @@
                     <option value="">Selecione</option>
                     <option value="cachorro">Cachorro</option>
                     <option value="gato">Gato</option>
-                    <option value="gato">Pássaro</option>
-                    <option value="gato">Roedor</option>
-                    <!-- outros -->
+                    <option value="passaro">Pássaro</option>
+                    <option value="roedor">Roedor</option>
                   </select>
                 </div>
                 <div class="mb-3">
@@ -136,7 +135,6 @@
                     <option value="">Selecione</option>
                     <option value="cachorro">Cachorro</option>
                     <option value="gato">Gato</option>
-                    <!-- outros -->
                   </select>
                 </div>
                 <div class="mb-3">
