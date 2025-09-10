@@ -898,8 +898,8 @@ Slogan e botão
 }
 
 .hero-container .btn-success {
-  background-color: var(--surface-color);
-  border-color: var(--surface-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
   padding: 0.75rem 1.5rem;
   font-size: 23px;
   border-radius: 6px;
@@ -907,7 +907,7 @@ Slogan e botão
 }
 
 .hero-container .btn-success:hover {
-  background-color: var(--surface-color);
+  background-color: var(--accent-color);
   transform: translateY(-2px);
 }
 
@@ -1316,25 +1316,25 @@ section.comentarios h2 {
 
 .cuidados-cabecalho-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 20px;
-  gap: 40px;
+  gap: 20px;
 }
 
 .cuidados-titulo {
-  font-size: 50px;
+  font-size: 45px;
   color: var(--heading-color);
-  font-weight: 700;
+  font-weight: 700px
 }
 
-.cuidados-botoes-container {
+/*.cuidados-botoes-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 350px;
   position: relative;
   padding-left: 30px;
-  gap: 10px;
+  gap: 30px;
   align-content: flex-start;
 }
 
@@ -1376,7 +1376,7 @@ section.comentarios h2 {
 
 .cuidados-botao:hover {
   background-color: var(--secondary-color);
-}
+}*/
 
 .cuidados-linha-horizontal {
   border: 0;
@@ -1450,7 +1450,7 @@ section.comentarios h2 {
   font-size: 35px;
 }
 
-.filter-button-small {
+/*.filter-button-small {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 1px solid var(--accent-color);
@@ -1470,7 +1470,7 @@ section.comentarios h2 {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 1px solid var(--accent-color);
-}
+}*/
 
 .filter-panel-large {
   background-color: #fff;
@@ -1478,14 +1478,11 @@ section.comentarios h2 {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: absolute;
-  left: 113px; 
-  top: 430px; 
-  z-index: 1000; 
-  min-width: 250px;
-  display: none;
+  width: 100%;
+  display: flex;
   flex-direction: column; 
   gap: 10px; 
+  position: static;
 }
 
 .filter-panel-large h4 {
@@ -1676,7 +1673,7 @@ input#searchInput {
 }
 
 .inicio-image {
-  width: 100%;
+  width: 85%;
   height: auto;
   max-height: 430px; 
   margin-top: 100px;
@@ -1688,7 +1685,6 @@ input#searchInput {
 .mvv-section {
   display: flex;
   justify-content: space-around;
-  gap: 25px; 
   flex-wrap: wrap; 
   font-size: 20px;
 }
@@ -1696,7 +1692,7 @@ input#searchInput {
 .mvv-card {
   flex: 1; 
   min-width: 100px;
-  max-width: 300px; 
+  max-width: 290px; 
   background-color: var(--surface-color);
   padding: 20px;
   border-radius: 10px;
@@ -2437,88 +2433,88 @@ input#searchInput {
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
-    display: none;
-    background: #f8d7da; 
-    color: #721c24;    
-    border: 1px solid #f5c6cb; 
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 600;
+  display: none;
+  background: #f8d7da; 
+  color: #721c24;    
+  border: 1px solid #f5c6cb; 
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 .php-email-form .sent-message {
-    display: none; 
-    padding: 15px 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    text-align: center;
-    background-color: #a4dcbb; 
-    color: #155724; 
-    border: 1px solid #729a83; 
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 600;
+  display: none; 
+  padding: 15px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #a4dcbb; 
+  color: #155724; 
+  border: 1px solid #729a83; 
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 .php-email-form .loading {
-    display: none; 
-    background: var(--surface-color);
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
+  display: none; 
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
 }
 
 .php-email-form .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid var(--accent-color);
-    border-top-color: var(--surface-color);
-    animation: php-email-form-loading 1s linear infinite;
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: php-email-form-loading 1s linear infinite;
 }
 
 @keyframes php-email-form-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }
 
 .php-email-form .sent-message .message-content-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .php-email-form .sent-message .message-content-wrapper img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .php-email-form .sent-message .message-content-wrapper .message-text {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .php-email-form .sent-message .btn-close-custom-message {
-    background: none;
-    border: none;
-    font-size: 24px;
-    line-height: 1;
-    color: #155724;
-    cursor: pointer;
-    padding: 0 5px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #155724;
+  cursor: pointer;
+  padding: 0 5px;
 }
 
 .php-email-form .sent-message .btn-close-custom-message:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
