@@ -9,42 +9,6 @@
     $conn = abrirConexao();
     $uid = $_SESSION['idUsuario'];
 
-    function geocode(string $address): array {
-        $query = trim($address);
-        if ($query === '') return [null, null];
-
-        if (stripos($query, 'brasil') === false) {
-            $query .= ', Brasil';
-        }
-
-        $url = 'https://nominatim.openstreetmap.org/search?' . http_build_query([
-            'q' => $query,
-            'format' => 'json',
-            'limit' => 1
-        ]);
-
-        $opts = [
-            "http" => [
-                "header" => "User-Agent: PetSee/1.0 (contato@exemplo.com)"
-            ]
-        ];
-        $context = stream_context_create($opts);
-        $response = @file_get_contents($url, false, $context);
-
-        if ($response === false) {
-            error_log('[GEOCODE] Falha na requisição: ' . $url);
-            return [null, null];
-        }
-
-        $data = json_decode($response, true);
-        if (!empty($data[0]['lat']) && !empty($data[0]['lon'])) {
-            return [(float)$data[0]['lat'], (float)$data[0]['lon']];
-        }
-
-        error_log('[GEOCODE] Sem resultados para: ' . $query);
-        return [null, null];
-    }
-
     $tipo = $_POST['tipo'] ?? '';
 
     $tiposValidos = ['perdido', 'encontrado', 'adocao'];
@@ -86,28 +50,18 @@
         die('Telefone é obrigatório.');
     }
 
-    $idLocal = null;
-
+    $cepFormatted = null;
     if ($tipo !== 'adocao') {
-        list($lat, $lon) = geocode($endereco);
-        error_log('[GEOCODE] Endereço: ' . $endereco);
-
-        if ($lat === null || $lon === null) {
-            error_log('[GEOCODE] Falha ao obter coords para: ' . $endereco);
+        $rawCep = $endereco;
+        $cepDigits = preg_replace('/\D+/', '', $rawCep);
+        if (strlen($cepDigits) !== 8) {
             echo "<script>
-                alert('Endereço inválido ou incompleto. Tente novamente com mais detalhes.');
+                alert('CEP inválido. Use o formato 00000-000 ou 00000000.');
                 window.history.back();
             </script>";
             exit;
         }
-
-        $stmt = $conn->prepare("INSERT INTO Localidade (latitude, longitude, endereco_texto) VALUES (?,?,?)");
-        $stmt->bind_param("dds", $lat, $lon, $endereco);
-        $stmt->execute();
-        $idLocal = $conn->insert_id;
-        $stmt->close();
-    } else {
-        $idLocal = null;
+        $cepFormatted = substr($cepDigits,0,5) . '-' . substr($cepDigits,5,3);
     }
 
     if (!isset($_FILES['foto' . $suf]) || $_FILES['foto' . $suf]['error'] !== UPLOAD_ERR_OK) {
@@ -168,8 +122,8 @@
     $idAnimal = $conn->insert_id;
     $stmt->close();
 
-    $stmt = $conn->prepare("INSERT INTO Anuncio (idUsuario, idAnimal, idAspectos, idLocal, dataAnuncio, situacao, telefone) VALUES (?,?,?,?,?,?,?)");
-    $stmt->bind_param("iiiisss", $uid, $idAnimal, $idAspectos, $idLocal, $dataEvt, $tipo, $telefone);
+    $stmt = $conn->prepare("INSERT INTO Anuncio (idUsuario, idAnimal, idAspectos, cep, dataAnuncio, situacao, telefone) VALUES (?,?,?,?,?,?,?)");
+    $stmt->bind_param("iiissss", $uid, $idAnimal, $idAspectos, $cepFormatted, $dataEvt, $tipo, $telefone);
     $stmt->execute();
     $stmt->close();
 

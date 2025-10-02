@@ -16,12 +16,19 @@
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 <body>
+<?php
+  session_start();
+  if (!isset($_SESSION['idUsuario'])) {
+    header('Location: entrar.html');
+    exit;
+  }
+?>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
+        <img src="assets/img/logoPetSee/logoPetSeenew.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -100,8 +107,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                  <label>Local de Desaparecimento</label>
-                  <input id="local" name="local" type="text" class="form-control" placeholder="Ex: Av. Paulista, 1000 - Bela Vista, São Paulo, SP" required>
+                  <label>CEP do Local de Desaparecimento</label>
+                  <input id="local" name="local" type="text" class="form-control" placeholder="00000-000" required>
                 </div>
                 <div class="mb-3">
                   <label>Data de Desaparecimento</label>
@@ -159,8 +166,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                  <label>Local de Encontro</label>
-                  <input id="local_enc" name="local_enc" type="text" class="form-control" placeholder="Ex: Av. Paulista, 1000 - Bela Vista, São Paulo, SP" required>
+                  <label>CEP do Local de Encontro</label>
+                  <input id="local_enc" name="local_enc" type="text" class="form-control" placeholder="Ex: 08246-000" required>
                 </div>
                 <div class="mb-3">
                   <label>Data de Encontro</label>

@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const filterPanel = document.getElementById('filter-panel');
+  // Suporte ao novo filtro horizontal
+  const filterPanel = document.getElementById('filter-panel-horizontal') || document.getElementById('filter-panel');
   const infoCardsContainer = document.getElementById('info-cards-container');
   const infoCardItems = document.querySelectorAll('.info-card-item');
   const applyFiltersBtn = document.getElementById('apply-filters-btn');
   const clearFiltersBtn = document.getElementById('clear-filters-btn');
-  const filterCheckboxes = document.querySelectorAll('#filter-panel input[type="checkbox"]');
+  // Seleciona checkboxes do filtro horizontal ou antigo
+  const filterCheckboxes = filterPanel ? filterPanel.querySelectorAll('input[type="checkbox"]') : document.querySelectorAll('input[type="checkbox"]');
  
   function applyFilters() {
     const selectedCategories = Array.from(filterCheckboxes)

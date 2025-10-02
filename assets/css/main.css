@@ -10,9 +10,9 @@
 
 /* Cores Globais*/
 :root {
-  --background-color: #dae7e2; /* cor de fundo, incluindo de sessões individuais */
-  --default-color: #ffffff; /* Cor padrão usada para a maior parte do conteúdo de texto em todo o site */
-  --heading-color: #c1cac6; /* Cor para títulos, subtítulos e títulos em todo o site */
+  --background-color: #f4f4f4; /* cor de fundo, incluindo de sessões individuais */
+  --default-color: rgba(255, 255, 255, 0.8); /* Cor padrão usada para a maior parte do conteúdo de texto em todo o site */
+  --heading-color: #8c8c8c; /* Cor para títulos, subtítulos e títulos em todo o site */
   --accent-color: #FFCA4B; /* Cor de destaque que representa sua marca no site. Usado para botões, links e outros elementos que precisam se destacar */
   --surface-color: #60b18b; /* A cor da superfície é usada como plano de fundo de elementos em caixas dentro de seções, como cartões, caixas de ícones ou outros elementos que exigem uma separação visual do plano de fundo global */
   --contrast-color: #ffffff; /* Cor de contraste para texto, garantindo legibilidade em fundos de destaque, título ou cores padrão */
@@ -28,10 +28,13 @@
 
 /* Imagem da Logo */
 .imagem-logo {
-  width: 65px;
-  height: 40px;
+  width: 40px;
+  height: auto;
+  max-height: 60px;
   margin-right: 8px;
   border-radius: 8px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Predefinições de cores */
@@ -99,8 +102,12 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 50px;
   margin-right: 8px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .header .btn-entrar,
@@ -830,6 +837,7 @@ Perfil
 
 .form-range {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 6px;
   border-radius: 5px;
@@ -1033,12 +1041,12 @@ Cards
 }
 
 .btn-primary {
-  background-color: #007bff;
+  background-color: #FFA07A;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #e98d69;
 }
 
 .btn-sm {
@@ -1450,61 +1458,88 @@ section.comentarios h2 {
   font-size: 35px;
 }
 
-/*.filter-button-small {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  border-radius: 8px;
-  padding: 8px 15px;
-  font-size: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 20px; 
+/* Filtro horizontal para cuidados */
+
+.filter-panel-horizontal {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px; 
+  justify-content: center;
+  gap: 8px;
+  margin: 30px 0 20px 0;
 }
-
-.filter-button-small:hover {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 1px solid var(--accent-color);
-}*/
-
-.filter-panel-large {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  display: flex;
-  flex-direction: column; 
-  gap: 10px; 
-  position: static;
-}
-
-.filter-panel-large h4 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #333;
+.filter-label {
   font-size: 20px;
-  font-weight: 700;
+  color: #60b18b;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
-
-.filter-options label {
-  display: block; 
-  margin-bottom: 8px;
+.filter-options-horizontal {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.filter-options-horizontal label {
   font-size: 18px;
   color: #555;
   cursor: pointer;
+  margin-bottom: 0;
 }
-
-.filter-options input[type="checkbox"] {
-  margin-right: 8px;
+.filter-options-horizontal input[type="checkbox"] {
+  margin-right: 6px;
   accent-color: #007bff;
   font-size: 18px;
+}
+.filter-panel-horizontal .filter-buttons-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+@media (max-width: 991.98px) {
+  .filter-panel-horizontal {
+    align-items: flex-start;
+  }
+  .filter-options-horizontal {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .filter-panel-horizontal .filter-buttons-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
+
+/* Cards horizontais: duas por linha */
+.info-cards-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 0;
+}
+.info-cards-horizontal .info-card-item {
+  width: 50%;
+  padding: 0 16px 0 0;
+  box-sizing: border-box;
+}
+@media (max-width: 991.98px) {
+  .info-cards-horizontal .info-card-item {
+    width: 100%;
+    padding: 0;
+  }
+  .filter-panel-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .filter-options-horizontal {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
 /* Card de Info 

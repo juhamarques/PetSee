@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
            Number.isFinite(adLat) && Number.isFinite(adLon);
   }
 
-  filterForm.addEventListener('submit', (event) => {
+  filterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const statusInput = document.querySelector('input[name="status"]:checked');
@@ -82,9 +82,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxDistanceRaw = Number(distanceInput.value);
     const effectiveMax   = Number.isFinite(maxDistanceRaw) && maxDistanceRaw > 0 ? maxDistanceRaw : Infinity;
 
-    // PEGA USER COORDS SEM CONVERTER null/'' PARA 0
-    const userLat = parseCoordRaw(window.USER_LAT);
-    const userLon = parseCoordRaw(window.USER_LON);
+    // Ensure we have user coords; if not, request them now (will prompt the user)
+    let userLat = parseCoordRaw(window.USER_LAT);
+    let userLon = parseCoordRaw(window.USER_LON);
+    if (!(Number.isFinite(userLat) && Number.isFinite(userLon))) {
+      // Attempt to get geolocation from browser
+      try {
+        const pos = await new Promise((resolve, reject) => {
+          if (!navigator.geolocation) return reject(new Error('Geolocalização não suportada')); 
+          navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false, timeout:8000});
+        });
+        userLat = parseCoordRaw(pos.coords.latitude);
+        userLon = parseCoordRaw(pos.coords.longitude);
+        window.USER_LAT = userLat; window.USER_LON = userLon;
+      } catch (e) {
+        // User denied or not available. We will not filter by distance.
+        userLat = NaN; userLon = NaN;
+      }
+    }
+
+    // Helper: geocode CEP using Nominatim and populate card attributes
+    const geocodeCepForCard = async (card) => {
+      const hasLat = parseCoordRaw(card.getAttribute('data-lat'));
+      const hasLon = parseCoordRaw(card.getAttribute('data-lon'));
+      if (Number.isFinite(hasLat) && Number.isFinite(hasLon)) return true;
+
+      // Try to extract CEP text from card (e.g. "CEP: 08246-000")
+      const desc = card.querySelector('.ad-description')?.textContent || '';
+      const m = desc.match(/CEP[:\s]*([0-9]{5}-?[0-9]{3})/i);
+      const cep = m ? m[1].replace(/\D/g,'') : null;
+      if (!cep) return false;
+
+      const q = encodeURIComponent(cep + ', Brasil');
+      const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1`;
+      try {
+        const resp = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
+        if (!resp.ok) return false;
+        const j = await resp.json();
+        if (!Array.isArray(j) || j.length === 0) return false;
+        const lat = parseFloat(j[0].lat);
+        const lon = parseFloat(j[0].lon);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return false;
+        card.setAttribute('data-lat', String(lat));
+        card.setAttribute('data-lon', String(lon));
+        return true;
+      } catch (err) {
+        return false;
+      }
+    };
+
+    // Geocode missing ad coords in parallel (but throttle to avoid hammering)
+    const geocodePromises = [];
+    adCards.forEach(card => {
+      const adLat = parseCoordRaw(card.getAttribute('data-lat'));
+      const adLon = parseCoordRaw(card.getAttribute('data-lon'));
+      if (!(Number.isFinite(adLat) && Number.isFinite(adLon))) {
+        geocodePromises.push(geocodeCepForCard(card));
+      }
+    });
+    // Wait for geocoding (with timeout of 8s) but don't fail if some fail
+    try {
+      await Promise.race([Promise.all(geocodePromises), new Promise((r) => setTimeout(r, 8000))]);
+    } catch (e) {
+      // continue anyway
+    }
 
     adCards.forEach(card => {
       // Status

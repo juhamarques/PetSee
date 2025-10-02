@@ -24,7 +24,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
+        <img  src="assets/img/logoPetSee/logoPetSeenew.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -47,7 +47,7 @@
     <div class="row">
 
       <!-- Filtro -->
-      <aside class="col-lg-3 mb-4">
+      <aside class="col-lg-3 mb-4" style="margin-top: 3%;">
         <div class="filter-card p-4">
           <h4 class="mb-4">Filtro</h4>
 
@@ -94,7 +94,16 @@
             <!-- Distância -->
             <div class="filter-group mb-4">
               <label for="filter-distance" class="filter-label">Distância (<span id="distance-value">5</span> km)</label>
-              <input type="range" id="filter-distance" class="form-range" min="1" max="50" value="5">
+              <input type="range" id="filter-distance" class="form-range" min="1" max="20" step="1" value="5">
+              <div class="form-text small mt-2">Unidade: km. Ajuste o alcance para mostrar anúncios na sua região.</div>
+              <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" value="1" id="use-my-cep">
+                <label class="form-check-label small" for="use-my-cep">Usar meu CEP (em vez da localização atual)</label>
+              </div>
+              <div class="mt-2" id="cep-entry" style="display:none;">
+                <label for="user-cep" class="form-label small">Informe seu CEP (ex: 08246-000)</label>
+                <input id="user-cep" name="user-cep" type="text" class="form-control form-control-sm" placeholder="00000-000">
+              </div>
             </div>
 
             <button type="submit" class="btn btn-success w-100">Filtrar</button>
@@ -106,7 +115,11 @@
       <section class="col-lg-9">
         <div class="hero-container text-center mb-5">
           <h1>Cuide de quem você ama!</h1>
-          <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
+          <?php if (isset($_SESSION['idUsuario'])): ?>
+            <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
+          <?php else: ?>
+            <a href="entrar.html" class="btn btn-outline-secondary mt-3">Entre para Anunciar</a>
+          <?php endif; ?>
         </div>
 
         <div class="row g-4">
@@ -121,30 +134,26 @@
               window.USER_LON = ' . (is_numeric($userLon) ? json_encode((float)$userLon) : 'null') . ';
             </script>';
 
-            $result = $conn->query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao, L.endereco_texto, L.latitude, L.longitude
+            $result = $conn->query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, A.cep, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao
               FROM Anuncio A
               JOIN Animal AN ON A.idAnimal = AN.idAnimal
               JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
               JOIN Imagens IM ON ASP.idImagem = IM.idImagem
-              LEFT JOIN Localidade L ON A.idLocal = L.idLocal
               ORDER BY A.dataAnuncio DESC");
 
             function normalizarSituacao(?string $s): string {
               $s = (string)$s;
 
-              // Remove caracteres de controle/zero-width e normaliza espaços
               $s = preg_replace('/\p{C}+/u', '', $s);     
               $s = preg_replace('/\s+/u', ' ', $s);
               $s = trim($s);
 
-              // Lowercase multibyte
               if (function_exists('mb_strtolower')) {
                 $s = mb_strtolower($s, 'UTF-8');
               } else {
                 $s = strtolower($s);
               }
 
-              // Remove acentos
               if (function_exists('transliterator_transliterate')) {
                 $s = transliterator_transliterate('NFD; [:Nonspacing Mark:] Remove; NFC', $s);
               } else {
@@ -157,7 +166,6 @@
                 $s = strtr($s, $map);
               }
 
-              // Remove pontuação/símbolos
               $s = preg_replace('/[^\p{L}\p{N}\s]/u', '', $s);
               return trim($s);
             }
@@ -193,12 +201,42 @@
                 default      => ($situacaoRaw !== '' ? ucfirst($situacaoRaw) : 'Indefinido')
               };
 
-              $latAttr = ($row['latitude'] !== null && $row['latitude'] !== '') 
-                ? ' data-lat="' . htmlspecialchars($row['latitude'], ENT_QUOTES, 'UTF-8') . '"' 
-                : '';
-              $lonAttr = ($row['longitude'] !== null && $row['longitude'] !== '') 
-                ? ' data-lon="' . htmlspecialchars($row['longitude'], ENT_QUOTES, 'UTF-8') . '"' 
-                : '';
+              $cep = $row['cep'] ?? null;
+              $latAttr = '';
+              $lonAttr = '';
+              $displayLocal = '';
+              if (!empty($cep)) {
+                $displayLocal = htmlspecialchars($cep, ENT_QUOTES, 'UTF-8');
+                $cacheFile = __DIR__ . '/assets/cache/cep_coords.json';
+                $cache = [];
+                if (file_exists($cacheFile)) {
+                  $raw = @file_get_contents($cacheFile);
+                  $cache = $raw ? json_decode($raw, true) : [];
+                  if (!is_array($cache)) $cache = [];
+                }
+
+                if (!empty($cache[$cep]['lat']) && !empty($cache[$cep]['lon'])) {
+                  $latAttr = ' data-lat="' . htmlspecialchars($cache[$cep]['lat'], ENT_QUOTES, 'UTF-8') . '"';
+                  $lonAttr = ' data-lon="' . htmlspecialchars($cache[$cep]['lon'], ENT_QUOTES, 'UTF-8') . '"';
+                } else {
+                  $query = $cep . ', Brasil';
+                  $url = 'https://nominatim.openstreetmap.org/search?' . http_build_query(['q'=>$query, 'format'=>'json', 'limit'=>1]);
+                  $opts = ["http"=>["header"=>"User-Agent: PetSee/1.0 (contato@exemplo.com)"]];
+                  $context = stream_context_create($opts);
+                  $resp = @file_get_contents($url, false, $context);
+                  if ($resp !== false) {
+                    $d = json_decode($resp, true);
+                    if (!empty($d[0]['lat']) && !empty($d[0]['lon'])) {
+                      $lat = (float)$d[0]['lat'];
+                      $lon = (float)$d[0]['lon'];
+                      $cache[$cep] = ['lat'=>$lat, 'lon'=>$lon, 'ts'=>time()];
+                      @file_put_contents($cacheFile, json_encode($cache, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                      $latAttr = ' data-lat="' . htmlspecialchars($lat, ENT_QUOTES, 'UTF-8') . '"';
+                      $lonAttr = ' data-lon="' . htmlspecialchars($lon, ENT_QUOTES, 'UTF-8') . '"';
+                    }
+                  }
+                }
+              }
 
               echo '<div class="col-md-6" data-ad-container>';
               echo '<div class="ad-card d-flex"' . $latAttr . $lonAttr . '>';
@@ -213,15 +251,18 @@
               '</span>';
               echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
 
-              if (!empty($row['endereco_texto'])) {
-                echo '<p class="ad-description">Local: ' . htmlspecialchars($row['endereco_texto']) . '</p>';
+              if (!empty($displayLocal)) {
+                echo '<p class="ad-description">CEP: ' . $displayLocal . '</p>';
               }
 
-              if (is_numeric($userLat) && is_numeric($userLon) && is_numeric($row['latitude']) && is_numeric($row['longitude'])) {
+              if (is_numeric($userLat) && is_numeric($userLon) &&
+                  strpos($latAttr, 'data-lat') !== false && strpos($lonAttr, 'data-lon') !== false) {
+                $lat2 = floatval(htmlspecialchars($cache[$cep]['lat'] ?? ($d[0]['lat'] ?? 0)));
+                $lon2 = floatval(htmlspecialchars($cache[$cep]['lon'] ?? ($d[0]['lon'] ?? 0)));
                 $lat1 = deg2rad($userLat);
                 $lon1 = deg2rad($userLon);
-                $lat2 = deg2rad($row['latitude']);
-                $lon2 = deg2rad($row['longitude']);
+                $lat2 = deg2rad($lat2);
+                $lon2 = deg2rad($lon2);
                 $dlat = $lat2 - $lat1;
                 $dlon = $lon2 - $lon1;
                 $a = sin($dlat/2)**2 + cos($lat1) * cos($lat2) * sin($dlon/2)**2;
@@ -295,7 +336,7 @@
             <p>São Miguel, Paulista - SP,</p>
             <p>08021-090</p>
             <p class="mt-4"><strong>Telefone:</strong> <span>+55 (11) 2032-5389</span></p>
-            <p><strong>Email:</strong> <span>petsee@gmail.com</span></p>
+            <p><strong>Email:</strong> <span>petsee.contato@gmail.com</span></p>
           </div>
 
         </div>
@@ -310,6 +351,18 @@
   <script>
     window.USER_LAT = <?php echo is_numeric($userLat) ? json_encode((float)$userLat) : 'null'; ?>;
     window.USER_LON = <?php echo is_numeric($userLon) ? json_encode((float)$userLon) : 'null'; ?>;
+  </script>
+
+  <!-- Solicita localização do usuário se não houver na sessão -->
+  <script>
+    if (window.USER_LAT === null || window.USER_LON === null) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          window.USER_LAT = pos.coords.latitude;
+          window.USER_LON = pos.coords.longitude;
+        });
+      }
+    }
   </script>
 
   <!-- Preloader -->

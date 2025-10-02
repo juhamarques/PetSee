@@ -9,38 +9,34 @@
     }
 
     $stmt = $conn -> prepare("
-    SELECT A.dataAnuncio, A.situacao, A.telefone,
+    SELECT A.dataAnuncio, A.situacao, A.telefone, A.cep,
             AN.nome AS nomeAnimal,
             ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao,
-            IM.caminho AS imagem,
-            L.endereco_texto
+            IM.caminho AS imagem
     FROM Anuncio A
     JOIN Animal AN ON A.idAnimal = AN.idAnimal
     JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
     JOIN Imagens IM ON ASP.idImagem = IM.idImagem
-    LEFT JOIN Localidade L ON A.idLocal = L.idLocal
     WHERE A.idAnuncio = ?
     ");
     $stmt -> bind_param("i", $id);
     $stmt -> execute();
     $anuncio = $stmt -> get_result() -> fetch_assoc();
     $stmt -> close();
+  $stmt = $conn->prepare("
+  SELECT C.texto, C.idComentario, C.idResposta, C.data, U.nome AS autor
+  FROM Comentario C
+  JOIN Usuario U ON C.idUsuario = U.idUsuario
+  WHERE C.idAnuncio = ?
+  ORDER BY C.idComentario ASC
+  ");
+  $stmt -> bind_param("i", $id);
+  $stmt -> execute();
+  $comentarios = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+  $stmt -> close();
 
-    $stmt = $conn->prepare("
-    SELECT C.texto, C.idComentario, C.idResposta, C.data, U.nome AS autor
-    FROM Comentario C
-    JOIN Usuario U ON C.idUsuario = U.idUsuario
-    WHERE C.idAnuncio = ?
-    ORDER BY C.idComentario ASC
-    ");
-    $stmt -> bind_param("i", $id);
-    $stmt -> execute();
-    $comentarios = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-    $stmt -> close();
-
-    fecharConexao($conn);
+  fecharConexao($conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -64,7 +60,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
+        <img src="assets/img/logoPetSee/logoPetSeenew.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -91,7 +87,7 @@
   <p><strong>Raça:</strong> <?php echo htmlspecialchars($anuncio['raca']); ?></p>
   <p><strong>Porte:</strong> <?php echo htmlspecialchars($anuncio['porte']); ?></p>
   <p><strong>Descrição:</strong> <?php echo nl2br(htmlspecialchars($anuncio['observacao'])); ?></p>
-  <p><strong>Localização:</strong> <?php echo htmlspecialchars($anuncio['endereco_texto']); ?></p>
+  <p><strong>Localização (CEP):</strong> <?php echo htmlspecialchars($anuncio['cep'] ?? ''); ?></p>
   <p><strong>Telefone para contato:</strong> <?php echo htmlspecialchars($anuncio['telefone']); ?></p>
   <p><strong>Reportado em:</strong> <?php echo date("d/m/Y", strtotime($anuncio['dataAnuncio'])); ?></p>
   <p><strong>Status:</strong> <?php echo ucfirst($anuncio['situacao']); ?></p>

@@ -22,7 +22,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logoPetSee/logoPetSee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
+        <img src="assets/img/logoPetSee/logoPetSeenew.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -43,40 +43,38 @@
   <main class="main">
 
     <section>
-      <div class="container" style="text-align: center;">
-        <h1 class="titulo-cuidados">Guia de Cuidados para Peixes!</h1>
-        <p style="font-size: 20px;">Tudo o que você precisa saber para cuidar bem do seu melhor amigo.</p> <br>
-        <div style="text-align: center; margin-left: 200px; margin-right: 200px;">
-          <h3 class="titulo-cuidados-menor">Orientação para tutores de peixes:</h3>
-          <p style="font-size: 20px;">Requer responsabilidade, antes de escolher a espécie, é importante entender suas necessidades. Se deseja ter um peixe, considere a adoção, há muitos animais à espera de um lar. Planeje-se e jamais abandone seu animal.</p>
+      <div class="container" style="text-align: center; margin-top: 3%;">
+        <h1 class="titulo-cuidados">Orientações para tutores de peixes</h1>
+        <p style="font-size: 20px; color: #606260;">Requer responsabilidade, antes de escolher a espécie, é importante entender suas necessidades. <br> Se deseja ter um peixe, considere a adoção, há muitos animais à espera de um lar. Planeje-se e jamais abandone seu animal.</p>
+        
+  <!-- Filtro horizontal -->
+  <hr>
+  <div id="filter-panel-horizontal" class="filter-panel-horizontal">
+          <div class="filter-options-horizontal">
+            <span class="filter-label">Filtrar por Categoria:</span>
+            <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
+            <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
+            <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
+            <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
+            <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
+            <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
+            <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
+            <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
+          </div>
+          <div class="filter-buttons-row">
+            <button id="apply-filters-btn" class="btn btn-success">Aplicar Filtros</button>
+            <button id="clear-filters-btn" class="btn btn-outline-secondary">Limpar Filtros</button>
+          </div>
         </div>
+        <hr>
       </div>
     </section>
 
     <section id="cuidados-conteudo" class="cuidados-conteudo section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 d-flex flex-column align-items-start">
-
-             <div id="filter-panel" class="filter-panel-large">
-              <h4 style="color: #60b18b;">Filtrar por Categoria</h4>
-              <div class="filter-options">
-                <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
-                <label><input type="checkbox" name="filter" value="ingestao"> Ingestão</label>
-                <label><input type="checkbox" name="filter" value="medicamentos"> Medicamentos</label>
-                <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
-                <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
-                <label><input type="checkbox" name="filter" value="escovacao"> Escovação</label>
-                <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
-                <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
-              </div>
-              <button id="apply-filters-btn" class="btn btn-success w-100">Aplicar Filtros</button>
-              <button id="clear-filters-btn" class="btn btn-outline-secondary mt-2 w-100">Limpar Filtros</button>
-            </div>
-          </div>
-
-          <div class="col-lg-9">
-            <div class="row gy-4" id="info-cards-container">
+          <div class="col-12">
+            <div class="row gy-4 info-cards-horizontal" id="info-cards-container">
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
                 <div class="info-card">
@@ -162,6 +160,35 @@
     </section>
   </main>
 
+  <section class="products-section" style="width: 72.1%; margin-left: 14%;">
+          <h2 style="color: #606260;">Confira outros cuidados específicos</h2><br>
+          <div class="product-carousel">
+            <div class="product-item">
+              <a href="cachorros.html"><img src="assets/img/empresa/cachorro.webp" loading="lazy"></a>
+              <span>Cachorros</span>
+            </div>
+            <div class="product-item">
+              <a href="gatos.html"><img src="assets/img/empresa/gato.webp" loading="lazy"></a>
+              <span>Gatos</span>
+            </div>
+            <div class="product-item">
+              <a href="passaros.html"><img src="assets/img/empresa/passaro.webp" loading="lazy"></a>
+              <span>Pássaros</span>
+            </div>
+            <!--<div class="product-item">
+              <a href="peixes.html"><img src="assets/img/empresa/peixe.webp" loading="lazy"></a>
+              <span>Peixes</span>
+            </div>-->
+            <div class="product-item">
+              <a href="roedores.html"><img src="assets/img/empresa/roedores.webp" loading="lazy"></a>
+              <span>Roedores</span>
+            </div>
+          </div>
+      </section>
+    </main>
+  </div>
+  <br><br>
+
   <footer id="footer" class="footer">
     <div class="team section light-background">
       <div class="container footer-top">
@@ -212,7 +239,7 @@
             <p>São Miguel, Paulista - SP,</p>
             <p>08021-090</p>
             <p class="mt-4"><strong>Telefone:</strong> <span>+55 (11) 2032-5389</span></p>
-            <p><strong>Email:</strong> <span>petsee@gmail.com</span></p>
+            <p><strong>Email:</strong> <span>petsee.contato@gmail.com</span></p>
           </div>
 
         </div>
