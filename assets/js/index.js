@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function mapStatus(s) {
     const x = normalize(s);
     if (x.includes('perd')) return 'perdido';
+    if (x.includes('resgat')) return 'resgatado';
     if (x.includes('encontr')) return 'encontrado';
     if (x.includes('adoc')) return 'adocao';
     return '';
@@ -53,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function parseCoordRaw(raw) {
-    // Trata null, undefined, '' como NaN (não usa distância)
     if (raw === null || raw === undefined) return NaN;
     const str = String(raw).trim();
     if (str === '') return NaN;
@@ -67,47 +67,72 @@ document.addEventListener('DOMContentLoaded', () => {
            Number.isFinite(adLat) && Number.isFinite(adLon);
   }
 
+  const useCepCheckbox = document.getElementById('use-my-cep');
+  const cepEntryDiv = document.getElementById('cep-entry');
+  useCepCheckbox.addEventListener('change', () => {
+    cepEntryDiv.style.display = useCepCheckbox.checked ? 'block' : 'none';
+  });
+
+  // Filtro de status agora permite múltiplos
   filterForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    // Múltiplos status
+    const statusInputs = document.querySelectorAll('input[name="status"]:checked');
+    const filterStatuses = Array.from(statusInputs).map(i => mapStatus(i.value));
+    // Múltiplos tipos
+    const typeInputs = document.querySelectorAll('input[name="type"]:checked');
+    const filterTypes = Array.from(typeInputs).map(i => mapSpecies(i.value));
+    // Múltiplos sexos
+    const sexInputs = document.querySelectorAll('input[name="sex"]:checked');
+    const filterSexes = Array.from(sexInputs).map(i => mapSex(i.value));
+    const useCep      = useCepCheckbox.checked;
+    const userCepInput = document.getElementById('user-cep');
+    let userCep = (userCepInput && userCepInput.value.trim()) ? userCepInput.value.trim() : (window.USER_CEP || '');
 
-    const statusInput = document.querySelector('input[name="status"]:checked');
-    const typeInput   = document.querySelector('input[name="type"]:checked');
-    const sexInput    = document.querySelector('input[name="sex"]:checked');
-
-    const filterStatus = statusInput ? mapStatus(statusInput.value) : '';
-    const filterType   = typeInput   ? mapSpecies(typeInput.value)  : '';
-    const filterSex    = sexInput    ? mapSex(sexInput.value)       : '';
     const filterName   = normalize(document.getElementById('filter-name').value);
 
     const maxDistanceRaw = Number(distanceInput.value);
     const effectiveMax   = Number.isFinite(maxDistanceRaw) && maxDistanceRaw > 0 ? maxDistanceRaw : Infinity;
 
-    // Ensure we have user coords; if not, request them now (will prompt the user)
     let userLat = parseCoordRaw(window.USER_LAT);
     let userLon = parseCoordRaw(window.USER_LON);
-    if (!(Number.isFinite(userLat) && Number.isFinite(userLon))) {
-      // Attempt to get geolocation from browser
+
+    if (useCep && userCep) {
       try {
-        const pos = await new Promise((resolve, reject) => {
-          if (!navigator.geolocation) return reject(new Error('Geolocalização não suportada')); 
-          navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false, timeout:8000});
-        });
-        userLat = parseCoordRaw(pos.coords.latitude);
-        userLon = parseCoordRaw(pos.coords.longitude);
-        window.USER_LAT = userLat; window.USER_LON = userLon;
+        const q = encodeURIComponent(userCep + ', Brasil');
+        const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1`;
+        const resp = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
+        if (resp.ok) {
+          const j = await resp.json();
+          if (Array.isArray(j) && j.length > 0) {
+            userLat = parseCoordRaw(j[0].lat);
+            userLon = parseCoordRaw(j[0].lon);
+          }
+        }
       } catch (e) {
-        // User denied or not available. We will not filter by distance.
         userLat = NaN; userLon = NaN;
+      }
+    } else {
+      if (!(Number.isFinite(userLat) && Number.isFinite(userLon))) {
+        try {
+          const pos = await new Promise((resolve, reject) => {
+            if (!navigator.geolocation) return reject(new Error('Geolocalização não suportada')); 
+            navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false, timeout:8000});
+          });
+          userLat = parseCoordRaw(pos.coords.latitude);
+          userLon = parseCoordRaw(pos.coords.longitude);
+          window.USER_LAT = userLat; window.USER_LON = userLon;
+        } catch (e) {
+          userLat = NaN; userLon = NaN;
+        }
       }
     }
 
-    // Helper: geocode CEP using Nominatim and populate card attributes
     const geocodeCepForCard = async (card) => {
       const hasLat = parseCoordRaw(card.getAttribute('data-lat'));
       const hasLon = parseCoordRaw(card.getAttribute('data-lon'));
       if (Number.isFinite(hasLat) && Number.isFinite(hasLon)) return true;
 
-      // Try to extract CEP text from card (e.g. "CEP: 08246-000")
       const desc = card.querySelector('.ad-description')?.textContent || '';
       const m = desc.match(/CEP[:\s]*([0-9]{5}-?[0-9]{3})/i);
       const cep = m ? m[1].replace(/\D/g,'') : null;
@@ -131,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Geocode missing ad coords in parallel (but throttle to avoid hammering)
     const geocodePromises = [];
     adCards.forEach(card => {
       const adLat = parseCoordRaw(card.getAttribute('data-lat'));
@@ -140,22 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
         geocodePromises.push(geocodeCepForCard(card));
       }
     });
-    // Wait for geocoding (with timeout of 8s) but don't fail if some fail
     try {
       await Promise.race([Promise.all(geocodePromises), new Promise((r) => setTimeout(r, 8000))]);
     } catch (e) {
-      // continue anyway
     }
 
     adCards.forEach(card => {
-      // Status
       const statusEl = card.querySelector('.ad-status');
       const adStatus = mapStatus(statusEl?.dataset?.status ?? statusEl?.textContent ?? '');
 
-      // Nome
       const adName = normalize(card.querySelector('.ad-name')?.textContent ?? '');
 
-      // Espécie • Sexo
       const speciesSexEl = card.querySelector('.ad-species');
       let adSpecies = '', adSex = '';
       if (speciesSexEl) {
@@ -165,22 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
         adSex     = mapSex(parts[1] ?? '');
       }
 
-      // Coordenadas DO CARD — NÃO CONVERTER '' PARA 0
       const adLat = parseCoordRaw(card.getAttribute('data-lat'));
       const adLon = parseCoordRaw(card.getAttribute('data-lon'));
 
       let showCard = true;
-
-      if (filterStatus && filterStatus !== adStatus) showCard = false;
+      if (filterStatuses.length > 0 && !filterStatuses.includes(adStatus)) showCard = false;
       if (showCard && filterName && !adName.includes(filterName)) showCard = false;
-      if (showCard && filterType && filterType !== adSpecies) showCard = false;
-      if (showCard && filterSex && filterSex !== adSex) showCard = false;
+      if (showCard && filterTypes.length > 0 && !filterTypes.includes(adSpecies)) showCard = false;
+      if (showCard && filterSexes.length > 0 && !filterSexes.includes(adSex)) showCard = false;
 
       if (showCard && canUseDistance(effectiveMax, userLat, userLon, adLat, adLon)) {
         const distancia = calcularDistancia(userLat, userLon, adLat, adLon);
         if (distancia > effectiveMax) showCard = false;
       }
-      // Se não puder usar distância (coords inválidas), NÃO filtra por distância.
 
       const container = card.closest('[data-ad-container]') || card.closest('.col-md-6') || card;
       container.style.display = showCard ? '' : 'none';

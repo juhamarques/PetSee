@@ -11,14 +11,14 @@
 
     $tipo = $_POST['tipo'] ?? '';
 
-    $tiposValidos = ['perdido', 'encontrado', 'adocao'];
+    $tiposValidos = ['perdido', 'resgatado', 'adocao'];
     if (!in_array($tipo, $tiposValidos, true)) {
         die('Tipo de anúncio inválido.');
     }
 
     $sufixoMap = [
         'perdido'    => '',
-        'encontrado' => '_enc',
+        'resgatado' => '_res',
         'adocao'     => '_ado',
     ];
     $suf = $sufixoMap[$tipo];
@@ -35,6 +35,11 @@
     $obs       = trim($_POST['detalhes' . $suf] ?? '');
     $endereco  = trim($_POST['local' . $suf] ?? '');
     $dataEvt   = trim($_POST['data' . $suf] ?? date('Y-m-d'));
+
+    $rua      = trim($_POST['rua' . $suf] ?? '');
+    $numero   = intval($_POST['numero' . $suf] ?? 0);
+    $bairro   = trim($_POST['bairro' . $suf] ?? '');
+    $cidade   = trim($_POST['cidade' . $suf] ?? '');
 
     if ($especie === '' || $sexo === '' || $porte === '') {
         die('Campos obrigatórios não preenchidos: espécie, sexo e porte.');
@@ -122,8 +127,8 @@
     $idAnimal = $conn->insert_id;
     $stmt->close();
 
-    $stmt = $conn->prepare("INSERT INTO Anuncio (idUsuario, idAnimal, idAspectos, cep, dataAnuncio, situacao, telefone) VALUES (?,?,?,?,?,?,?)");
-    $stmt->bind_param("iiissss", $uid, $idAnimal, $idAspectos, $cepFormatted, $dataEvt, $tipo, $telefone);
+    $stmt = $conn->prepare("INSERT INTO Anuncio (idUsuario, idAnimal, idAspectos, cep, rua, numero, bairro, cidade, dataAnuncio, situacao, telefone) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("iiississsss", $uid, $idAnimal, $idAspectos, $cepFormatted, $rua, $numero, $bairro, $cidade, $dataEvt, $tipo, $telefone);
     $stmt->execute();
     $stmt->close();
 

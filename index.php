@@ -31,7 +31,7 @@
         <ul>
           <li><a href="#" class="active">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
-          <li><a href="serviços.html">Serviços</a></li>
+          <li><a href="serviços.php">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
@@ -55,39 +55,37 @@
             <!-- Nome -->
             <div class="filter-group mb-4">
               <label for="filter-name" class="filter-label">Nome do Animal</label>
-              <input type="text" id="filter-name" class="form-control" placeholder="Nome do pet">
+              <input type="text" id="filter-name" class="form-control">
             </div>
 
             <!-- Tipo -->
             <div class="filter-group mb-4">
               <p class="filter-label">Tipo de Animal</p>
-              <div class="radio-group">
-                <label><input type="radio" name="type" value="" checked><span>Todos</span></label>
-                <label><input type="radio" name="type" value="cachorro"><span>Cachorro</span></label>
-                <label><input type="radio" name="type" value="gato"><span>Gato</span></label>
-                <label><input type="radio" name="type" value="passaro"><span>Pássaro</span></label>
-                <label><input type="radio" name="type" value="roedor"><span>Roedor</span></label>
+              <div class="radio-group" id="type-group">
+                <label><input type="checkbox" name="type" value="cachorro"><span>Cachorro</span></label>
+                <label><input type="checkbox" name="type" value="gato"><span>Gato</span></label>
+                <label><input type="checkbox" name="type" value="passaro"><span>Pássaro</span></label>
+                <label><input type="checkbox" name="type" value="roedor"><span>Roedor</span></label>
               </div>
             </div>
 
             <!-- Sexo -->
             <div class="filter-group mb-4">
               <p class="filter-label">Sexo</p>
-              <div class="radio-group">
-                <label><input type="radio" name="sex" value="" checked><span>Todos</span></label>
-                <label><input type="radio" name="sex" value="macho"><span>Macho</span></label>
-                <label><input type="radio" name="sex" value="femea"><span>Fêmea</span></label>
+              <div class="radio-group" id="sex-group">
+                <label><input type="checkbox" name="sex" value="macho"><span>Macho</span></label>
+                <label><input type="checkbox" name="sex" value="femea"><span>Fêmea</span></label>
               </div>
             </div>
 
             <!-- Status -->
             <div class="filter-group mb-4">
               <p class="filter-label">Status</p>
-              <div class="radio-group">
-                <label><input type="radio" name="status" value="" checked><span>Todos</span></label>
-                <label><input type="radio" name="status" value="perdido"><span>Perdido</span></label>
-                <label><input type="radio" name="status" value="encontrado"><span>Encontrado</span></label>
-                <label><input type="radio" name="status" value="adocao"><span>Para Adoção</span></label>
+              <div class="radio-group" id="status-group">
+                <label><input type="checkbox" name="status" value="perdido"><span>Perdido</span></label>
+                <label><input type="checkbox" name="status" value="resgatado"><span>Resgatado</span></label>
+                <label><input type="checkbox" name="status" value="adocao"><span>Para Adoção</span></label>
+                <label><input type="checkbox" name="status" value="encontrado"><span>Encontrado</span></label>
               </div>
             </div>
 
@@ -174,12 +172,13 @@
               $situacaoRaw  = (string)($row['situacao'] ?? '');
               $situacaoNorm  = normalizarSituacao($situacaoRaw);
 
-              // Mapeamento tolerante
               if ($situacaoNorm === '') {
                 $map = 'unknown';
               } elseif (str_contains($situacaoNorm, 'perd')) {
                 $map = 'perdido';
-              } elseif (str_contains($situacaoNorm, 'encontr')) {
+              } elseif (str_contains($situacaoNorm, 'resgat')) {
+                $map = 'resgatado';
+              } elseif (str_contains($situacaoNorm, 'encontrado')) {
                 $map = 'encontrado';
               } elseif (str_contains($situacaoNorm, 'adoc')) {
                 $map = 'adocao';
@@ -189,13 +188,15 @@
 
               $statusClass = match ($map) {
                 'perdido'    => 'status-lost',
-                'encontrado' => 'status-found',
+                'resgatado'  => 'status-resgatado',
+                'encontrado' => 'status-encontrado',
                 'adocao'     => 'status-adocao',
                 default      => 'status-unknown'
               };
 
               $labelSituacao = match ($map) {
                 'perdido'    => 'Perdido',
+                'resgatado'  => 'Resgatado',
                 'encontrado' => 'Encontrado',
                 'adocao'     => 'Adoção',
                 default      => ($situacaoRaw !== '' ? ucfirst($situacaoRaw) : 'Indefinido')
@@ -250,27 +251,6 @@
               htmlspecialchars($labelSituacao, ENT_QUOTES, 'UTF-8') .
               '</span>';
               echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
-
-              if (!empty($displayLocal)) {
-                echo '<p class="ad-description">CEP: ' . $displayLocal . '</p>';
-              }
-
-              if (is_numeric($userLat) && is_numeric($userLon) &&
-                  strpos($latAttr, 'data-lat') !== false && strpos($lonAttr, 'data-lon') !== false) {
-                $lat2 = floatval(htmlspecialchars($cache[$cep]['lat'] ?? ($d[0]['lat'] ?? 0)));
-                $lon2 = floatval(htmlspecialchars($cache[$cep]['lon'] ?? ($d[0]['lon'] ?? 0)));
-                $lat1 = deg2rad($userLat);
-                $lon1 = deg2rad($userLon);
-                $lat2 = deg2rad($lat2);
-                $lon2 = deg2rad($lon2);
-                $dlat = $lat2 - $lat1;
-                $dlon = $lon2 - $lon1;
-                $a = sin($dlat/2)**2 + cos($lat1) * cos($lat2) * sin($dlon/2)**2;
-                $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-                $distancia = 6371 * $c;
-                echo '<p class="ad-distance">📍 ' . round($distancia, 1) . ' km de você</p>';
-              }
-
               echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
               echo '<div class="ad-actions">
                 <a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="btn btn-primary btn-sm">Ver Detalhes</a>
@@ -313,7 +293,7 @@
             <ul>
               <li><a href="#">Início</a></li>
               <li><a href="cachorros.html">Cuidados</a></li>
-              <li><a href="serviços.html">Serviços</a></li>
+              <li><a href="serviços.php">Serviços</a></li>
               <li><a href="empresa.html">Empresa</a></li>
               <li><a href="contato.html">Contato</a></li>
             </ul>
@@ -351,9 +331,9 @@
   <script>
     window.USER_LAT = <?php echo is_numeric($userLat) ? json_encode((float)$userLat) : 'null'; ?>;
     window.USER_LON = <?php echo is_numeric($userLon) ? json_encode((float)$userLon) : 'null'; ?>;
+    window.USER_CEP = <?php echo json_encode($_SESSION['CEP'] ?? ''); ?>;
   </script>
 
-  <!-- Solicita localização do usuário se não houver na sessão -->
   <script>
     if (window.USER_LAT === null || window.USER_LON === null) {
       if (navigator.geolocation) {
@@ -385,6 +365,26 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/auth.js"></script>
   <script src="assets/js/index.js"></script>
+
+  <script>
+  function geocodeCepLocationIQ(cep, callback) {
+    fetch(`https://us1.locationiq.com/v1/search?key=pk.ef0da208da5ffacd621170b02a50736b&q=${encodeURIComponent(cep + ', Brasil')}&format=json`)
+      .then(resp => resp.json())
+      .then(j => {
+        if (Array.isArray(j) && j.length > 0) {
+          var lat = parseFloat(j[0].lat);
+          var lon = parseFloat(j[0].lon);
+          callback(lat, lon);
+        } else {
+          callback(null, null);
+        }
+      })
+      .catch(() => {
+        callback(null, null);
+      });
+  }
+  window.geocodeCepLocationIQ = geocodeCepLocationIQ;
+  </script>
 
 </body>
 </html>

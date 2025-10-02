@@ -3,6 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     "use strict";
 
+    // Preloader imediato
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.style.opacity = '1';
+      preloader.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('load', () => {
+        preloader.style.transition = 'opacity 0.5s ease';
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.remove();
+          document.body.style.overflow = '';
+        }, 500);
+      });
+    }
+
     /*
      # Aplicação da classe .scrolled ao corpo conforme a página rola para baixo
      */
@@ -52,22 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         this.parentNode.querySelector('ul').classList.toggle('dropdown-active'); 
         e.stopImmediatePropagation();
       });
-    });
-
-    /*
-     # Preloader
-     */
-    window.addEventListener('load', () => {
-      const preloader = document.getElementById('preloader');
-
-      if (preloader) {
-        preloader.style.transition = 'opacity 0.5s ease';
-        preloader.style.opacity = '0';
-
-        setTimeout(() => {
-          preloader.remove();
-        }, 500);
-      }
     });
 
     /*

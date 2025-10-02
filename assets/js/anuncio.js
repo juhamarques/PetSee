@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const forms = document.querySelectorAll('.pet-form');
 
     const requiredFieldsMap = {
-        perdido: ['nome', 'especie', 'sexo', 'local', 'data', 'telefone', 'foto'],
-        encontrado: ['nome_enc', 'especie_enc', 'sexo_enc', 'local_enc', 'data_enc', 'telefone_enc', 'foto_enc'],
-        adocao: ['especie_ado', 'sexo_ado', 'telefone_ado', 'detalhes_ado', 'foto_ado']
+        perdido: ['nome', 'especie', 'sexo', 'local', 'rua', 'numero', 'bairro', 'cidade', 'data', 'telefone', 'foto'],
+        resgatado: ['nome_res', 'especie_res', 'sexo_res', 'local_res', 'rua_res', 'numero_res', 'bairro_res', 'cidade_res', 'data_res', 'telefone_res', 'foto_res'],
+        adocao: ['especie_ado', 'sexo_ado', 'local_ado', 'rua_ado', 'numero_ado', 'bairro_ado', 'cidade_ado', 'telefone_ado', 'detalhes_ado', 'foto_ado']
     };
 
     const showForm = (formId) => {

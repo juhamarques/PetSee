@@ -168,7 +168,7 @@
         <ul>
           <li><a href="index.php">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
-          <li><a href="serviços.html">Serviços</a></li>
+          <li><a href="serviços.php">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
@@ -267,25 +267,21 @@
       }
     });
 
-    document.getElementById('formCadastrarEmpresa').addEventListener('submit', function(e) {
+    document.getElementById('formCadastrarEmpresa').addEventListener('submit', async function(e) {
       e.preventDefault();
-
       const formData = new FormData(this);
-      const empresa = {
-        nome: formData.get('nome'),
-        categoria: formData.get('categoria'),
-        telefone: formData.get('telefone'),
-        endereco: formData.get('endereco'),
-        descricao: formData.get('descricao')
-      };
-
-      const empresas = JSON.parse(localStorage.getItem('empresas')) || [];
-      empresas.push(empresa);
-      localStorage.setItem('empresas', JSON.stringify(empresas));
-
-      alert("Empresa cadastrada com sucesso! Ela aparecerá na aba Serviços.");
-      modal.style.display = 'none';
-      this.reset();
+      const resp = await fetch('api/cadastrar_estabelecimento.php', {
+        method: 'POST',
+        body: formData
+      });
+      const json = await resp.json();
+      if (json.success) {
+        alert("Empresa cadastrada com sucesso! Ela aparecerá na aba Serviços.");
+        modal.style.display = 'none';
+        this.reset();
+      } else {
+        alert("Erro ao cadastrar empresa: " + (json.msg || 'Tente novamente.'));
+      }
     });
   </script>
   

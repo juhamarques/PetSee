@@ -844,6 +844,7 @@ Perfil
   background: #ddd;
   outline: none;
   transition: background 0.2s;
+  position: relative;
 }
 
 .form-range::-webkit-slider-thumb {
@@ -855,6 +856,14 @@ Perfil
   background: var(--surface-color);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 5px;
+  background: linear-gradient(to right, var(--surface-color) 0%, var(--surface-color) calc((var(--value, 5) - 1) / 19 * 100%), #ddd calc((var(--value, 5) - 1) / 19 * 100%), #ddd 100%);
 }
 
 .form-range::-moz-range-thumb {
@@ -864,18 +873,14 @@ Perfil
   background: var(--surface-color);
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
 }
 
-.form-range::-webkit-slider-runnable-track {
+.form-range::-moz-range-track {
   height: 6px;
   border-radius: 5px;
-  background: linear-gradient(
-    to right,
-    var(--surface-color) 0%,
-    var(--surface-color) calc((var(--value) - 1) / 49 * 100%),
-    #ddd calc((var(--value) - 1) / 49 * 100%),
-    #ddd 100%
-  );
+  background: linear-gradient(to right, var(--surface-color) 0%, var(--surface-color) calc((var(--value, 5) - 1) / 19 * 100%), #ddd calc((var(--value, 5) - 1) / 19 * 100%), #ddd 100%);
 }
 
 .filter-card label,
@@ -992,7 +997,12 @@ Cards
   color: #721c24;
 }
 
-.status-found {
+.status-resgatado {
+  background-color: #ffeeba;
+  color: #856404;
+}
+
+.status-encontrado {
   background-color: #d4edda;
   color: #155724;
 }

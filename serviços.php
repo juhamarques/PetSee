@@ -40,77 +40,46 @@
 
   <div class="container mt-5">
     <input type="text" id="searchInput" class="form-control mb-4" placeholder="Buscar por categoria ou nome...">
-    <div class="row" id="cardsContainer"></div>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const empresasManuais = [
-            {
-              nome: "Petz",
-              categoria: "Petshop",
-              telefone: "(11) 4004-8387",
-              endereco: "Av. Paulista, 1000 - São Paulo, SP",
-              descricao: "Rede de pet shops com serviços de banho, tosa e veterinária."
-            },
-            {
-              nome: "Hospital Albert Einstein",
-              categoria: "Hospital",
-              telefone: "(11) 2151-1233",
-              endereco: "Av. Albert Einstein, 627 - Morumbi, SP",
-              descricao: "Referência em medicina de alta complexidade e humanização."
-            },
-            {
-              nome: "ONG Amigos do Bem",
-              categoria: "ONG",
-              telefone: "(11) 3010-1000",
-              endereco: "R. Dr. Fernandes Coelho, 85 - Pinheiros, SP",
-              descricao: "Organização que atua no combate à pobreza no sertão nordestino."
-            }
-          ];
-
-          if (!localStorage.getItem('empresas')) {
-            localStorage.setItem('empresas', JSON.stringify(empresasManuais));
+    <div class="row" id="cardsContainer">
+    <?php
+      include_once("forms/conexao.php");
+      $conn = abrirConexao();
+      $estabelecimentos = $conn->query("SELECT * FROM Estabelecimento ORDER BY nome ASC");
+      while ($e = $estabelecimentos->fetch_assoc()):
+    ?>
+      <div class="col-md-6 mb-4 estabelecimento-card" data-nome="<?php echo strtolower($e['nome']); ?>" data-categoria="<?php echo strtolower($e['categoria']); ?>" data-descricao="<?php echo strtolower($e['descricao']); ?>">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo htmlspecialchars($e['nome']); ?></h5>
+            <p class="card-text"><?php echo htmlspecialchars($e['descricao']); ?></p>
+            <p><strong>Categoria:</strong> <?php echo htmlspecialchars($e['categoria']); ?></p>
+            <p><strong>Telefone:</strong> <?php echo htmlspecialchars($e['telefone']); ?></p>
+            <p><strong>Endereço:</strong> <?php echo htmlspecialchars($e['endereco']); ?></p>
+          </div>
+        </div>
+      </div>
+    <?php endwhile; fecharConexao($conn); ?>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('searchInput');
+      const cards = document.querySelectorAll('.estabelecimento-card');
+      searchInput.addEventListener('input', function () {
+        const filtro = this.value.toLowerCase();
+        cards.forEach(card => {
+          const nome = card.getAttribute('data-nome');
+          const categoria = card.getAttribute('data-categoria');
+          const descricao = card.getAttribute('data-descricao');
+          if (nome.includes(filtro) || categoria.includes(filtro) || descricao.includes(filtro)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
           }
-
-          const empresas = JSON.parse(localStorage.getItem('empresas')) || [];
-
-          const container = document.getElementById('cardsContainer');
-          const searchInput = document.getElementById('searchInput');
-
-          function renderizarCards(filtro = '') {
-            container.innerHTML = '';
-            const empresasFiltradas = empresas.filter(emp =>
-              emp.nome.toLowerCase().includes(filtro.toLowerCase()) ||
-              emp.descricao.toLowerCase().includes(filtro.toLowerCase()) ||
-              emp.categoria.toLowerCase().includes(filtro.toLowerCase())
-            );
-
-            empresasFiltradas.forEach(emp => {
-              const card = document.createElement('div');
-              card.className = 'col-md-6 mb-4';
-              card.innerHTML = `
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title">${emp.nome}</h5>
-                    <p class="card-text">${emp.descricao}</p>
-                    <p><strong>Categoria:</strong> ${emp.categoria}</p>
-                    <p><strong>Telefone:</strong> ${emp.telefone}</p>
-                    <p><strong>Endereço:</strong> ${emp.endereco}</p>
-                  </div>
-                </div>
-              `;
-              container.appendChild(card);
-            });
-          }
-
-          renderizarCards();
-
-          searchInput.addEventListener('input', function () {
-            renderizarCards(this.value);
-          });
         });
-      </script>
-  </div> 
+      });
+    });
+  </script>
+</div> 
 
   <footer id="footer" class="footer">
     <div class="team section light-background">
@@ -139,7 +108,7 @@
             <ul>
               <li><a href="#">Início</a></li>
               <li><a href="cachorros.html">Cuidados</a></li>
-              <li><a href="serviços.html">Serviços</a></li>
+              <li><a href="serviços.php">Serviços</a></li>
               <li><a href="empresa.html">Empresa</a></li>
               <li><a href="contato.html">Contato</a></li>
             </ul>

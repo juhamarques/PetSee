@@ -35,7 +35,7 @@
         <ul>
           <li><a href="index.php">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
-          <li><a href="serviços.html">Serviços</a></li>
+          <li><a href="serviços.php">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
@@ -61,7 +61,7 @@
                     <input type="radio" id="tipo-perdido" name="status" value="perdido" checked>Perdido
                 </label>
                 <label class="radio-label">
-                    <input type="radio" id="tipo-encontrado" name="status" value="encontrado">Encontrado
+                    <input type="radio" id="tipo-resgatado" name="status" value="resgatado">Resgatado
                 </label>
                 <label class="radio-label">
                     <input type="radio" id="tipo-adocao" name="status" value="adocao">Para adoção
@@ -111,6 +111,22 @@
                   <input id="local" name="local" type="text" class="form-control" placeholder="00000-000" required>
                 </div>
                 <div class="mb-3">
+                  <label>Rua</label>
+                  <input id="rua" name="rua" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
+                </div>
+                <div class="mb-3">
+                  <label>Número</label>
+                  <input id="numero" name="numero" type="number" class="form-control" placeholder="Ex: 105" required>
+                </div>
+                <div class="mb-3">
+                  <label>Bairro</label>
+                  <input id="bairro" name="bairro" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
+                </div>
+                <div class="mb-3">
+                  <label>Cidade</label>
+                  <input id="cidade" name="cidade" type="text" class="form-control" placeholder="Ex: São Paulo" required>
+                </div>
+                <div class="mb-3">
                   <label>Data de Desaparecimento</label>
                   <input id="data" name="data" type="date" class="form-control" required>
                 </div>
@@ -129,16 +145,16 @@
                 <button type="submit" class="btn btn-success w-100">Salvar</button>
               </form>
 
-              <!-- Encontrado -->
-              <form id="form-encontrado" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="tipo" value="encontrado">
+              <!-- Resgatado -->
+              <form id="form-resgatado" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="tipo" value="resgatado">
                 <div class="mb-3">
                   <label>Nome</label>
-                  <input id="nome_enc" name="nome_enc" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
+                  <input id="nome_res" name="nome_res" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
                 </div>
                 <div class="mb-3">
                   <label>Tipo do Animal</label>
-                  <select id="especie_enc" name="especie_enc" class="form-select" required>
+                  <select id="especie_res" name="especie_res" class="form-select" required>
                     <option value="">Selecione</option>
                     <option value="cachorro">Cachorro</option>
                     <option value="gato">Gato</option>
@@ -146,19 +162,19 @@
                 </div>
                 <div class="mb-3">
                   <label>Sexo</label>
-                  <select id="sexo_enc" name="sexo_enc" class="form-select" required>
+                  <select id="sexo_res" name="sexo_res" class="form-select" required>
                     <option value="">Selecione</option>
                     <option value="macho">Macho</option>
                     <option value="femea">Fêmea</option>
                   </select>
                 </div>
                 <div class="mb-3">
-                    <label for="raca">Raça</label>
-                    <input id="raca_enc" name="raca_enc" type="text" class="form-control" placeholder="Ex: Poodle" required>
+                    <label for="raca_res">Raça</label>
+                    <input id="raca_res" name="raca_res" type="text" class="form-control" placeholder="Ex: Poodle" required>
                 </div>
                 <div class="mb-3">
-                    <label for="porte">Porte</label>
-                    <select id="porte_enc" name="porte_enc" class="form-select" required>
+                    <label for="porte_res">Porte</label>
+                    <select id="porte_res" name="porte_res" class="form-select" required>
                         <option value="">Selecione o porte</option>
                         <option value="pequeno">Pequeno</option>
                         <option value="medio">Médio</option>
@@ -166,24 +182,40 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                  <label>CEP do Local de Encontro</label>
-                  <input id="local_enc" name="local_enc" type="text" class="form-control" placeholder="Ex: 08246-000" required>
+                  <label>CEP do Local de Resgate</label>
+                  <input id="local_res" name="local_res" type="text" class="form-control" placeholder="Ex: 08246-000" required>
                 </div>
                 <div class="mb-3">
-                  <label>Data de Encontro</label>
-                  <input id="data_enc" name="data_enc" type="date" class="form-control" required>
+                  <label>Rua</label>
+                  <input id="rua_res" name="rua_res" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
+                </div>
+                <div class="mb-3">
+                  <label>Número</label>
+                  <input id="numero_res" name="numero_res" type="number" class="form-control" placeholder="Ex: 105" required>
+                </div>
+                <div class="mb-3">
+                  <label>Bairro</label>
+                  <input id="bairro_res" name="bairro_res" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
+                </div>
+                <div class="mb-3">
+                  <label>Cidade</label>
+                  <input id="cidade_res" name="cidade_res" type="text" class="form-control" placeholder="Ex: São Paulo" required>
+                </div>
+                <div class="mb-3">
+                  <label>Data de Resgate</label>
+                  <input id="data_res" name="data_res" type="date" class="form-control" required>
                 </div>
                 <div class="mb-3">
                   <label>Telefone para Contato</label>
-                  <input id="telefone_enc" name="telefone_enc" type="tel" class="form-control" required>
+                  <input id="telefone_res" name="telefone_res" type="tel" class="form-control" required>
                 </div>
                 <div class="mb-3">
                   <label>Detalhes</label>
-                  <textarea id="detalhes_enc" name="detalhes_enc" class="form-control" rows="3"></textarea>
+                  <textarea id="detalhes_res" name="detalhes_res" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                   <label>Foto</label>
-                  <input id="foto_enc" name="foto_enc" type="file" class="form-control" accept="image/*" required>
+                  <input id="foto_res" name="foto_res" type="file" class="form-control" accept="image/*" required>
                 </div>
                 <button type="submit" class="btn btn-success w-100">Salvar</button>
               </form>
@@ -212,17 +244,37 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                    <label for="raca">Raça</label>
+                    <label for="raca_ado">Raça</label>
                     <input id="raca_ado" name="raca_ado" type="text" class="form-control" placeholder="Ex: Poodle" required>
                 </div>
                 <div class="mb-3">
-                    <label for="porte">Porte</label>
+                    <label for="porte_ado">Porte</label>
                     <select id="porte_ado" name="porte_ado" class="form-select" required>
                         <option value="">Selecione o porte</option>
                         <option value="pequeno">Pequeno</option>
                         <option value="medio">Médio</option>
                         <option value="grande">Grande</option>
                     </select>
+                </div>
+                <div class="mb-3">
+                  <label>CEP do Local</label>
+                  <input id="local_ado" name="local_ado" type="text" class="form-control" placeholder="Ex: 08246-000" required>
+                </div>
+                <div class="mb-3">
+                  <label>Rua</label>
+                  <input id="rua_ado" name="rua_ado" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
+                </div>
+                <div class="mb-3">
+                  <label>Número</label>
+                  <input id="numero_ado" name="numero_ado" type="number" class="form-control" placeholder="Ex: 105" required>
+                </div>
+                <div class="mb-3">
+                  <label>Bairro</label>
+                  <input id="bairro_ado" name="bairro_ado" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
+                </div>
+                <div class="mb-3">
+                  <label>Cidade</label>
+                  <input id="cidade_ado" name="cidade_ado" type="text" class="form-control" placeholder="Ex: São Paulo" required>
                 </div>
                 <div class="mb-3">
                   <label>Telefone para Contato</label>
