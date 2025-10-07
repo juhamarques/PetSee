@@ -13,7 +13,11 @@
   --heading-font: "Vanilla Caramel",  sans-serif;
   --text-font: "Times New Romance", serif;
 }
-
+p {
+  font-family: var(--text-font);
+  font-size: 20px;
+  line-height: 1.6;
+}
 /* Cores Globais*/
 :root {
   --background-color: #f4f4f4; /* cor de fundo, incluindo de sessões individuais */

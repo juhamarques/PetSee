@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>PetSee - cuidados animais</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>PetSee - cuidados animais</title>
+    <meta name="description" content="">
+    <meta name="keywords" content=""> 
 
-  <!-- Arquivos Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <!-- Arquivos CSS -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Arquivo CSS -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
+    <!-- Arquivo CSS -->
+    <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body class="index-page">
-
-  <header id="header" class="header d-flex align-items-center fixed-top">
+<body>
+    <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -28,71 +25,61 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.php">Início</a></li>
-          <li><a href="#" class="active">Cuidados</a></li>
-          <li><a href="serviços.php">Serviços</a></li>
+          <li><a href="cuidados.html">Cuidados</a></li>
+          <li><a href="#" class="active">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-        <a id="login-button" class="btn-entrar" href="entrar.html" target="_self">Entrar</a> 
+        <a id="login-button" class="btn-entrar" href="cadastro.html" target="_self">Entrar</a>
     </div>
-  </header>
+  </header> <br><br><br>
+  
 
-  <main style="margin-top: 90px;">
-    <section class="cuidados-layout">
-        <div class="cuidados-cabecalho-container" style="margin-top: 2%;"> 
-            <h1 class="cuidados-titulo" style="align-self: center;">Cuidados gerais que todo tutor deve saber antes de adotar</h1>
-        </div>
-
-        <div class="cuidados-conteudo-grid" style="width: 82.8%; margin-left: 10%;">
-            <div class="cuidados-texto">
-                <p style="color: #797979;">Ter um animal de estimação significa assumir uma responsabilidade, indo muito além do carinho e companhia. Cada espécie e raça possui necessidades próprias, assim, é essencial conhecer seus comportamentos, respeitar as particularidades e atender às exigências de alimentação, higiene e bem-estar. Cuidar da saúde do pet envolve oferecer rações de qualidade, água limpa, brinquedos e acessórios adequados ao porte e à força do animal, além de garantir um ambiente seguro, protegido de situações de risco.</p>
-                <p style="color: #797979;">Vacinação e castração também são cuidados essenciais. As vacinas protegem contra doenças graves e a castração previne crias indesejadas, reduz o abandono, melhora o comportamento e contribui para a saúde pública. Ademais, visitas periódicas ao veterinário permitem detectar precocemente alterações no organismo, garantindo uma vida mais longa e saudável.</p>
-            </div>
-
-            <div class="cuidados-texto">
-                <p style="color: #797979;">A higiene também tem um papel decisivo na qualidade de vida do animal de estimação. Isso inclui banhos regulares, respeitando as particularidades de cada espécie, escovação dos pelos para manter a pelagem bonita e saudável, além de cuidados com a saúde bucal, muitas vezes esquecidos, mas indispensáveis para evitar infecções e dores no animal.</p>
-                <p style="color: #797979;">O controle de parasitas como pulgas, carrapatos e vermes também deve ser constante, já que eles podem transmitir doenças sérias tanto para o animal quanto para os seres humanos. Todos esses cuidados diários refletem em um pet mais equilibrado, feliz e protegido, além de estreitarem o vínculo afetivo entre tutor e animal. Em resumo, adotar um bichinho exige comprometimento e atenção integral, mas, em troca, proporciona uma convivência rica em afeto, companheirismo e benefícios para todos os envolvidos.</p>
-            </div>
-            
-            <div class="cuidados-imagens">
-                <img src="assets/img/cuidados/cuidado2.jpg" loading="lazy">
-                <img src="assets/img/cuidados/cuidado1.jpeg" loading="lazy">
-            </div>
-        </div>
-    </section>
-  </main>
-
-  <section class="products-section" style="width: 72.1%; margin-left: 14%;">
-          <h2 style="color: #606260;">Confira os cuidados específicos</h2><br>
-          <div class="product-carousel">
-            <div class="product-item">
-              <a href="cachorros.html"><img src="assets/img/empresa/cachorro.webp" loading="lazy"></a>
-              <span>Cachorros</span>
-            </div>
-            <div class="product-item">
-              <a href="gatos.html"><img src="assets/img/empresa/gato.webp" loading="lazy"></a>
-              <span>Gatos</span>
-            </div>
-            <div class="product-item">
-              <a href="passaros.html"><img src="assets/img/empresa/passaro.webp" loading="lazy"></a>
-              <span>Pássaros</span>
-            </div>
-            <div class="product-item">
-              <a href="peixes.html"><img src="assets/img/empresa/peixe.webp" loading="lazy"></a>
-              <span>Peixes</span>
-            </div>
-            <div class="product-item">
-              <a href="roedores.html"><img src="assets/img/empresa/roedores.webp" loading="lazy"></a>
-              <span>Roedores</span>
-            </div>
+  <div class="container mt-5">
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Buscar por categoria ou nome...">
+    <div class="row" id="cardsContainer">
+    <?php
+      include_once("forms/conexao.php");
+      $conn = abrirConexao();
+      $estabelecimentos = $conn->query("SELECT * FROM Estabelecimento ORDER BY nome ASC");
+      while ($e = $estabelecimentos->fetch_assoc()):
+    ?>
+      <div class="col-md-6 mb-4 estabelecimento-card" data-nome="<?php echo strtolower($e['nome']); ?>" data-categoria="<?php echo strtolower($e['categoria']); ?>" data-descricao="<?php echo strtolower($e['descricao']); ?>">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo htmlspecialchars($e['nome']); ?></h5>
+            <p class="card-text"><?php echo htmlspecialchars($e['descricao']); ?></p>
+            <p><strong>Categoria:</strong> <?php echo htmlspecialchars($e['categoria']); ?></p>
+            <p><strong>Telefone:</strong> <?php echo htmlspecialchars($e['telefone']); ?></p>
+            <p><strong>Endereço:</strong> <?php echo htmlspecialchars($e['endereco']); ?></p>
           </div>
-      </section>
-    </main>
+        </div>
+      </div>
+    <?php endwhile; fecharConexao($conn); ?>
   </div>
-  <br><br>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('searchInput');
+      const cards = document.querySelectorAll('.estabelecimento-card');
+      searchInput.addEventListener('input', function () {
+        const filtro = this.value.toLowerCase();
+        cards.forEach(card => {
+          const nome = card.getAttribute('data-nome');
+          const categoria = card.getAttribute('data-categoria');
+          const descricao = card.getAttribute('data-descricao');
+          if (nome.includes(filtro) || categoria.includes(filtro) || descricao.includes(filtro)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</div> 
 
   <footer id="footer" class="footer">
     <div class="team section light-background">
@@ -165,7 +152,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Arquivos Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -175,6 +162,6 @@
   <!-- Arquivo Main JS -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/auth.js"></script>
-
+  
 </body>
 </html>

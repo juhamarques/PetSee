@@ -15,22 +15,6 @@
   <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <style>
-
-    .hero-text h1 { margin: 0 0 8px 0; font-size: 36px; }
-    .hero-text p { margin: 0; font-size: 18px; color: #606260; }
-
-    .info-card .info-card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
-
-    .cute-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 240, 168, 0.12); color: rgba (201, 241, 225, 0.12); padding: 6px 10px; border-radius: 999px; font-weight: 700; }
-
-    @media (max-width: 768px) {
-      .hero-dog { flex-direction: column; text-align: center; }
-      .hero-dog img { width: 80%; height: auto; }
-      .hero-text h1 { font-size: 28px; }
-    }
-  </style>
-
 </head>
 <body class="index-page">
 
@@ -60,16 +44,13 @@
 
     <section>
       <div class="container" style="text-align: center; margin-top: 3%;">
-        <!-- Hero fofo -->
-        <div>
-          <div class="hero-text">
-            <h1 class="titulo-cuidados">🐾 Orientações para tutores de cães 🐾</h1>
-            <p class="subtitulo">Se você deseja ter um cão, considere a adoção — há muitos peludos esperando um lar quentinho. <br> Lembre-se que um cão pode viver por mais de 15 anos: carinho, responsabilidade e companhia para a vida toda.</p>
-          </div>
-        </div>
-        
-  <hr>
-  <div id="filter-panel-horizontal" class="filter-panel-horizontal">
+        <h1 class="titulo-cuidados">Orientações para tutores de gatos</h1>
+        <p style="font-size: 20px; color: #606260;">Apesar da crescente popularidade, muitos gatos sofrem abandono devido à falta de conhecimento sobre suas necessidades. <br> Gatos são dependentes e podem viver mais de 15 anos.</p>
+       
+        <!-- Filtro horizontal -->
+        <hr>
+        <div id="filter-panel-horizontal" class="filter-panel-horizontal">
+          
           <div class="filter-options-horizontal">
             <span class="filter-label">Filtrar por Categoria:</span>
             <label><input type="checkbox" name="filter" value="ambiente"> Ambiente</label>
@@ -98,89 +79,86 @@
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/ambiente.jpg" alt="ambiente aconchegante" loading="lazy">
-                  <h3>Ambiente Adequado 🏡</h3>
-                  <p>Para cães que vivem ao ar livre, é necessário um um local protegido contra chuva, frio e sol excessivo, além de camas confortáveis.</p>
-                  <p>Para tutores que precisam prender seu cão temporariamente, é recomendado que use um fio comprido. Não é indicado a utilização de correntes fixadas no chão, pois elas podem causar lesões.</p>
+                  <h3>Ambiente Adequado</h3>
+                  <p>É ideal que você, quanto tutor, tenha condições de proporcionar um abrigo seguro, sendo um local confortável para descanso de seu pet.</p>
+                  <p>Também é muitíssimo importante possibilitar um enriquecimento ambiental, que pode ser através do fornecimento de prateleiras, caixas e arranhaduras em seu local de residência. Esses instrumentos servem de entreterimento para seu gato, além de evitar o estresse, estimulando comportamentos naturais.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/alimentacao.jpg" alt="ração e água" loading="lazy">
-                  <h3>Alimentação e Água 🍽️💧</h3>
-                  <p>É vital oferecer uma dieta balanceada, com proteínas e fibras. Tenha conhecimento de que restos de comida não são suficientes, também evite dar ossos afiados, que podem causar problemas ao serem ingeridos.</p>
+                  <div class="card-icon"><i class="bi bi-shield-check"></i></div>
+                  <h3>Alimentação e Água</h3>
+                  <p>É vital oferecer uma dieta balanceada com alimentos específicos para gatos, ricos em proteína e gordura. A frequência depende da idade do pet: adultos comem duas vezes ao dia; já os filhotes, idosos e gestantes alimentam-se com pequenas porções várias vezes. É recomendado evitar alimentos humanos, ofereça apenas produtos felinos.</p>
                   <p>É indespensável disponibilizar água fresca em uma vasilha sempre limpa para seu pet, eles precisam de recursos básico tanto quanto nós seres humanos.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/socializacao.jpg" alt="brincadeira" loading="lazy">
-                  <h3>Exercícios e Socialização 🎾</h3>
-                  <p>Cães não devem ficar presos permanentemente. Eles precisam de contato com outras pessoas e animais para evitar agressividade e outras ações que podem desagradar. A solução pode ser simples: caminhadas diárias e brincadeiras os manterão ativos e alegres, prevenindo latidos excessivos por tédio.</p>
-                  <p>Sempre use coleira e guia ao levá-lo à rua e recolha as fezes. Cães de médio e grande porte podem usar focinheira se necessário.</p>
+                  <div class="card-icon"><i class="bi bi-bowl-hot"></i></div>
+                  <h3>Companhia Humana</h3>
+                  <p>Embora sejam conhecidos por sua independência, os gatos valorizam a companhia humana. Mesmo não precisando de passeios, eles gostam de estar por perto, observar o ambiente ao lado dos tutores e receber carinho. A presença e a atenção do dono fazem parte do bem-estar do gato.</p>
+                  <p>Eles desenvolvem fortes laços com seus tutores e sentem falta da presença deles. Podem demonstrar afeto de maneiras sutis, como seguir a pessoa pela casa, se deitar por perto ou miar para chamar atenção. A interação diária é essencial para o equilíbrio emocional do gato.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/medicamento.jpg" alt="remedios" loading="lazy">
-                  <h3>Administração Segura de Medicamentos 💊</h3>
-                  <p>A automedicação é uma das principais causas de intoxicação em animais domésticos. Fármacos humanos, mesmo infantis, podem ser tóxicos para cães, como o paracetamol. Mesmo que não seja legalmente exigido em todos os casos, consultar um veterinário é sempre o mais seguro e responsável ao medicar seu pet.</p>
-                  <p>Jamais administre medicação sem a indicação de um veterinário.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Administração Segura de Medicamentos</h3>
+                  <p>A saúde dos gatos exige cuidados específicos, incluindo atenção a parasitas como pulgas, vermes e carrapatos, especialmente em animais que têm acesso à rua.</p> 
+                  <p>Nunca medique seu gato por conta própria — muitos remédios humanos, como o paracetamol, são altamente tóxicos para eles.</p> 
+                  <p>Sempre consulte um veterinário, que indicará o tratamento correto e seguro. Manter o ambiente limpo e oferecer afeto também contribuem para o bem-estar do animal.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/banho.jpg" alt="banho e higiene" loading="lazy">
-                  <h3>Cuidados Higiênicos 🛁</h3>
-                  <p>Cães mal cuidados podem apresentar pulgas, carrapatos, piolhos, vermes ou sarna. É essencial consultar sempre um veterinário. Mantenha seu cão e o ambiente em que ele vive sempre limpos para garantir a saúde, o bem-estar e a qualidade de vida dele e de todos que convivem com ele. Além disso, um ambiente limpo evita maus odores, reduz o risco de contaminações e contribui para um convívio mais agradável dentro de casa.</p>
+                  <div class="card-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                  <h3>Cuidados Higiênicos</h3>
+                  <p>A organização das caixas de areia é fundamental para o bem-estar dos felinos. O ideal é ter uma caixa por gato, mais uma extra, sempre distribuídas em locais diferentes da casa. Agrupar todas em um único ponto pode gerar disputas e desconforto. Quando há mais de um gato, urinar ou defecar fora da caixa pode ser um sinal de estresse, disputa territorial ou conflito entre eles. Oferecer bandejas sanitárias em locais tranquilos, acessíveis e separados ajuda a evitar esses problemas e garante mais harmonia entre os animais.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/vacina.jpg" alt="vacinação" loading="lazy">
-                  <h3>Vacinação 💉</h3>
-                  <p>Vacine seu cão contra as principais doenças caninas e contra a raiva. A vacinação protege não só seu animal, mas também reduz o risco de infecção para outros; além de prevenir surtos e epidemias, protegendo outros animais e até humanos (em casos de zoonoses); também evita gastos altos com tratamentos, já que muitas dessas doenças exigem internação e cuidados intensivos; e garante uma vida mais longa e saudável para o pet, o que é exigido por lei em alguns casos, como a vacina antirrábica.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Vacinação</h3>
+                  <p>A vacinação é uma parte fundamental dos cuidados, sendo necessária desde os primeiros meses de vida. Ela protege contra doenças sérias e contagiosas, como rinotraqueíte, calicivirose, panleucopenia e a raiva — esta última, inclusive, com risco de transmissão para humanos. Gatos que vivem em ambientes internos também devem ser vacinados, já que vírus podem ser trazidos de fora por roupas, sapatos ou outros animais. Manter o calendário vacinal atualizado, com orientação do veterinário, é essencial para garantir uma vida longa, saudável e segura ao seu gato.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="escovacao">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/escovacao.jpg"escovação" loading="lazy">
-                  <h3>Higiene dos Pelos ✨</h3>
-                  <p>Realizar a escovação regular pode ajudar a identificar parasitas externos e mantém a pelagem limpa e desembaraçada. A escovação frequente também acostuma o cão ao manuseio.</p>
-                  <p>É essencial para a saúde e o bem-estar do seu pet. Ao escovar a pelagem, você remove os pelos mortos, evita nós, reduz a queda e previne problemas de pele, como dermatites e parasitas. Além disso, ajuda a estimular a circulação sanguínea e fortalece o vínculo entre você e seu animal.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Higiene dos Pelos</h3>
+                  <p>A escovação regular é essencial para a saúde e o conforto dos gatos, especialmente os com pelos bem longos. Ela ajuda a remover pelos mortos, evita a formação de nós e permite que você identifique antecipadamente a presença de pulgas, carrapatos ou outros problemas de pele. Além dos benefícios físicos, esse momento fortalece o vínculo entre tutor e gato, tornando-se também uma forma de carinho e cuidado diário.</p> 
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/reproducao.jpg" alt="maternidade" loading="lazy">
-                  <h3>Reprodução Biológica 🐾</h3>
-                  <p>Saiba que as cadelas podem entrar no cio a partir do 6º mês e ter várias ninhadas por ano. E as que são gestantes e lactantes precisam de alimentação reforçada. Já os filhotes mamam até a terceira semana, começando a se alimentar de ração gradualmente.</p>
-                  <p>O tutor deve proporcionar um ambiente tranquilo para as cadelas protegerem seus filhotes. Porém, se deseja evitar ninhadas indesejadas, considere a esterilização cirúrgica, um procedimento seguro realizado por veterinário.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Reprodução Biológica</h3>
+                  <p>As gatas podem entrar no cio ainda jovens e ter várias ninhadas ao longo do ano, o que pode levar a uma superpopulação felina e abandono. Por isso, a castração é fundamental: além de evitar crias indesejadas, contribui para a saúde do animal, prevenindo doenças e comportamentos relacionados ao cio. É um ato de responsabilidade e cuidado com o bem-estar dos gatos e da comunidade.</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/castracao.jpg" alt="castração" loading="lazy">
-                  <h3>Esterilização Cirúrgica (Castração) ✂️</h3>
-                  <p>Graças a equipamentos e técnicas modernas, a cirurgia de castração é segura, indolor e com recuperação rápida.</p>
-                  <p>Tenha conehcimento de que cadelas não precisam ter uma ninhada antes da castração e, após o procedimento, ela não entrará mais no cio, não atrairá machos e terá o risco de tumores mamários reduzido.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Esterilização Cirúrgica (Castração)</h3>
+                  <p>É um procedimento seguro e com recuperação rápida, recomendado a partir dos dois meses de idade. Além de evitar ninhadas indesejadas, traz diversos benefícios: reduz comportamentos como o cio, brigas e marcação de território, e ainda contribui para a saúde, diminuindo o risco de tumores e infecções uterinas. Em gatos de rua, um pequeno corte na ponta da orelha é usado para identificar que já foram castrados.</p>
                   <p>É essencial uma conversa com seu veterinário sobre o procedimento. Procure sempre se manter informado com especialistas!</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
                 <div class="info-card">
-                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/intoxicacao.jpg" alt="intoxicação" loading="lazy">
-                  <h3>Em Caso de Intoxicação ⚠️</h3>
-                  <p>A intoxicação pode ocorrer por ingestão, contato com a pele ou inalação. os sintomas comuns que seu pet pode ter incluem salivação excessiva, vômitos, pupilas dilatadas, dificuldade de locomoção e contrações musculares involuntárias.</p>
+                  <div class="card-icon"><i class="bi bi-capsule"></i></div>
+                  <h3>Em Caso de Intoxicação</h3>
+                  <p>Pode ocorrer pela ingestão, contato com a pele ou inalação de substâncias tóxicas, já que eles são muito sensíveis a muitos produtos. Os sintomas mais comuns incluem salivação excessiva, vômitos, pupilas dilatadas e dificuldade para se movimentar.</p>
                   <p>Caso ocorra, exige atenção imediata! Leve o animal imediatamente ao veterinário ou solicite atendimento domiciliar.</p>
                 </div>
               </div>
@@ -195,14 +173,14 @@
   <section class="products-section" style="width: 72.1%; margin-left: 14%;">
           <h2 style="color: #606260;">Confira outros cuidados específicos</h2><br>
           <div class="product-carousel">
-            <!--<div class="product-item">
+            <div class="product-item">
               <a href="cachorros.html"><img src="assets/img/empresa/cachorro.webp" loading="lazy"></a>
               <span>Cachorros</span>
-            </div>-->
-            <div class="product-item">
+            </div>
+            <!--<div class="product-item">
               <a href="gatos.html"><img src="assets/img/empresa/gato.webp" loading="lazy"></a>
               <span>Gatos</span>
-            </div>
+            </div>-->
             <div class="product-item">
               <a href="passaros.html"><img src="assets/img/empresa/passaro.webp" loading="lazy"></a>
               <span>Pássaros</span>
@@ -220,7 +198,7 @@
     </main>
   </div>
   <br><br>
-
+  
   <footer id="footer" class="footer">
     <div class="team section light-background">
       <div class="container footer-top">
@@ -282,12 +260,12 @@
       </div>
     </div>
   </footer>
-
+  
   <!-- Preloader -->
   <div id="preloader">
     <div class="carg-card">
       <div class="carg-content">
-        <img src="assets/img/telaCarregamento/dog_load.png" loading="lazy" loading="lazy">
+        <img src="assets/img/telaCarregamento/dog_load.png" loading="lazy">
         <div class="speech-bubble">Eita! Espere um momento.</div>
       </div>
     </div>
