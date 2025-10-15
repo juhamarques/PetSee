@@ -19,7 +19,7 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logoPetSee/logoPetSeenew.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
+        <img src="assets/img/logoPetSee/logoPetSeee.png" loading="lazy" alt="logoPetSee" class="imagem-logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -40,14 +40,14 @@
 
   <div class="container mt-5">
     <input type="text" id="searchInput" class="form-control mb-4" placeholder="Buscar por categoria ou nome...">
-    <div class="row" id="cardsContainer">
+  <div class="row g-4" id="cardsContainer">
     <?php
       include_once("forms/conexao.php");
       $conn = abrirConexao();
       $estabelecimentos = $conn->query("SELECT * FROM Estabelecimento ORDER BY nome ASC");
       while ($e = $estabelecimentos->fetch_assoc()):
     ?>
-      <div class="col-md-6 mb-4 estabelecimento-card" data-nome="<?php echo strtolower($e['nome']); ?>" data-categoria="<?php echo strtolower($e['categoria']); ?>" data-descricao="<?php echo strtolower($e['descricao']); ?>">
+  <div class="col-md-4 col-sm-6 mb-4 estabelecimento-card" data-nome="<?php echo strtolower($e['nome']); ?>" data-categoria="<?php echo strtolower($e['categoria']); ?>" data-descricao="<?php echo strtolower($e['descricao']); ?>">
         <div class="card shadow-sm">
           <div class="card-body">
             <h5 class="card-title"><?php echo htmlspecialchars($e['nome']); ?></h5>
