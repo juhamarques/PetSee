@@ -15,6 +15,30 @@
   <!-- Arquivo CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+     @font-face {
+      font-family: 'Recoleta';
+      src: url(../fonts/recoleta/Recoleta-RegularDEMO.otf) format(truetype);
+    }
+
+    :root {
+      --text-font: "Times New Romance", serif;
+    }
+
+    .hero-text h1 { margin: 0 0 8px 0; font-size: 36px; }
+    .hero-text p { margin: 0; font-size: 18px; color: #606260; }
+
+    .info-card .info-card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+
+    .cute-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 240, 168, 0.12); color: rgba (201, 241, 225, 0.12); padding: 6px 10px; border-radius: 999px; font-weight: 700; }
+
+    @media (max-width: 768px) {
+      .hero-dog { flex-direction: column; text-align: center; }
+      .hero-dog img { width: 80%; height: auto; }
+      .hero-text h1 { font-size: 28px; }
+    }
+  </style>
+
 </head>
 <body class="index-page">
 
@@ -28,7 +52,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.php">Início</a></li>
-          <li><a href="cuidados.html" class="active">Cuidados</a></li>
+          <li><a href="#" class="active">Cuidados</a></li>
           <li><a href="serviços.php">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
           <li><a href="contato.html">Contato</a></li>
@@ -44,10 +68,9 @@
 
     <section>
       <div class="container" style="text-align: center; margin-top: 3%;">
-        <h1 class="titulo-cuidados">Orientações para tutores de pássaros</h1>
-        <p style="font-size: 20px; color: #606260;">Exige juízo, obtendo aves da fauna brasileira só de criadores licenciados pelo IBAMA e aves exóticas de afiliados à FOB com documentação legal. <br> Capturar aves silvestres é crime e prejudica o meio ambiente.</p>
+        <h1 class="titulo-cuidados">🐾 Orientações para tutores de pássaros🐾 </h1>
+        <p style="font-size: 20px; color: #606260; font-family: var(--text-font);">Exige juízo, obtendo aves da fauna brasileira só de criadores licenciados pelo IBAMA e aves exóticas de afiliados à FOB com documentação legal. <br> Capturar aves silvestres é crime e prejudica o meio ambiente.</p>
        
-  <!-- Filtro horizontal -->
   <hr>
   <div id="filter-panel-horizontal" class="filter-panel-horizontal">
           <div class="filter-options-horizontal">
@@ -58,11 +81,10 @@
             <label><input type="checkbox" name="filter" value="atividades"> Atividades</label>
             <label><input type="checkbox" name="filter" value="higiene"> Higiene</label>
             <label><input type="checkbox" name="filter" value="reproducao"> Reprodução</label>
-            <label><input type="checkbox" name="filter" value="intoxicacao"> Intoxicação</label>
           </div>
           <div class="filter-buttons-row">
             <button id="apply-filters-btn" class="btn btn-success">Aplicar Filtros</button>
-            <button id="clear-filters-btn" class="btn btn-outline-secondary">Limpar Filtros</button>
+            <button id="clear-filters-btn" class="btn btn-primary">Limpar Filtros</button>
           </div>
         </div>
         <hr>
@@ -75,74 +97,75 @@
           <div class="col-12">
             <div class="row gy-4 info-cards-horizontal" id="info-cards-container">
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="ambiente">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="ambiente">
                 <div class="info-card">
-                  <h3>Ambiente Adequado</h3>
-                  <p>A escolha da gaiola é crucial. Opte por gaiolas voadeiras, sempre as maiores possíveis. Posicione-as longe do alcance de cães e gatos para evitar acidentes. Se a gaiola ficar em ambiente externo, grades grossas são essenciais para proteger a ave de predadores como aves de rapina. Caso tenha mais de uma ave na mesma gaiola, observe se há brigas frequentes, o que pode indicar disputa territorial entre machos.</p>
+                   <img class="info-card-img" src="assets/img/cuidadosEspecificos/cachorros/ambiente.jpg" alt="ambiente aconchegante" loading="lazy">
+                  <h3 align="center">Ambiente Adequado 🏡</h3>
+                  <p align="center">A escolha da gaiola é crucial, opte sempre pelas maiores possíveis. Deixe-as longe do alcance de cães e gatos para evitar acidentes. Se a gaiola ficar em ambiente externo, use grades grossas para proteger a ave de predadores. Caso tenha mais de uma ave na mesma gaiola, observe se há brigas frequentes, o que pode indicar disputa territorial entre machos.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="ingestao">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="ingestao">
                 <div class="info-card">
-                  <h3>Alimentação Correta</h3>
-                  <p>A alimentação inadequada é a principal causa de problemas de saúde em aves em cativeiro. Uma dieta balanceada é fundamental para prevenir alterações respiratórias, fígado gorduroso e desnutrição óssea. Consulte sempre um médico-veterinário especializado para elaborar um plano alimentar específico para sua ave, evitando problemas e visitas emergenciais.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/alimentacao.jpg" alt="ração e água" loading="lazy">
+                  <h3 align="center">Alimentação e Água 🍽️💧</h3>
+                  <p align="center">A alimentação inadequada é a principal causa de problemas de saúde em aves em cativeiro. Uma dieta balanceada é fundamental para prevenir alterações respiratórias, fígado gorduroso e desnutrição óssea. Consulte sempre um médico-veterinário especializado para elaborar um plano alimentar específico para sua ave, evitando problemas e visitas emergenciais.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="atividades">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="atividades">
                 <div class="info-card">
-                  <h3>Interação e Personalidade</h3>
-                  <p>A interação com sua ave deve respeitar a personalidade específica da espécie. Por exemplo, o canário-belga é conhecido por ser dócil e afetuoso, reconhecendo a voz do dono e criando um vínculo especial. Essas aves podem ficar tristes ou estressadas se passarem longos períodos sozinhas, por isso é importante dedicar atenção e interação para garantir seu bem-estar emocional. Conhecer o comportamento da espécie ajuda a construir uma relação saudável e feliz com seu pet.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/interacao.jpg" alt="brincadeira" loading="lazy">
+                  <h3 align="center">Interação e Personalidade 🎾</h3>
+                  <p align="center">A interação com sua ave deve respeitar a personalidade específica da espécie. Por exemplo, o canário-belga é dócil e afetuoso, podendo ficar tristes ou estressadas se passarem longos períodos sozinhas, por isso é importante dedicar atenção para garantir seu bem-estar emocional. Conhecer o comportamento da espécie ajuda a construir uma relação saudável e feliz com seu pet.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="medicamentos">
                 <div class="info-card">
-                  <h3>Administração Segura de Medicamentos</h3>
-                  <p>Sempre siga a orientação do veterinário, utilizando a dose correta e o método indicado, seja oral, injetável ou tópica. Evite medicar por conta própria, pois aves são sensíveis a muitos medicamentos humanos e doses erradas podem ser perigosas. Use seringas ou conta-gotas apropriados para facilitar a aplicação e minimize o manejo para reduzir o estresse da ave durante o tratamento.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/medicamento.jpg" alt="remedios" loading="lazy">
+                  <h3 align="center">Administração Segura de Medicamentos 💊</h3>
+                  <p align="center">É importante sempre siguir a orientação do veterinário, utilizando a dose correta e o método indicado pelo profissional, seja oral, injetável ou tópica. Evite medicar o pet por conta própria, pois as aves são sensíveis a muitos medicamentos humanos e doses erradas podem ser perigosas. Use seringas ou conta-gotas apropriados para facilitar a aplicação.</p>
               </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="medicamentos">
                 <div class="info-card">
-                  <h3>Sinais de Doenças</h3>
-                  <p>Alguns comportamentos que indicam problemas incluem pálpebras caídas, dificuldade para respirar (percebida pelo movimento acelerado da cauda), postura curvada ao empoleirar-se, passar muito tempo "encorujada" no chão da gaiola, espirros frequentes e fezes mais líquidas do que o normal. Ao notar qualquer desses sintomas, procure um veterinário especializado para avaliação e tratamento.</p>
-                  <p>Busque sempre informações sobre aves de estimação em fontes especializadas e confiáveis. O manejo adequado e as visitas regulares a médicos-veterinários especializados são cruciais para prevenir doenças e garantir uma vida saudável ao seu pet.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/doença.jpg" alt="remedios" loading="lazy">
+                  <h3 align="center">Sinais de Doenças 🤒</h3>
+                  <p align="center">Alguns comportamentos que indicam problemas incluem pálpebras caídas, dificuldade para respirar, postura curvada ao empoleirar-se, passar muito tempo "encorujada" no chão da gaiola, espirros frequentes, penas arrepiadas e falta de apetite. O manejo adequado e as visitas regulares a médicos-veterinários especializados são cruciais para prevenir doenças e garantir uma vida saudável.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="higiene">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="higiene">
                 <div class="info-card">
-                  <h3>Cuidados Higiênicos</h3>
-                  <p>Mantenha a gaiola sempre limpa, trocando regularmente o substrato e removendo restos de comida e fezes. Ofereça banhos frequentes, seja com borrifador ou banho em recipiente raso, pois isso ajuda a manter as penas limpas e a prevenir problemas de pele. Evite o acúmulo de poeira e cuide da ventilação do ambiente para reduzir o risco de doenças respiratórias. A higiene adequada também contribui para um ambiente confortável e feliz para sua ave.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/banho.jpg" alt="banho e higiene" loading="lazy">
+                  <h3 align="center">Cuidados Higiênicos 🛁</h3>
+                  <p align="center">Mantenha a gaiola sempre limpa, trocando regularmente o substrato e removendo restos de comida e fezes. Ofereça banhos frequentes, seja com borrifador ou banho em recipiente raso, pois isso ajuda a manter as penas limpas e a prevenir problemas de pele. Evite o acúmulo de poeira e cuide da ventilação do ambiente para reduzir o risco de doenças respiratórias.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="medicamentos">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="medicamentos">
                 <div class="info-card">
-                  <h3>Vacinação</h3>
-                  <p>A vacinação em pássaros é uma medida importante para prevenir doenças comuns e graves, especialmente em aves de criação ou em ambientes com muitos animais. Nem todas as espécies precisam de vacinas, por isso é fundamental consultar um veterinário especializado em aves para avaliar a necessidade e indicar o tipo correto de imunização. Manter o calendário vacinal atualizado ajuda a proteger a ave contra infecções e a garantir sua saúde a longo prazo.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/vacina.jpg" alt="vacinação" loading="lazy">
+                  <h3 align="center">Vacinação 💉</h3>
+                  <p align="center">A vacinação em pássaros é uma medida importante para prevenir doenças comuns e graves, especialmente em aves de criação ou em ambientes com muitos animais. Nem todas as espécies precisam de vacinas, por isso é fundamental consultar um veterinário especializado em aves para avaliar a necessidade e indicar o tipo correto de imunização.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="reproducao">
                 <div class="info-card">
-                  <h3>Reprodução Biológica</h3>
-                  <p>Envolve o acasalamento, a postura dos ovos e o cuidado com os filhotes. Após o acasalamento, a fêmea põe ovos que são incubados por ambos os pais ou somente pela mãe, dependendo da espécie. O período de incubação varia, mas geralmente dura entre duas a três semanas. Durante esse tempo, os pais mantêm os ovos aquecidos e protegidos. Após a eclosão, os filhotes dependem dos cuidados dos adultos para alimentação e proteção até adquirirem autonomia.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/reproducao.jpg" alt="maternidade" loading="lazy">
+                  <h3 align="center">Reprodução Biológica 🐾</h3>
+                  <p align="center">Envolve o acasalamento, a postura dos ovos e o cuidado com os filhotes. Após o acasalamento, a fêmea põe ovos que são incubados, durando entre duas a três semanas. Durante esse tempo, os pais mantêm os ovos aquecidos e protegidos. Após a eclosão, os filhotes dependem dos cuidados dos adultos para alimentação e proteção até adquirirem autonomia.</p>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="reproducao">
+              <div class="col-12 col-sm-6 col-md-4 info-card-item" data-category="reproducao">
                 <div class="info-card">
-                  <h3>Esterilização Cirúrgica (Castração)</h3>
-                  <p>Conhecida como gonadectomia, consiste na remoção das gônadas — testículos nos machos ou ovários nas fêmeas. Esse procedimento é realizado por veterinários especializados e ajuda a controlar a reprodução, além de reduzir comportamentos agressivos ou excessivamente territoriais. Embora seja menos comum do que em mamíferos, a gonadectomia pode ser recomendada em casos específicos para melhorar a qualidade de vida da ave. Como qualquer cirurgia, requer cuidados pré e pós-operatórios para garantir a recuperação segura do animal.</p>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 info-card-item" data-category="intoxicacao">
-                <div class="info-card">
-                  <h3>Em Caso de Intoxicação</h3>
-                  <p>Pode ocorrer pela ingestão, inalação ou contato com substâncias tóxicas presentes em alimentos, plantas, produtos de limpeza, fumaça de cigarro, entre outros. Essas aves são muito sensíveis e mesmo pequenas quantidades podem causar sintomas graves, como vômitos, dificuldade respiratória, letargia e convulsões. Ao perceber sinais de intoxicação, é fundamental levar o pássaro imediatamente a um veterinário especializado para avaliação e tratamento rápido, garantindo maiores chances de recuperação.</p>
+                  <img class="info-card-img" src="assets/img/cuidadosEspecificos/passaros/castracao.jpg" alt="castração" loading="lazy">
+                  <h3 align="center">Esterilização Cirúrgica ✂️</h3>
+                  <p align="center">Conhecida como gonadectomia, consiste na remoção das gônadas, testículos nos machos ou ovários nas fêmeas. É realizado por veterinários especializados e ajuda a controlar a reprodução, além de reduzir comportamentos agressivos ou territoriais. Embora menos comum, a castração pode ser recomendada em casos específicos para melhorar a qualidade de vida da ave.</p>
                 </div>
               </div>
 
@@ -154,7 +177,7 @@
   </main>
 
   <section class="products-section" style="width: 72.1%; margin-left: 14%;">
-          <h2 style="color: #606260;">Confira outros cuidados específicos</h2><br>
+          <h2 style="color: #e4e6e4;">Confira outros cuidados específicos</h2><br>
           <div class="product-carousel">
             <div class="product-item">
               <a href="cachorros.html"><img src="assets/img/empresa/cachorro.webp" loading="lazy"></a>

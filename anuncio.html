@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Arquivos Vendor CSS -->
+  <!-- Arquivos Vendor CSS --> 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
@@ -33,7 +33,7 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.php">Início</a></li>
+          <li><a href="#" class="active">Início</a></li>
           <li><a href="cuidados.html">Cuidados</a></li>
           <li><a href="serviços.php">Serviços</a></li>
           <li><a href="empresa.html">Empresa</a></li>
@@ -49,12 +49,9 @@
   <main style="margin-top: 110px;">
     <div class="anuncio-modal-overlay">
       <div class="anuncio-modal">
-        <button class="modal-close" onclick="location.href='index.php'">×</button>
+        <button class="btn-fechar" onclick="location.href='index.php'" style="margin-top: 120px; margin-right: 200px;">×</button>
         <div class="row g-0 h-100">
-          <div class="col-md-5 d-none d-md-flex align-items-center justify-content-center">
-            <img src="assets/img/anuncioAnimal/cadastroAnimal.png" class="img-fluid">
-          </div>
-          <div class="col-md-7">
+          <div class="col-12">
             <div class="form-container">
               <div class="tipo-cadastro-container">
                 <label class="radio-label">
@@ -71,229 +68,271 @@
               <!-- Perdido -->
               <form id="form-perdido" class="pet-form active" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="perdido">
-                <div class="mb-3">
-                  <label>Nome</label>
-                  <input id="nome" name="nome" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
-                </div>
-                <div class="mb-3">
-                  <label>Tipo do Animal</label>
-                  <select id="especie" name="especie" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                    <option value="passaro">Pássaro</option>
-                    <option value="roedor">Roedor</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label>Sexo</label>
-                  <select id="sexo" name="sexo" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="macho">Macho</option>
-                    <option value="femea">Fêmea</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                    <label for="raca">Raça</label>
-                    <input id="raca" name="raca" type="text" class="form-control" placeholder="Ex: Poodle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="porte">Porte</label>
-                    <select id="porte" name="porte" class="form-select" required>
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="mb-3">
+                      <label>Nome (Opcional):</label>
+                      <input id="nome" name="nome" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Tipo do Animal:</label>
+                      <select id="especie" name="especie" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="ave">Ave</option>
+                        <option value="cachorro">Cachorro</option>
+                        <option value="chinchila">Chinchila</option>
+                        <option value="coelho">Coelho</option>
+                        <option value="furao">Furão</option>
+                        <option value="gato">Gato</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="porquinho-india">Porquinho-da-Índia</option>
+                        <option value="tartaruga">Tartaruga</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Sexo:</label>
+                      <select id="sexo" name="sexo" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="macho">Macho</option>
+                        <option value="femea">Fêmea</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="raca">Raça:</label>
+                      <input id="raca" name="raca" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="porte">Porte:</label>
+                      <select id="porte" name="porte" class="form-select" required>
                         <option value="">Selecione o porte</option>
                         <option value="pequeno">Pequeno</option>
                         <option value="medio">Médio</option>
                         <option value="grande">Grande</option>
-                    </select>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Telefone:</label>
+                      <input id="telefone" name="telefone" type="tel" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Detalhes</label>
+                      <textarea id="detalhes" name="detalhes" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="mb-3">
+                      <label>CEP do Local de Desaparecimento:</label>
+                      <input id="local" name="local" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Rua:</label>
+                      <input id="rua" name="rua" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Número:</label>
+                      <input id="numero" name="numero" type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Bairro:</label>
+                      <input id="bairro" name="bairro" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Cidade:</label>
+                      <input id="cidade" name="cidade" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Data de Desaparecimento:</label>
+                      <input id="data" name="data" type="date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Foto:</label>
+                      <input id="foto" name="foto" type="file" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mt-2">
+                      <button type="submit" class="btn btn-success w-100">Salvar</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label>CEP do Local de Desaparecimento</label>
-                  <input id="local" name="local" type="text" class="form-control" placeholder="00000-000" required>
-                </div>
-                <div class="mb-3">
-                  <label>Rua</label>
-                  <input id="rua" name="rua" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
-                </div>
-                <div class="mb-3">
-                  <label>Número</label>
-                  <input id="numero" name="numero" type="number" class="form-control" placeholder="Ex: 105" required>
-                </div>
-                <div class="mb-3">
-                  <label>Bairro</label>
-                  <input id="bairro" name="bairro" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
-                </div>
-                <div class="mb-3">
-                  <label>Cidade</label>
-                  <input id="cidade" name="cidade" type="text" class="form-control" placeholder="Ex: São Paulo" required>
-                </div>
-                <div class="mb-3">
-                  <label>Data de Desaparecimento</label>
-                  <input id="data" name="data" type="date" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                  <label>Telefone para Contato</label>
-                  <input id="telefone" name="telefone" type="tel" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                  <label>Detalhes</label>
-                  <textarea id="detalhes" name="detalhes" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label>Foto</label>
-                  <input id="foto" name="foto" type="file" class="form-control" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Salvar</button>
               </form>
 
               <!-- Resgatado -->
               <form id="form-resgatado" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="resgatado">
-                <div class="mb-3">
-                  <label>Nome</label>
-                  <input id="nome_res" name="nome_res" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
-                </div>
-                <div class="mb-3">
-                  <label>Tipo do Animal</label>
-                  <select id="especie_res" name="especie_res" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label>Sexo</label>
-                  <select id="sexo_res" name="sexo_res" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="macho">Macho</option>
-                    <option value="femea">Fêmea</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                    <label for="raca_res">Raça</label>
-                    <input id="raca_res" name="raca_res" type="text" class="form-control" placeholder="Ex: Poodle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="porte_res">Porte</label>
-                    <select id="porte_res" name="porte_res" class="form-select" required>
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="mb-3">
+                      <label>Nome (Opcional):</label>
+                      <input id="nome_res" name="nome_res" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Tipo do Animal:</label>
+                      <select id="especie" name="especie" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="ave">Ave</option>
+                        <option value="cachorro">Cachorro</option>
+                        <option value="chinchila">Chinchila</option>
+                        <option value="coelho">Coelho</option>
+                        <option value="furao">Furão</option>
+                        <option value="gato">Gato</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="porquinho-india">Porquinho-da-Índia</option>
+                        <option value="tartaruga">Tartaruga</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Sexo:</label>
+                      <select id="sexo_res" name="sexo_res" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="macho">Macho</option>
+                        <option value="femea">Fêmea</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="raca_res">Raça:</label>
+                      <input id="raca_res" name="raca_res" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="porte_res">Porte:</label>
+                      <select id="porte_res" name="porte_res" class="form-select" required>
                         <option value="">Selecione o porte</option>
                         <option value="pequeno">Pequeno</option>
                         <option value="medio">Médio</option>
                         <option value="grande">Grande</option>
-                    </select>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Telefone:</label>
+                      <input id="telefone_res" name="telefone_res" type="tel" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Detalhes:</label>
+                      <textarea id="detalhes_res" name="detalhes_res" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="mb-3">
+                      <label>CEP do Local de Resgate:</label>
+                      <input id="local_res" name="local_res" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Rua:</label>
+                      <input id="rua_res" name="rua_res" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Número:</label>
+                      <input id="numero_res" name="numero_res" type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Bairro:</label>
+                      <input id="bairro_res" name="bairro_res" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Cidade:</label>
+                      <input id="cidade_res" name="cidade_res" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Data de Resgate:</label>
+                      <input id="data_res" name="data_res" type="date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Foto:</label>
+                      <input id="foto_res" name="foto_res" type="file" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mt-2">
+                      <button type="submit" class="btn btn-success w-100">Salvar</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label>CEP do Local de Resgate</label>
-                  <input id="local_res" name="local_res" type="text" class="form-control" placeholder="Ex: 08246-000" required>
-                </div>
-                <div class="mb-3">
-                  <label>Rua</label>
-                  <input id="rua_res" name="rua_res" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
-                </div>
-                <div class="mb-3">
-                  <label>Número</label>
-                  <input id="numero_res" name="numero_res" type="number" class="form-control" placeholder="Ex: 105" required>
-                </div>
-                <div class="mb-3">
-                  <label>Bairro</label>
-                  <input id="bairro_res" name="bairro_res" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
-                </div>
-                <div class="mb-3">
-                  <label>Cidade</label>
-                  <input id="cidade_res" name="cidade_res" type="text" class="form-control" placeholder="Ex: São Paulo" required>
-                </div>
-                <div class="mb-3">
-                  <label>Data de Resgate</label>
-                  <input id="data_res" name="data_res" type="date" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                  <label>Telefone para Contato</label>
-                  <input id="telefone_res" name="telefone_res" type="tel" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                  <label>Detalhes</label>
-                  <textarea id="detalhes_res" name="detalhes_res" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label>Foto</label>
-                  <input id="foto_res" name="foto_res" type="file" class="form-control" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Salvar</button>
               </form>
 
-              <!-- Adoção -->
+               <!-- Adoção -->
               <form id="form-adocao" class="pet-form" action="forms/salvar_anuncio.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="tipo" value="adocao">
-                <div class="mb-3">
-                  <label>Nome (opcional)</label>
-                  <input id="nome_ado" name="nome_ado" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'">
-                </div>
-                <div class="mb-3">
-                  <label>Tipo do Animal</label>
-                  <select id="especie_ado" name="especie_ado" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label>Sexo</label>
-                  <select id="sexo_ado" name="sexo_ado" class="form-select" required>
-                    <option value="">Selecione</option>
-                    <option value="macho">Macho</option>
-                    <option value="femea">Fêmea</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                    <label for="raca_ado">Raça</label>
-                    <input id="raca_ado" name="raca_ado" type="text" class="form-control" placeholder="Ex: Poodle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="porte_ado">Porte</label>
-                    <select id="porte_ado" name="porte_ado" class="form-select" required>
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="mb-3">
+                      <label>Nome (Opcional):</label>
+                      <input id="nome_ado" name="nome_ado" type="text" class="form-control" placeholder="É possível anunciar o pet como 'Sem nome'">
+                    </div>
+                    <div class="mb-3">
+                      <label>Tipo do Animal:</label>
+                      <select id="especie" name="especie" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="ave">Ave</option>
+                        <option value="cachorro">Cachorro</option>
+                        <option value="chinchila">Chinchila</option>
+                        <option value="coelho">Coelho</option>
+                        <option value="furao">Furão</option>
+                        <option value="gato">Gato</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="porquinho-india">Porquinho-da-Índia</option>
+                        <option value="tartaruga">Tartaruga</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Sexo:</label>
+                      <select id="sexo_ado" name="sexo_ado" class="form-select" required>
+                        <option value="">Selecione</option>
+                        <option value="macho">Macho</option>
+                        <option value="femea">Fêmea</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="raca_ado">Raça:</label>
+                      <input id="raca_ado" name="raca_ado" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="porte_ado">Porte:</label>
+                      <select id="porte_ado" name="porte_ado" class="form-select" required>
                         <option value="">Selecione o porte</option>
                         <option value="pequeno">Pequeno</option>
                         <option value="medio">Médio</option>
                         <option value="grande">Grande</option>
-                    </select>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Telefone:</label>
+                      <input id="telefone_ado" name="telefone_ado" type="tel" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Detalhes:</label>
+                      <textarea id="detalhes_ado" name="detalhes_ado" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="mb-3">
+                      <label>CEP:</label>
+                      <input id="local_ado" name="local_ado" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Rua:</label>
+                      <input id="rua_ado" name="rua_ado" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Número:</label>
+                      <input id="numero_ado" name="numero_ado" type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Bairro:</label>
+                      <input id="bairro_ado" name="bairro_ado" type="text" class="form-control"  required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Cidade:</label>
+                      <input id="cidade_ado" name="cidade_ado" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label>Foto:</label>
+                      <input id="foto_ado" name="foto_ado" type="file" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mt-2">
+                      <button type="submit" class="btn btn-success w-100">Salvar</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label>CEP do Local</label>
-                  <input id="local_ado" name="local_ado" type="text" class="form-control" placeholder="Ex: 08246-000" required>
-                </div>
-                <div class="mb-3">
-                  <label>Rua</label>
-                  <input id="rua_ado" name="rua_ado" type="text" class="form-control" placeholder="Ex: Capitão Manuel Guimarães" required>
-                </div>
-                <div class="mb-3">
-                  <label>Número</label>
-                  <input id="numero_ado" name="numero_ado" type="number" class="form-control" placeholder="Ex: 105" required>
-                </div>
-                <div class="mb-3">
-                  <label>Bairro</label>
-                  <input id="bairro_ado" name="bairro_ado" type="text" class="form-control" placeholder="Ex: São Miguel Paulista" required>
-                </div>
-                <div class="mb-3">
-                  <label>Cidade</label>
-                  <input id="cidade_ado" name="cidade_ado" type="text" class="form-control" placeholder="Ex: São Paulo" required>
-                </div>
-                <div class="mb-3">
-                  <label>Telefone para Contato</label>
-                  <input id="telefone_ado" name="telefone_ado" type="tel" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                  <label>Detalhes</label>
-                  <textarea id="detalhes_ado" name="detalhes_ado" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label>Foto</label>
-                  <input id="foto_ado" name="foto_ado" type="file" class="form-control" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Salvar</button>
               </form>
 
             </div>
           </div>
-        </div>
       </div>
     </div>
   </main>

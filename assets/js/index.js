@@ -4,10 +4,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterForm = document.getElementById('filter-form');
   const adCards = document.querySelectorAll('.ad-card');
 
+  // ...novo: cria/atualiza a barra de status em cada card---
+  function ensureStatusBars() {
+    const labelMap = {
+      'perdido': 'Perdido',
+      'resgatado': 'Resgatado',
+      'adocao': 'Adoção',
+      'solucionado': 'Caso Solucionado'
+    };
+
+    adCards.forEach(card => {
+      // obter status normalizado (prioriza atributo data-status, senão tenta a tag .ad-status)
+      let ds = (card.getAttribute('data-status') || '').toString().trim();
+      if (!ds) {
+        const statusEl = card.querySelector('.ad-status');
+        ds = mapStatus(statusEl?.dataset?.status ?? statusEl?.textContent ?? '');
+        if (ds) card.setAttribute('data-status', ds);
+      }
+
+      // rótulo e classe
+      const label = labelMap[ds] || (card.querySelector('.ad-status')?.textContent || '');
+      const cls = ds || 'unknown';
+
+      let bar = card.querySelector('.status-bar');
+      if (bar) {
+        bar.className = 'status-bar ' + cls;
+        bar.textContent = label;
+      } else {
+        bar = document.createElement('div');
+        bar.className = 'status-bar ' + cls;
+        bar.textContent = label;
+        // inserir no início do card para ficar no topo
+        card.insertBefore(bar, card.firstChild);
+      }
+    });
+  }
+  // ...fim novo trecho---
+
   function updateDistance() {
     distanceLabel.textContent = distanceInput.value;
     distanceInput.style.setProperty('--value', distanceInput.value);
   }
+
+  // executar logo após definir adCards
+  ensureStatusBars();
+  // fim inserção inicial
 
   updateDistance();
   distanceInput.addEventListener('input', updateDistance);
@@ -32,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const x = normalize(s);
     if (x.includes('perd')) return 'perdido';
     if (x.includes('resgat')) return 'resgatado';
-    if (x.includes('encontr')) return 'encontrado';
+    // mapear "encontrado" para o novo status 'solucionado' (Caso Solucionado)
+    if (x.includes('encontr')) return 'solucionado';
     if (x.includes('adoc')) return 'adocao';
     return '';
   }
@@ -201,5 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const container = card.closest('[data-ad-container]') || card.closest('.col-md-6') || card;
       container.style.display = showCard ? '' : 'none';
     });
+
+    // Atualiza/insere status bars após filtro (caso cards tenham sido alterados dinamicamente)
+    ensureStatusBars();
   });
 });

@@ -85,7 +85,7 @@
                 <label><input type="checkbox" name="status" value="perdido"><span>Perdido</span></label>
                 <label><input type="checkbox" name="status" value="resgatado"><span>Resgatado</span></label>
                 <label><input type="checkbox" name="status" value="adocao"><span>Para Adoção</span></label>
-                <label><input type="checkbox" name="status" value="encontrado"><span>Encontrado</span></label>
+                <label><input type="checkbox" name="status" value="solucionado"><span>Caso Solucionado</span></label>
               </div>
             </div>
 
@@ -111,14 +111,14 @@
 
       <!-- Anúncios -->
       <section class="col-lg-9">
-        <div class="hero-container text-center mb-5">
-          <h1>Cuide de quem você ama!</h1>
-          <?php if (isset($_SESSION['idUsuario'])): ?>
-            <a href="anuncio.html" class="btn btn-success mt-3">Anuncie</a>
-          <?php else: ?>
-            <a href="entrar.html" class="btn btn-outline-secondary mt-3">Entre para Anunciar</a>
-          <?php endif; ?>
-        </div>
+        <div class="hero-container mb-5 d-flex">
+           <h1>Cuide de quem você ama!</h1>
+           <?php if (isset($_SESSION['idUsuario'])): ?>
+             <a href="anuncio.html" class="btn btn-anuncie">Anuncie aqui</a>
+           <?php else: ?>
+             <a href="entrar.html" class="btn btn-anuncie">Anuncie aqui</a>
+           <?php endif; ?>
+         </div>
 
         <div class="row g-4">
           <?php
@@ -127,17 +127,26 @@
             $userLat = $_SESSION['lat'] ?? null;
             $userLon = $_SESSION['lon'] ?? null;
 
-            echo '<script>
-              window.USER_LAT = ' . (is_numeric($userLat) ? json_encode((float)$userLat) : 'null') . ';
-              window.USER_LON = ' . (is_numeric($userLon) ? json_encode((float)$userLon) : 'null') . ';
-            </script>';
+            $conn->query("CREATE INDEX IF NOT EXISTS idx_anuncio_data ON Anuncio(dataAnuncio)");
+            $conn->query("CREATE INDEX IF NOT EXISTS idx_animal_anuncio ON Animal(idAnimal)");
 
-            $result = $conn->query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, A.cep, AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte, ASP.observacao
-              FROM Anuncio A
-              JOIN Animal AN ON A.idAnimal = AN.idAnimal
-              JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
-              JOIN Imagens IM ON ASP.idImagem = IM.idImagem
-              ORDER BY A.dataAnuncio DESC");
+            $limit = 20;
+            $result = $conn->query("SELECT A.idAnuncio, A.situacao, A.dataAnuncio, A.telefone, A.cep,
+                                         A.bairro, A.cidade,
+                                         AN.nome, IM.caminho, ASP.especie, ASP.sexo, ASP.raca, ASP.porte,
+                                         ASP.observacao
+                                  FROM Anuncio A
+                                  JOIN Animal AN ON A.idAnimal = AN.idAnimal
+                                  JOIN Aspectos ASP ON A.idAspectos = ASP.idAspectos
+                                  JOIN Imagens IM ON ASP.idImagem = IM.idImagem
+                                  ORDER BY A.dataAnuncio DESC
+                                  LIMIT $limit");
+
+            $cacheFile = __DIR__ . '/assets/cache/cep_coords.json';
+            $cepCache = [];
+            if (file_exists($cacheFile)) {
+                $cepCache = json_decode(file_get_contents($cacheFile), true) ?: [];
+            }
 
             function normalizarSituacao(?string $s): string {
               $s = (string)$s;
@@ -178,8 +187,8 @@
                 $map = 'perdido';
               } elseif (str_contains($situacaoNorm, 'resgat')) {
                 $map = 'resgatado';
-              } elseif (str_contains($situacaoNorm, 'encontrado')) {
-                $map = 'encontrado';
+              } elseif (str_contains($situacaoNorm, 'encontr') || str_contains($situacaoNorm, 'resol') ) {
+                $map = 'solucionado';
               } elseif (str_contains($situacaoNorm, 'adoc')) {
                 $map = 'adocao';
               } else {
@@ -189,7 +198,7 @@
               $statusClass = match ($map) {
                 'perdido'    => 'status-lost',
                 'resgatado'  => 'status-resgatado',
-                'encontrado' => 'status-encontrado',
+                'solucionado' => 'status-solucionado',
                 'adocao'     => 'status-adocao',
                 default      => 'status-unknown'
               };
@@ -197,7 +206,7 @@
               $labelSituacao = match ($map) {
                 'perdido'    => 'Perdido',
                 'resgatado'  => 'Resgatado',
-                'encontrado' => 'Encontrado',
+                'solucionado' => 'Caso Solucionado',
                 'adocao'     => 'Adoção',
                 default      => ($situacaoRaw !== '' ? ucfirst($situacaoRaw) : 'Indefinido')
               };
@@ -208,54 +217,59 @@
               $displayLocal = '';
               if (!empty($cep)) {
                 $displayLocal = htmlspecialchars($cep, ENT_QUOTES, 'UTF-8');
-                $cacheFile = __DIR__ . '/assets/cache/cep_coords.json';
-                $cache = [];
-                if (file_exists($cacheFile)) {
-                  $raw = @file_get_contents($cacheFile);
-                  $cache = $raw ? json_decode($raw, true) : [];
-                  if (!is_array($cache)) $cache = [];
-                }
-
-                if (!empty($cache[$cep]['lat']) && !empty($cache[$cep]['lon'])) {
-                  $latAttr = ' data-lat="' . htmlspecialchars($cache[$cep]['lat'], ENT_QUOTES, 'UTF-8') . '"';
-                  $lonAttr = ' data-lon="' . htmlspecialchars($cache[$cep]['lon'], ENT_QUOTES, 'UTF-8') . '"';
+                if (!empty($cepCache[$cep]['lat']) && !empty($cepCache[$cep]['lon'])) {
+                  $latAttr = ' data-lat="' . htmlspecialchars($cepCache[$cep]['lat'], ENT_QUOTES, 'UTF-8') . '"';
+                  $lonAttr = ' data-lon="' . htmlspecialchars($cepCache[$cep]['lon'], ENT_QUOTES, 'UTF-8') . '"';
                 } else {
                   $query = $cep . ', Brasil';
-                  $url = 'https://nominatim.openstreetmap.org/search?' . http_build_query(['q'=>$query, 'format'=>'json', 'limit'=>1]);
-                  $opts = ["http"=>["header"=>"User-Agent: PetSee/1.0 (contato@exemplo.com)"]];
+                  $url = 'https://nominatim.openstreetmap.org/search?' . http_build_query([
+                    'q' => $query,
+                    'format' => 'json',
+                    'limit' => 1
+                  ]);
+                  
+                  $opts = [
+                      "http" => [
+                          "header" => "User-Agent: PetSee/1.0",
+                          "timeout" => 2.0
+                      ]
+                  ];
+                  
                   $context = stream_context_create($opts);
                   $resp = @file_get_contents($url, false, $context);
+                  
                   if ($resp !== false) {
                     $d = json_decode($resp, true);
                     if (!empty($d[0]['lat']) && !empty($d[0]['lon'])) {
-                      $lat = (float)$d[0]['lat'];
-                      $lon = (float)$d[0]['lon'];
-                      $cache[$cep] = ['lat'=>$lat, 'lon'=>$lon, 'ts'=>time()];
-                      @file_put_contents($cacheFile, json_encode($cache, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-                      $latAttr = ' data-lat="' . htmlspecialchars($lat, ENT_QUOTES, 'UTF-8') . '"';
-                      $lonAttr = ' data-lon="' . htmlspecialchars($lon, ENT_QUOTES, 'UTF-8') . '"';
+                      $cepCache[$cep] = [
+                        'lat' => (float)$d[0]['lat'],
+                        'lon' => (float)$d[0]['lon'],
+                        'ts' => time()
+                      ];
+                      file_put_contents($cacheFile, json_encode($cepCache));
+                      $latAttr = ' data-lat="' . htmlspecialchars($d[0]['lat'], ENT_QUOTES, 'UTF-8') . '"';
+                      $lonAttr = ' data-lon="' . htmlspecialchars($d[0]['lon'], ENT_QUOTES, 'UTF-8') . '"';
                     }
                   }
                 }
               }
 
-              echo '<div class="col-md-6" data-ad-container>';
-              echo '<div class="ad-card d-flex"' . $latAttr . $lonAttr . '>';
-              echo '<div class="ad-image"><img src="' . htmlspecialchars($row['caminho']) . '" alt="' . htmlspecialchars($row['nome']) . '"></div>';
-              echo '<div class="ad-info">';
-              echo '<h5 class="ad-name">' . htmlspecialchars($row['nome']) . '</h5>';
-              echo '<p class="ad-species">' . htmlspecialchars($row['especie']) . ' • ' . htmlspecialchars($row['sexo']) . '</p>';
-              echo '<p class="ad-breed"><strong>Raça:</strong> ' . htmlspecialchars($row['raca']) . '</p>';
-              echo '<p class="ad-porte"><strong>Porte:</strong> ' . htmlspecialchars($row['porte']) . '</p>';
-              echo '<span class="ad-status ' . $statusClass . '">' .
-              htmlspecialchars($labelSituacao, ENT_QUOTES, 'UTF-8') .
-              '</span>';
-              echo '<p class="ad-details">Reportado em ' . date('d/m/Y', strtotime($row['dataAnuncio'])) . '</p>';
-              echo '<p class="ad-description"><strong>Descrição:</strong> ' . htmlspecialchars($row['observacao']) . '</p>';
-              echo '<div class="ad-actions">
-                <a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="btn btn-primary btn-sm">Ver Detalhes</a>
-              </div>';
-              echo '</div></div></div>';
+              echo '<div class="col-md-4" data-ad-container>';
+              $dataStatusAttr = ' data-status="' . htmlspecialchars($map, ENT_QUOTES, 'UTF-8') . '"';
+              echo '<a href="detalhesAnuncio.php?id=' . $row['idAnuncio'] . '" class="card-link">';
+              echo '<div class="ad-card"' . $latAttr . $lonAttr . $dataStatusAttr . '>';
+              echo '<div class="status-bar ' . htmlspecialchars($map, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($labelSituacao, ENT_QUOTES, 'UTF-8') . '</div>';
+              echo '  <div class="ad-image-container">';
+              echo '    <span class="ad-status ' . $statusClass . '" role="status">' . htmlspecialchars($labelSituacao, ENT_QUOTES, 'UTF-8') . '</span>';
+              echo '    <img src="' . htmlspecialchars($row['caminho']) . '" alt="' . htmlspecialchars($row['nome']) . '">';
+              echo '  </div>';
+              echo '  <div class="ad-info">';
+              echo '    <h5 class="ad-name">' . htmlspecialchars($row['nome']) . '</h5>';
+              echo '    <p class="ad-location">' . htmlspecialchars(($row['bairro'] ?? '') . ', ' . ($row['cidade'] ?? '')) . '</p>';
+              echo '  </div>';
+              echo '</div>';
+              echo '</a>';
+              echo '</div>';
             }
 
             fecharConexao($conn);
